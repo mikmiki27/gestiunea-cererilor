@@ -21,7 +21,7 @@ class SignInActivityPresenter(
         view?.showProgress()
 
         subscription.add(
-            authManager.signinWithResourceOwnerPassword(context, email, password)
+            authManager.signInWithResourceOwnerPassword(context, email, password)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.gestiuneacererilor.utils.ConnectionLiveData
 import com.example.gestiuneacererilor.utils.ProgressFragment
+import com.example.gestiuneacererilor.utils.ProgressManager
 
 abstract class BaseActivity<T : BaseMvp.Presenter> : AppCompatActivity(), BaseMvp.View {
 
@@ -18,6 +19,7 @@ abstract class BaseActivity<T : BaseMvp.Presenter> : AppCompatActivity(), BaseMv
     var hasInternetConnection = false
     private var noInternetConnectionDialog: AlertDialog? = null
     private var progressBarFragment: ProgressFragment? = null
+    var progressManager: ProgressManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,10 @@ abstract class BaseActivity<T : BaseMvp.Presenter> : AppCompatActivity(), BaseMv
                 hasInternetConnection = isConnected
             }
         })
+
+        this.progressManager = ProgressManager(this)
+
+        setUpProgressBar()
     }
 
     override fun doIfHasInternetConnectivity(doAfter: () -> Unit, doOnError: (() -> Unit)?) {

@@ -22,7 +22,6 @@ import org.json.JSONObject
 
 class AuthManagerImpl private constructor() :
     AuthManager {
-
     val region = AppID.REGION_UK
     var appId: AppID? = null
     var appIdAuthorizationManager: AppIDAuthorizationManager? = null
@@ -128,7 +127,7 @@ class AuthManagerImpl private constructor() :
         }
     }
 
-    override fun signinWithResourceOwnerPassword(
+    override fun signInWithResourceOwnerPassword(
         context: Context,
         email: String,
         password: String
@@ -169,7 +168,7 @@ class AuthManagerImpl private constructor() :
 
     }
 
-    override fun logout(context: Context) {
+    override fun logOut(context: Context) {
         checkInitialization()
         appId!!.logout()
         deleteAuthData(context)
@@ -263,7 +262,8 @@ class AuthManagerImpl private constructor() :
     }
 
     override fun setUserAuthData(context: Context, user: UserAuthData) {
-        val sharedPref = context.getSharedPreferences(Constants.SHARED_PREF_FILE, Context.MODE_PRIVATE)
+        val sharedPref =
+            context.getSharedPreferences(Constants.SHARED_PREF_FILE, Context.MODE_PRIVATE)
 
         val editor = sharedPref.edit()
 
@@ -273,7 +273,11 @@ class AuthManagerImpl private constructor() :
         editor.commit()
     }
 
-    override fun updateUserAuthData(saveUserResponse: SaveUserResponse, phone: String, context: Context) {
+    override fun updateUserAuthData(
+        saveUserResponse: SaveUserResponse,
+        phone: String,
+        context: Context
+    ) {
         var userAuth = getUserAuthData(context)
 
         userAuth.phone = phone

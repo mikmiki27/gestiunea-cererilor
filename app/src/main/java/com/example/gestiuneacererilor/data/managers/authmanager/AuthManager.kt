@@ -14,9 +14,11 @@ interface AuthManager {
 
     fun launchSignUp(activity: Activity): Single<AuthData>
 
-    fun signinWithResourceOwnerPassword(context: Context, email: String, password: String): Single<AuthData>
-
-    fun logout(context: Context)
+    fun signInWithResourceOwnerPassword(
+        context: Context,
+        email: String,
+        password: String
+    ): Single<AuthData>
 
     fun forgotPassword(activity: Activity): Single<AuthData>
 
@@ -29,4 +31,6 @@ interface AuthManager {
     fun setUserAuthData(context: Context, user: UserAuthData)
 
     fun updateUserAuthData(getUserResponse: GetUserResponse, context: Context)
+
+    fun logOut(context: Context)
 }
