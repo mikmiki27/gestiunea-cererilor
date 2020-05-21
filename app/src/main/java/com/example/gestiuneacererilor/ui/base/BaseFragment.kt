@@ -8,7 +8,7 @@ abstract class BaseFragment<T : BaseMvp.Presenter> : Fragment(), BaseMvp.View {
 
     lateinit var presenter: T
 
-    abstract fun initializePresenter() : T
+    abstract fun initializePresenter(): T
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

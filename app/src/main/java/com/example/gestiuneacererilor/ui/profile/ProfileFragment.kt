@@ -4,14 +4,25 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.gestiuneacererilor.R
+import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
 import com.example.gestiuneacererilor.ui.base.BaseActivity
+import com.example.gestiuneacererilor.ui.base.BaseFragment
+import com.example.gestiuneacererilor.ui.main.MainActivity
+import com.example.gestiuneacererilor.ui.onboarding.OnBoardingActivity
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_progress.*
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListener,
+    ProfileMvp.View {
+
+    override fun initializePresenter(): ProfileMvp.Presenter {
+        return ProfilePresenter(
+            this,
+            requireContext(),
+            FirebaseAuthManagerImpl.getInstance()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,5 +39,17 @@ class ProfileFragment : Fragment() {
             SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL
         ) + SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME)
         profile_text.text = text
+
+        sing_out_btn_profile.setOnClickListener(this)
+    }
+
+    override fun onClick(view: View?) {
+        if (view?.id == R.id.sing_out_btn_profile) {
+            presenter.singOut()
+        }
+    }
+
+    override fun goToMainActivity() {
+        startActivity(OnBoardingActivity.getIntent(context!!))
     }
 }

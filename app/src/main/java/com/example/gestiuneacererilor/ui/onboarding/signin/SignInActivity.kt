@@ -10,6 +10,8 @@ import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.example.gestiuneacererilor.R
+import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManager
+import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_sign_in.*
 class SignInActivity : BaseActivity<SignInMvp.Presenter>(), SignInMvp.View {
 
     override var presenter: SignInMvp.Presenter =
-        SignInActivityPresenter(this)
+        SignInActivityPresenter(this, FirebaseAuthManagerImpl.getInstance())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,11 +81,7 @@ class SignInActivity : BaseActivity<SignInMvp.Presenter>(), SignInMvp.View {
             ) {
                 val email = email_text.text.toString()
                 val password = password_text.text.toString()
-                /*presenter.signInWithResourceOwnerPassword(
-                    this,
-                    email,
-                    password
-                )*/
+                presenter.signInWithEmailAndPassword(this, email, password)
             }
         }
 

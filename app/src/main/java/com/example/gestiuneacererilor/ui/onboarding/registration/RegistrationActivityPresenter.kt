@@ -28,6 +28,7 @@ class RegistrationActivityPresenter(
                         activity, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME, it.displayName
                             ?: ""
                     )
+                    view?.hideProgress()
                     view?.goToMainActivity()
                 }, {
                     view?.hideProgress()

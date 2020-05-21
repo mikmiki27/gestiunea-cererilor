@@ -56,13 +56,8 @@ class FirebaseAuthManagerImpl private constructor() : FirebaseAuthManager {
                     ?.addOnCompleteListener(activity) { task ->
                         if (task.isSuccessful) {
                             mAuth?.currentUser?.let { emitter.onNext(it) }
-                            // Log.d(TAG, "signInWithEmail:success")
-                            // val user = mAuth?.currentUser
-                            //  Toast.makeText(activity, "Authentication succeeded.", Toast.LENGTH_SHORT).show()
                         } else {
                             emitter.tryOnError(task.exception!!)
-                            //Log.w(TAG, "signInWithEmail:failure", task.exception)
-                            //Toast.makeText(activity, "Authentication failed.", Toast.LENGTH_SHORT).show()
                         }
                     }
             } catch (e: Exception) {
