@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/menu_profile">
+
+    <fragment
+        android:id="@+id/menu_disertatie"
+        android:name="com.example.gestiuneacererilor.ui.disertatie.DisertatieFragment"
+        android:label="DisertatieFragment"
+        tools:layout="@layout/fragment_disertatie">
+     <!--   <action
+            android:id="@+id/action_menu_requests_to_menu_details"
+            app:destination="@id/menu_details" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_licenta"
+        android:name="com.example.gestiuneacererilor.ui.licenta.LicentaFragment"
+        android:label="LicentaFragment"
+        tools:layout="@layout/fragment_licenta">
+       <!-- <argument
+            android:name="id"
+            app:argType="string" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_profile"
+        android:name="com.example.gestiuneacererilor.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

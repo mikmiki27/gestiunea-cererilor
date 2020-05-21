@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.onboarding.phone.PhoneActivity">
+
+    <TextView
+        android:id="@+id/hi_user_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="@string/hi_user"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_ultra_big"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline2" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/we_need_your_phone_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_medium"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/margin_medium"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="@string/we_need_your_phone_number"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_ultra_big"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hi_user_textView" />
+
+    <TextView
+        android:id="@+id/please_enter_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="@string/please_enter_it_below"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/text_ultra_big"
+        app:layout_constraintEnd_toEndOf="@+id/we_need_your_phone_textView"
+        app:layout_constraintStart_toStartOf="@+id/we_need_your_phone_textView"
+        app:layout_constraintTop_toBottomOf="@+id/we_need_your_phone_textView" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phone_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="24dp"
+        android:hint="@string/phone_number"
+        app:errorTextColor="@color/error_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/please_enter_textView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/phone_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:inputType="phone">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/save_phone_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_big"
+        android:layout_marginTop="@dimen/margin_big"
+        android:layout_marginEnd="@dimen/margin_big"
+        android:background="@drawable/rounded_blue_button"
+        android:gravity="center"
+        android:text="@string/save_phone_number"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phone_layout" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
