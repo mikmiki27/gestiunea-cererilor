@@ -73,7 +73,7 @@ class SignInActivity : BaseActivity<SignInMvp.Presenter>(), SignInMvp.View {
         })
 
 
-        signin_button.setOnClickListener {
+        login_btn.setOnClickListener {
             if (email_layout.error == null &&
                 password_layout.error == null
             ) {

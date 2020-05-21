@@ -7,7 +7,7 @@
     tools:context=".ui.onboarding.OnBoardingActivity">
 
     <ImageView
-        android:id="@+id/imageView_logo"
+        android:id="@+id/logo_imgView"
         android:layout_width="@dimen/logo_login_size"
         android:layout_height="@dimen/logo_login_size"
         android:layout_marginStart="@dimen/margin_medium"
@@ -22,21 +22,21 @@
         app:srcCompat="@mipmap/app_icon" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/signin_button"
+        android:id="@+id/login_btn"
         style="?attr/materialButtonStyle"
         android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
         android:layout_marginStart="40dp"
         android:layout_marginTop="@dimen/margin_extra_big"
         android:layout_marginEnd="40dp"
-        android:text="@string/sign_in"
+        android:text="@string/log_in"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_imgView" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/create_account_button"
+        android:id="@+id/create_account_btn"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="@dimen/button_height"
@@ -45,10 +45,10 @@
         android:text="@string/create_account"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin_button" />
+        app:layout_constraintTop_toBottomOf="@+id/login_btn" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loadingSpinner"
+        android:id="@+id/loading_progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/transparent"
@@ -58,8 +58,10 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible">
 
         <ProgressBar

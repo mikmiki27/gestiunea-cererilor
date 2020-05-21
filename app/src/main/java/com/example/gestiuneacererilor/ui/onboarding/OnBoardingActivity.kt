@@ -6,8 +6,10 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import com.example.gestiuneacererilor.R
+import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
+import com.example.gestiuneacererilor.ui.onboarding.registration.RegistrationActivity
 import com.example.gestiuneacererilor.ui.onboarding.signin.SignInActivity
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
@@ -21,7 +23,7 @@ class OnBoardingActivity : BaseActivity<OnBoardingMvp.Presenter>(), OnBoardingMv
         }
     }
 
-    override var presenter: OnBoardingMvp.Presenter = OnBoardingActivityPresenter(this)
+    override var presenter: OnBoardingMvp.Presenter = OnBoardingActivityPresenter(this, FirebaseAuthManagerImpl.getInstance())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,13 +34,14 @@ class OnBoardingActivity : BaseActivity<OnBoardingMvp.Presenter>(), OnBoardingMv
 
         setContentView(R.layout.activity_onboarding)
 
-        signin_button.setOnClickListener {
+        login_btn.setOnClickListener {
             val intent = Intent(applicationContext, SignInActivity::class.java)
             startActivity(intent)
         }
 
-        create_account_button.setOnClickListener {
-            //   presenter.launchSignUp(this)
+        create_account_btn.setOnClickListener {
+            val intent = Intent(applicationContext, RegistrationActivity::class.java)
+            startActivity(intent)
         }
 
     }

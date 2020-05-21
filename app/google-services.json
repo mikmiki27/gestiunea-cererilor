@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "254407016627",
+    "firebase_url": "https://gestiune-cereri.firebaseio.com",
+    "project_id": "gestiune-cereri",
+    "storage_bucket": "gestiune-cereri.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254407016627:android:405abb8fac6f49ef9930c6",
+        "android_client_info": {
+          "package_name": "com.example.gestiuneacererilor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254407016627-i0ildenu7l7bn5tq7s6d2ishr8pj8r9e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gestiuneacererilor",
+            "certificate_hash": "532aaa9d83ac884d5017c69ef149b044359472ed"
+          }
+        },
+        {
+          "client_id": "254407016627-qjnde0fnnb6nt5s65i3pj8m61pbqlulb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJO29aYa5EmK1URWUIMPyCDfWTbAEPpdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254407016627-qjnde0fnnb6nt5s65i3pj8m61pbqlulb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

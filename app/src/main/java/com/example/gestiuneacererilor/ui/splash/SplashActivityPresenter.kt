@@ -1,23 +1,28 @@
 package com.example.gestiuneacererilor.ui.splash
 
 import android.content.Context
+import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManager
 import com.example.gestiuneacererilor.ui.base.BasePresenter
+import com.google.firebase.auth.FirebaseUser
+
+
 
 class SplashActivityPresenter(
-    view: SplashMvp.View
+    view: SplashMvp.View,
+    private val firebaseAuth: FirebaseAuthManager
 ) : BasePresenter<SplashMvp.View>(view), SplashMvp.Presenter {
 
     override fun tryToLoginUser(context: Context) {
-       /* authManager.initAppId(context)
+        firebaseAuth.initFirebaseAuth(context)
 
         try {
-            if (authManager.getUserAuthData(context).refreshToken.isNotEmpty()) {
-             */   view?.goToMainActivity()
-           /* } else {
+            if (firebaseAuth.getCurrentUser() != null) {
+                view?.goToMainActivity()
+           } else {
                 view?.goToOnBoardingActivity()
             }
         } catch (ex: Throwable) {
             view?.goToOnBoardingActivity()
-        }*/
+        }
     }
 }
