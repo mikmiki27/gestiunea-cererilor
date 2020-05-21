@@ -9,18 +9,12 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.example.gestiuneacererilor.R
-import com.example.gestiuneacererilor.data.managers.authmanager.AuthManagerImpl
-import com.example.gestiuneacererilor.data.managers.usermanager.UserManagerImpl
-import com.example.gestiuneacererilor.data.restmanager.UserService
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_phone.*
 
 class PhoneActivity : BaseActivity<PhoneMvp.Presenter>(), PhoneMvp.View {
 
-    override var presenter: PhoneMvp.Presenter = PhoneActivityPresenter(this,this,
-        AuthManagerImpl.getInstance(),
-        UserManagerImpl(UserService.create(), AuthManagerImpl.getInstance())
-    )
+    override var presenter: PhoneMvp.Presenter = PhoneActivityPresenter(this,this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

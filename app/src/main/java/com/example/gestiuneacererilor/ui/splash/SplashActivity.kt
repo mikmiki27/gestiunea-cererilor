@@ -9,7 +9,6 @@ import android.util.Pair
 import android.view.View
 import android.view.animation.AnimationUtils
 import com.example.gestiuneacererilor.R
-import com.example.gestiuneacererilor.data.managers.authmanager.AuthManagerImpl
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
 import com.example.gestiuneacererilor.ui.onboarding.OnBoardingActivity
@@ -18,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_splash.*
 class SplashActivity : BaseActivity<SplashMvp.Presenter>(), SplashMvp.View {
 
     override var presenter: SplashMvp.Presenter =
-        SplashActivityPresenter(this, AuthManagerImpl.getInstance())
+        SplashActivityPresenter(this)
 
     private val animationDelay: Long = 1100
 

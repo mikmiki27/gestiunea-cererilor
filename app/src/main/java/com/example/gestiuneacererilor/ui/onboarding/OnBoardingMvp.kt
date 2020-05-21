@@ -8,7 +8,5 @@ interface OnBoardingMvp {
         fun goToMainActivity()
     }
 
-    interface Presenter : BaseMvp.Presenter {
-        fun launchSignUp(activity: Activity)
-    }
+    interface Presenter : BaseMvp.Presenter
 }
