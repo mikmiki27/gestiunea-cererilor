@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gestiunea Cererilor</string>
+    <string name="menu_profile">Profil</string>
+    <string name="menu_cereri">Cereri</string>
+    <string name="menu_sedinte">Sedinte</string>
+    <string name="menu_echipa">Echipa</string>
+    <string name="hi_user">Buna ziua <b> %1$s </b>,</string>
+    <string name="enter_phone_number">Adaugă numărul de telefon</string>
+    <string name="phone_must_have_10">Parola trebuie să aibă cel puțin 10 caractere</string>
+    <string name="please_try_again_phone">Eroare la adaugarea numărului de telefon, încearcă mai târziu</string>
+    <string name="error">Eroare</string>
+    <string name="first_name_hint">Prenume</string>
+    <string name="last_name_hint">Nume</string>
+    <string name="password">Parolă</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Înregistrare</string>
+    <string name="facultate_hint">Facultate</string>
+
+    <string-array name="ciclu_invatamant">
+        <item>Licenta</item>
+        <item>Master</item>
+    </string-array>
+
+    <string-array name="user_type">
+        <item>Student</item>
+        <item>Profesor</item>
+    </string-array>
+
+    <string-array name="an_licenta_type">
+        <item>1L</item>
+        <item>2L</item>
+        <item>3L</item>
+    </string-array>
+
+    <string-array name="an_master_type">
+        <item>1M</item>
+        <item>2M</item>
+    </string-array>
+
+</resources>

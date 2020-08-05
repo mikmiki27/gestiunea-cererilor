@@ -6,23 +6,40 @@
     app:startDestination="@id/menu_profile">
 
     <fragment
-        android:id="@+id/menu_disertatie"
-        android:name="com.example.gestiuneacererilor.ui.disertatie.DisertatieFragment"
-        android:label="DisertatieFragment"
-        tools:layout="@layout/fragment_disertatie">
-     <!--   <action
-            android:id="@+id/action_menu_requests_to_menu_details"
-            app:destination="@id/menu_details" />-->
+        android:id="@+id/menu_cereri"
+        android:name="com.example.gestiuneacererilor.ui.cereri.CereriFragment"
+        android:label="CereriFragment"
+        tools:layout="@layout/fragment_cereri">
     </fragment>
 
     <fragment
-        android:id="@+id/menu_licenta"
-        android:name="com.example.gestiuneacererilor.ui.licenta.LicentaFragment"
-        android:label="LicentaFragment"
-        tools:layout="@layout/fragment_licenta">
-       <!-- <argument
+        android:id="@+id/menu_echipa"
+        android:name="com.example.gestiuneacererilor.ui.echipa.EchipaFragment"
+        android:label="EchipaFragment"
+        tools:layout="@layout/fragment_echipa">
+        <!-- <argument
+             android:name="id"
+             app:argType="string" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_sedinte"
+        android:name="com.example.gestiuneacererilor.ui.sedinte.SedinteFragment"
+        android:label="SedinteFragment"
+        tools:layout="@layout/fragment_sedinte">
+        <action
+            android:id="@+id/action_menu_my_events_to_menu_details"
+            app:destination="@id/menu_details" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_details"
+        android:name="com.example.gestiuneacererilor.ui.cereri.detaliiProfesor.DetaliiProfesorFragment"
+        android:label="DetaliiProfesorFragment"
+        tools:layout="@layout/fragment_detalii_profesor">
+        <argument
             android:name="id"
-            app:argType="string" />-->
+            app:argType="string" />
     </fragment>
 
     <fragment

@@ -34,11 +34,11 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (context as? BaseActivity<*>)?.supportActionBar?.title = getString(R.string.menu_profile)
-        var text = SharedPrefUtil.getStringValue(
+        /*var text = SharedPrefUtil.getStringValue(
             context,
             SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL
         ) + SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME)
-        profile_text.text = text
+        profile_text.text = text*/
 
         sing_out_btn_profile.setOnClickListener(this)
     }

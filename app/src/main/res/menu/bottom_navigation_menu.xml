@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/menu_cereri"
+        android:icon="@drawable/ic_assignment_black_24dp"
+        android:title="Cereri"/>
+   <!-- <item
+        android:id="@+id/menu_echipa"
+        android:icon="@drawable/ic_supervisor_account_black_24dp"
+        android:title="Echipa"/>
+-->
+    <item
+        android:id="@+id/menu_sedinte"
+        android:icon="@drawable/ic_access_time_black_24dp"
+        android:title="Sedinte"/>
+    <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_account_box_black_24dp"
         android:title="@string/menu_profile"/>
-    <item
-        android:id="@+id/menu_licenta"
-        android:icon="@drawable/ic_insert_drive_file_black_24dp"
-        android:title="@string/menu_licenta"/>
-    <item
-        android:id="@+id/menu_disertatie"
-        android:icon="@drawable/ic_insert_drive_file_black_24dp"
-        android:title="@string/menu_disertatie"/>
 </menu>
