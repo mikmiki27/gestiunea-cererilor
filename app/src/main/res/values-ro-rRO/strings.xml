@@ -32,6 +32,7 @@
     <string name="update_btn">Actualizare</string>
     <string name="zero">0</string>
     <string name="dash">-</string>
+    <string name="template_for_two">%1$s %2$s</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

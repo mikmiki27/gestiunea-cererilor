@@ -7,6 +7,7 @@ import com.example.gestiuneacererilor.data.restmanager.data.GetAllStudentsRespon
 import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
 import io.reactivex.Single
+import retrofit2.http.Query
 
 class ProfesorManagerImplementation  private constructor(private val profesorService: ProfesorService) : ProfesorManager{
     companion object {
@@ -26,5 +27,9 @@ class ProfesorManagerImplementation  private constructor(private val profesorSer
 
     override fun enterNewProfesor(request: NewProfesorRequestBody): Single<NewProfesorRequestBody> {
         return profesorService.enterNewProfesor(request)
+    }
+
+    override fun getProfesorByEmail(email: String): Single<List<NewProfesorRequestBody>> {
+        return profesorService.getProfesorByEmail(email)
     }
 }

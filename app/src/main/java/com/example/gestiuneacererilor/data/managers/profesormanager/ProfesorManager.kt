@@ -9,4 +9,5 @@ import io.reactivex.Single
 interface ProfesorManager {
     fun getAllProfessors(): Single<GetAllProfessorsResponse>
     fun enterNewProfesor(request: NewProfesorRequestBody): Single<NewProfesorRequestBody>
+    fun getProfesorByEmail(email: String): Single<List<NewProfesorRequestBody>>
 }

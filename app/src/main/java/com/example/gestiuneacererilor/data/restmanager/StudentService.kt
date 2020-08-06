@@ -2,6 +2,7 @@ package com.example.gestiuneacererilor.data.restmanager
 
 import com.example.gestiuneacererilor.BuildConfig
 import com.example.gestiuneacererilor.data.restmanager.data.GetAllStudentsResponse
+import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.UpdateStudentRequestResponse
 import com.example.gestiuneacererilor.data.restmanager.util.CustomHttpClient
@@ -21,8 +22,9 @@ interface StudentService {
     @GET("student")
     fun getAllStudents(): Single<GetAllStudentsResponse>
 
-    @GET("student/:id")
-    fun getStudentByEmail(@Query("email") email: String): Single<UpdateStudentRequestResponse>
+    @GET("student/")
+    fun getStudentByEmail(@Query(value = "", encoded = true) email: String): Single<List<NewStudentRequestBody>>
+
 
     companion object {
         fun create(): StudentService {

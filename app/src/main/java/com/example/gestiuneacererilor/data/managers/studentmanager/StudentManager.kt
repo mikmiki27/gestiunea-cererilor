@@ -7,4 +7,5 @@ import io.reactivex.Single
 interface StudentManager {
     fun getAllStudents(): Single<GetAllStudentsResponse>
     fun enterNewStudent(request: NewStudentRequestBody): Single<NewStudentRequestBody>
+    fun getStudentByEmail(email: String): Single<List<NewStudentRequestBody>>
 }
