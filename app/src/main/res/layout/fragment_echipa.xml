@@ -7,7 +7,7 @@
     tools:context=".ui.echipa.EchipaFragment">
 
     <TextView
-        android:id="@+id/profile_text"
+        android:id="@+id/profile_display_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/profile_text2"
+        android:id="@+id/profile_an"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -27,7 +27,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
         app:layout_constraintStart_toEndOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/profile_text" />
+        app:layout_constraintTop_toBottomOf="@id/profile_display_name" />
 
     <TextView
         android:id="@+id/profile_text5"
@@ -39,7 +39,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
         app:layout_constraintStart_toEndOf="@id/guideline1"
-        app:layout_constraintTop_toBottomOf="@id/profile_text2" />
+        app:layout_constraintTop_toBottomOf="@id/profile_an" />
 
 
     <TextView

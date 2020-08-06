@@ -16,10 +16,26 @@
     <string name="email">Email</string>
     <string name="sign_up">Înregistrare</string>
     <string name="facultate_hint">Facultate</string>
+    <string name="sing_out">Deconectare</string>
+    <string name="full_name">Nume complet:</string>
+    <string name="year">An:</string>
+    <string name="degrees_type">Ciclu învățământ:</string>
+    <string name="titlu_lucrare_profil">Titlu lucrării:</string>
+    <string name="colleague">Facultate:</string>
+    <string name="email_profil">Email:</string>
+    <string name="profesor_coordonator_profil">Profesor coordonator:</string>
+    <string name="nr_echipa_licenta_profil">Licență - număr studenți confirmați:</string>
+    <string name="nr_echipa_master_profil">Masterat - număr studenți confirmați:</string>
+    <string name="cerinte_suplimentare_licenta_profil">Cerințe suplimentare licență:</string>
+    <string name="cerinte_suplimentare_master_profil">Cerințe suplimentare masterat:</string>
+    <string name="click_to_edit">Apasă pentru editare</string>
+    <string name="update_btn">Actualizare</string>
+    <string name="zero">0</string>
+    <string name="dash">-</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>
-        <item>Master</item>
+        <item>Masterat</item>
     </string-array>
 
     <string-array name="user_type">

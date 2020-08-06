@@ -8,7 +8,9 @@ import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
+import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManagerImplementation
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
+import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.Profesor
 import com.example.gestiuneacererilor.data.restmanager.data.Student
@@ -22,7 +24,8 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
     override var presenter: RegistrationMvp.Presenter =
         RegistrationActivityPresenter(this,
             FirebaseAuthManagerImpl.getInstance(),
-            StudentManagerImplementation.getInstance(StudentService.create()))
+            StudentManagerImplementation.getInstance(StudentService.create()),
+            ProfesorManagerImplementation.getInstance(ProfesorService.create()))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,6 +99,8 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
 
         sign_up_registration_btn.setOnClickListener {
             if (validation()) {
+                presenter.singUpUserToFirebase(email_text.text.toString(),  password_text.text.toString(), this)
+
                 if (user_type_layout.selectedItemId == 0L) { //student
                     presenter.singUpUser(
                         Student(
@@ -108,7 +113,6 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                             ciclu_layout.selectedItem.toString(),
                             ""
                         ),
-                        password_text.text.toString(),
                         this
                     )
                 } else { //professor
@@ -120,7 +124,6 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                             facultate_text.text.toString(),
                             "", "", "", ""
                         ),
-                        password_text.text.toString(),
                         this
                     )
                 }

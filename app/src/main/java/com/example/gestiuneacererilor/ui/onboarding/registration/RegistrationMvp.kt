@@ -11,7 +11,8 @@ interface RegistrationMvp {
     }
 
     interface Presenter : BaseMvp.Presenter {
-        fun singUpUser(student: Student, password: String, activity: Activity)
-        fun singUpUser(professor: Profesor, password: String, activity: Activity)
+        fun singUpUser(student: Student, activity: Activity)
+        fun singUpUser(professor: Profesor, activity: Activity)
+        fun singUpUserToFirebase(email: String, password: String, activity: Activity)
     }
 }

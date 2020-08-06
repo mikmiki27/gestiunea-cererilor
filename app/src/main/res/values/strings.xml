@@ -8,6 +8,20 @@
     <string name="last_name_hint">Last Name</string>
     <string name="sign_up">Sign Up</string>
     <string name="facultate_hint">Colleague</string>
+    <string name="titlu_lucrare_profil">Degree\'s title:</string>
+    <string name="profesor_coordonator_profil">Coordinator:</string>
+    <string name="nr_echipa_licenta_profil">Bachelor\'s team - no of members:</string>
+    <string name="nr_echipa_master_profil">Master\'s team - no of members:</string>
+    <string name="cerinte_suplimentare_licenta_profil">Additional requests for bachelor\'s degree:</string>
+    <string name="cerinte_suplimentare_master_profil">Additional requests for master\'s degree:</string>
+    <string name="email_profil">Email:</string>
+    <string name="sing_out">Sing out</string>
+    <string name="full_name">Full name:</string>
+    <string name="year">Year:</string>
+    <string name="degrees_type">Degree\'s type:</string>
+    <string name="colleague">Colleague:</string>
+    <string name="update_btn">Update</string>
+
     <string name="hello_blank_fragment1">Hello blank fragment profile</string>
     <string name="hello_blank_fragment2">Hello blank fragment echipa</string>
     <string name="hello_blank_fragment3">Hello blank fragment cereri</string>
@@ -39,6 +53,10 @@
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="loading">Loading..</string>
 
+
+    <string name="dash">-</string>
+    <string name="zero">0</string>
+    <string name="click_to_edit">Click to edit</string>
     <string-array name="ciclu_invatamant">
         <item>Bachelor</item>
         <item>Master</item>

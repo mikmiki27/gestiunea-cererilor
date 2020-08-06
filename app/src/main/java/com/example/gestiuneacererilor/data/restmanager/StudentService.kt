@@ -3,7 +3,7 @@ package com.example.gestiuneacererilor.data.restmanager
 import com.example.gestiuneacererilor.BuildConfig
 import com.example.gestiuneacererilor.data.restmanager.data.GetAllStudentsResponse
 import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.UpdateRequestResponse
+import com.example.gestiuneacererilor.data.restmanager.data.UpdateStudentRequestResponse
 import com.example.gestiuneacererilor.data.restmanager.util.CustomHttpClient
 import com.google.gson.GsonBuilder
 import io.reactivex.Single
@@ -22,7 +22,7 @@ interface StudentService {
     fun getAllStudents(): Single<GetAllStudentsResponse>
 
     @GET("student/:id")
-    fun getStudentByEmail(@Query("email") email: String): Single<UpdateRequestResponse>
+    fun getStudentByEmail(@Query("email") email: String): Single<UpdateStudentRequestResponse>
 
     companion object {
         fun create(): StudentService {

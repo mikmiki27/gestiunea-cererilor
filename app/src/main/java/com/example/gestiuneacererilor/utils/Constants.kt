@@ -17,4 +17,7 @@ object Constants {
     //Notifications
     const val NOTIFICATION_CHANNEL_ID = "default-notification-channel"
 
+    enum class UserType {
+        STUDENT, PROFESSOR
+    }
 }
