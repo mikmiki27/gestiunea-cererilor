@@ -14,11 +14,28 @@ fun Any.convertLongToTime(time: Long): String {
 }
 
 fun getCurrentUserEmail(context: Context): String {
-    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL).toString()
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL)
+        .toString()
 }
 
+fun getCurrentUserId(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_ID).toString()
+}
+
+
 fun getCurrentUserDisplayName(context: Context): String {
-    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME).toString()
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME)
+        .toString()
+}
+
+fun getCurrentUserNume(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_NUME)
+        .toString()
+}
+
+fun getCurrentUserPrenume(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_PRENUME)
+        .toString()
 }
 
 fun getCurrentUserFacultate(context: Context): String {

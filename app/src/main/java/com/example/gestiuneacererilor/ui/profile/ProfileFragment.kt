@@ -1,6 +1,8 @@
 package com.example.gestiuneacererilor.ui.profile
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +14,30 @@ import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Profesor
+import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.ui.onboarding.OnBoardingActivity
-import com.example.gestiuneacererilor.utils.Constants
-import com.example.gestiuneacererilor.utils.SharedPrefUtil
-import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
-import com.example.gestiuneacererilor.utils.getCurrentUserEmail
+import com.example.gestiuneacererilor.utils.*
+import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.email_text
+import kotlinx.android.synthetic.main.fragment_profile.facultate_text
 
 class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListener,
     ProfileMvp.View {
+
+    var typeUser: String = ""
+    var titluLucrareText: String = ""
+    var titluLucrareTextBefore: String = ""
+    var titluLucrareTextFixed: String = ""
+    var cerinteLicentaText: String = ""
+    var cerinteLicentaTextBefore: String = ""
+    var cerinteLicentaTextFixed: String = ""
+    var cerinteMasterText: String = ""
+    var cerinteMasterTextBefore: String = ""
+    var cerinteMasterTextFixed: String = ""
 
     override fun initializePresenter(): ProfileMvp.Presenter {
         return ProfilePresenter(
@@ -44,10 +59,12 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (context as? BaseActivity<*>)?.supportActionBar?.title = getString(R.string.menu_profile)
+
         sing_out_btn_profile.setOnClickListener(this)
         update_btn_profile.setOnClickListener(this)
+        typeUser = determineCurrentTypeUser(getCurrentUserEmail(requireContext()))
 
-        when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
+        when (typeUser) {
             Constants.UserType.STUDENT.name -> {
                 setVisibilityViewsForStudent()
                 presenter.getStudentByEmail()
@@ -58,6 +75,58 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
             }
         }
 
+        titluLucrareTextFixed = titlu_lucrare_text.text.toString()
+        cerinteLicentaTextFixed = cerinte_licenta_text.text.toString()
+        cerinteMasterTextFixed = cerinte_master_text.text.toString()
+
+        titlu_lucrare_text.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if (!titlu_lucrare_text.text?.equals(titluLucrareTextFixed)!!) {
+                    update_btn_profile.isEnabled = true
+                }
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                titluLucrareText = titlu_lucrare_text.text.toString()
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                titluLucrareTextBefore = titlu_lucrare_text.text.toString()
+                if (!titlu_lucrare_text.text?.equals(titluLucrareTextFixed)!!) {
+                    update_btn_profile.isEnabled = true
+                }
+            }
+        })
+        cerinte_licenta_text.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if (!cerinte_licenta_text.text?.equals(cerinteLicentaTextFixed)!!) {
+                    update_btn_profile.isEnabled = true
+                }
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                cerinteLicentaText = cerinte_licenta_text.text.toString()
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                cerinteLicentaTextBefore = cerinte_licenta_text.text.toString()
+            }
+        })
+        cerinte_master_text.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+                if (!cerinte_master_text?.equals(cerinteMasterTextFixed)!!) {
+                    update_btn_profile.isEnabled = true
+                }
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                cerinteMasterText = cerinte_master_text.text.toString()
+            }
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                cerinteMasterTextBefore = cerinte_master_text.text.toString()
+            }
+        })
     }
 
     override fun setViewsForStudent(student: NewStudentRequestBody) {
@@ -72,6 +141,49 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         email_text.setText(student.email)
         an_text.setText(student.an)
         ciclu_text.setText(student.ciclu)
+        titlu_lucrare_text.setText(student.titlu_lucrare ?: "")
+        activity?.let {
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_ID, student.id
+                    ?: ""
+            )
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_NUME, student.nume
+                    ?: ""
+            )
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_PRENUME, student.prenume
+                    ?: ""
+            )
+        }
+    }
+
+    override fun getCurrentStudentDetails(): Student {
+        return Student(
+            getCurrentUserId(requireContext()),
+            email_text.text.toString(),
+            getCurrentUserNume(requireContext()),
+            getCurrentUserPrenume(requireContext()),
+            profesor_coordonator_text.text.toString(),
+            facultate_text.text.toString(),
+            an_text.text.toString(),
+            ciclu_text.text.toString(),
+            titlu_lucrare_text.text.toString()
+        )
+    }
+
+    override fun getCurrentProfesorDetails(): Profesor {
+        return Profesor(
+            getCurrentUserId(requireContext()),
+            email_text.text.toString(),
+            getCurrentUserNume(requireContext()),
+            getCurrentUserPrenume(requireContext()),
+            facultate_text.text.toString(),
+            cerinte_licenta_text.text.toString(),
+            cerinte_master_text.text.toString(),
+            echipa_licenta_text.text.toString(),
+            echipa_master_text.text.toString()
+        )
     }
 
     override fun setViewsForProfesor(profesor: NewProfesorRequestBody) {
@@ -84,6 +196,24 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         )
         facultate_text.setText(profesor.facultate)
         email_text.setText(profesor.email)
+        cerinte_master_text.setText(profesor.cerinte_suplimentare_disertatie ?: "")
+        cerinte_licenta_text.setText(profesor.cerinte_suplimentare_licenta ?: "")
+        echipa_master_text.setText(profesor.nr_studenti_echipa_disertatie ?: "")
+        echipa_licenta_text.setText(profesor.nr_studenti_echipa_licenta ?: "")
+        activity?.let {
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_ID, profesor.id
+                    ?: ""
+            )
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_NUME, profesor.nume
+                    ?: ""
+            )
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_PRENUME, profesor.prenume
+                    ?: ""
+            )
+        }
     }
 
     private fun setVisibilityViewsForStudent() {
@@ -128,11 +258,22 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         an_text.visibility = View.GONE
     }
 
-
     override fun onClick(view: View?) {
-        if (view?.id == R.id.sing_out_btn_profile) {
-            removeAllSharedPref()
-            presenter.singOut()
+        when (view?.id) {
+            R.id.sing_out_btn_profile -> {
+                removeAllSharedPref()
+                presenter.singOut()
+            }
+            R.id.update_btn_profile -> {
+                when (typeUser) {
+                    Constants.UserType.STUDENT.name -> {
+                        presenter.updateStudent()
+                    }
+                    Constants.UserType.PROFESSOR.name -> {
+                        presenter.updateProfesor()
+                    }
+                }
+            }
         }
     }
 
@@ -146,10 +287,14 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
             SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL
         )
         SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_NUME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_ID)
         SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_PRENUME)
         SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_AN)
         SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_CICLU)
-        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_FACULTATE)
+        SharedPrefUtil.removeStringValue(
+            requireContext(),
+            SharedPrefUtil.CURRENT_USER_FACULTATE
+        )
         SharedPrefUtil.removeStringValue(
             requireContext(),
             SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR
@@ -178,5 +323,20 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
 
     override fun goToMainActivity() {
         startActivity(OnBoardingActivity.getIntent(requireContext()))
+    }
+
+    override fun disableUpdateButton() {
+        update_btn_profile.isEnabled = false
+    }
+
+    override fun disableUpdateButtonAndSetOldTextForProfesor() {
+        update_btn_profile.isEnabled = false
+        titlu_lucrare_text.setText(titluLucrareTextFixed)
+    }
+
+    override fun disableUpdateButtonAndSetOldTextForStudent() {
+        update_btn_profile.isEnabled = false
+        cerinte_licenta_text.setText(cerinteLicentaTextFixed)
+        cerinte_master_text.setText(cerinteMasterTextFixed)
     }
 }

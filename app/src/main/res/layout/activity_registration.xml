@@ -57,7 +57,7 @@
                 android:id="@+id/first_name_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'"
+                android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'"
                 android:imeOptions="actionNext"
                 android:inputType="text">
 
@@ -79,7 +79,7 @@
                 android:id="@+id/last_name_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'"
+                android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'"
                 android:imeOptions="actionNext"
                 android:inputType="text">
 
@@ -101,7 +101,7 @@
                 android:id="@+id/facultate_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'"
+                android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'"
                 android:imeOptions="actionNext"
                 android:inputType="text">
 
@@ -152,7 +152,7 @@
                 android:id="@+id/email_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.&#032;-'@"
+                android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890.&#032;-'@"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress">
 

@@ -78,6 +78,10 @@ class RegistrationActivityPresenter(
                         activity, SharedPrefUtil.CURRENT_USER_CICLU, it.ciclu
                             ?: ""
                     )
+                    SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.CURRENT_USER_ID, it.id
+                    ?: ""
+                    )
                     view?.hideProgress()
                     view?.goToMainActivity()
                 }, {
@@ -119,6 +123,10 @@ class RegistrationActivityPresenter(
                     )
                     SharedPrefUtil.addKeyValue(
                         activity, SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL, it.email
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.CURRENT_USER_ID, it.id
                             ?: ""
                     )
                    /* SharedPrefUtil.addKeyValue(

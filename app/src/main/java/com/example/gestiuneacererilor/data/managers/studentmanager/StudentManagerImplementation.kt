@@ -3,6 +3,7 @@ package com.example.gestiuneacererilor.data.managers.studentmanager
 import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.GetAllStudentsResponse
 import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Student
 import io.reactivex.Single
 import retrofit2.http.Query
 
@@ -28,5 +29,9 @@ class StudentManagerImplementation  private constructor(private val studentServi
 
     override fun getStudentByEmail(email: String): Single<List<NewStudentRequestBody>> {
         return studentService.getStudentByEmail(email)
+    }
+
+    override fun updateStudentById(id: String, student: Student): Single<NewStudentRequestBody> {
+        return studentService.updateStudentById(id, student)
     }
 }

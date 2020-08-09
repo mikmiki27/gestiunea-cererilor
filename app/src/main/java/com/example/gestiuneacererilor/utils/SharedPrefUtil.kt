@@ -9,6 +9,7 @@ class SharedPrefUtil {
         private const val PREFS_NAME = "CERERI_PREF"
         const val CURRENT_FIREBASE_USER_EMAIL = "current_firebase_user_email"
         const val CURRENT_FIREBASE_USER_NAME = "current_firebase_user_name"
+        const val CURRENT_USER_ID = "current_user_id"
         const val CURRENT_USER_NUME = "current_user_nume"
         const val CURRENT_USER_PRENUME = "current_user_prenume"
         const val CURRENT_USER_FACULTATE = "current_user_facultate"

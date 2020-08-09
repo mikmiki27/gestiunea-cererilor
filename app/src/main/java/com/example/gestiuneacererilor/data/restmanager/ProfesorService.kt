@@ -21,6 +21,9 @@ interface ProfesorService {
     @GET("profesor/")
     fun getProfesorByEmail(@Query(value = "", encoded = true) email: String): Single<List<NewProfesorRequestBody>>
 
+    @PUT("profesor/{id}")
+    fun updateProfesorById(@Path(value = "id") id: String, @Body profesor: Profesor): Single<NewProfesorRequestBody>
+
     companion object {
         fun create(): ProfesorService {
 
