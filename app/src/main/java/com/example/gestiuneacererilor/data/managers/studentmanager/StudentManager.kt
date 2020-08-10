@@ -9,5 +9,6 @@ interface StudentManager {
     fun getAllStudents(): Single<GetAllStudentsResponse>
     fun enterNewStudent(request: NewStudentRequestBody): Single<NewStudentRequestBody>
     fun getStudentByEmail(email: String): Single<List<NewStudentRequestBody>>
+    //fun getStudentById(id: String): Single<List<NewStudentRequestBody>>
     fun updateStudentById(id: String, student: Student): Single<NewStudentRequestBody>
 }

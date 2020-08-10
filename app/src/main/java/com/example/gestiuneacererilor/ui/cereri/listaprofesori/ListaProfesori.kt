@@ -10,7 +10,6 @@ import com.example.gestiuneacererilor.ui.cereri.detaliiProfesor.DetaliiProfesorF
 import com.example.gestiuneacererilor.ui.sedinte.OnRequestItemClicked
 import kotlinx.android.synthetic.main.fragment_lista_profesori.*
 
-
 class ListaProfesori(private var onRequestItemClicked: OnRequestItemClicked): Fragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -21,7 +20,7 @@ class ListaProfesori(private var onRequestItemClicked: OnRequestItemClicked): Fr
         super.onViewCreated(view, savedInstanceState)
        //  (context as? BaseActivity<*>)?.supportActionBar?.title = getString(R.string.menu_cereri)
 
-          card_view_student.setOnClickListener(this)
+          //card_view_student.setOnClickListener(this)
     }
 
        override fun onClick(view: View?) {

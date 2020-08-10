@@ -6,13 +6,8 @@ import android.widget.Toast
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
-import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
 import com.example.gestiuneacererilor.ui.base.BasePresenter
-import com.example.gestiuneacererilor.utils.Constants
-import com.example.gestiuneacererilor.utils.SharedPrefUtil
-import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
 import com.example.gestiuneacererilor.utils.getCurrentUserId
-import com.google.firebase.auth.FirebaseUser
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 

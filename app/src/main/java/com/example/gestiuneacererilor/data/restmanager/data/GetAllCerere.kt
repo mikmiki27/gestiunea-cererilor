@@ -1,4 +1,5 @@
 package com.example.gestiuneacererilor.data.restmanager.data
 
-class UpdateStudentRequestResponse {
+class GetAllCerere {
+    val list: List<Cerere> = emptyList()
 }

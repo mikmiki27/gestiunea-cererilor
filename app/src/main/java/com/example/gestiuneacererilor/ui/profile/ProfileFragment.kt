@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.fragment_profile.facultate_text
 class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListener,
     ProfileMvp.View {
 
-    var typeUser: String = ""
+    private lateinit var typeUser: Constants.UserType
     var titluLucrareText: String = ""
     var titluLucrareTextBefore: String = ""
     var titluLucrareTextFixed: String = ""
@@ -65,11 +65,11 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         typeUser = determineCurrentTypeUser(getCurrentUserEmail(requireContext()))
 
         when (typeUser) {
-            Constants.UserType.STUDENT.name -> {
+            Constants.UserType.STUDENT -> {
                 setVisibilityViewsForStudent()
                 presenter.getStudentByEmail()
             }
-            Constants.UserType.PROFESSOR.name -> {
+            Constants.UserType.PROFESSOR -> {
                 setVisibilityViewsForProfessor()
                 presenter.getProfessorByEmail()
             }
@@ -266,10 +266,10 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
             }
             R.id.update_btn_profile -> {
                 when (typeUser) {
-                    Constants.UserType.STUDENT.name -> {
+                    Constants.UserType.STUDENT -> {
                         presenter.updateStudent()
                     }
-                    Constants.UserType.PROFESSOR.name -> {
+                    Constants.UserType.PROFESSOR -> {
                         presenter.updateProfesor()
                     }
                 }

@@ -7,5 +7,6 @@ interface ProfesorManager {
     fun getAllProfessors(): Single<GetAllProfessorsResponse>
     fun enterNewProfesor(request: NewProfesorRequestBody): Single<NewProfesorRequestBody>
     fun getProfesorByEmail(email: String): Single<List<NewProfesorRequestBody>>
+    //fun getProfesorById(id: String): Single<List<NewProfesorRequestBody>>
     fun updateProfesorById(id: String, profesor: Profesor): Single<NewProfesorRequestBody>
 }

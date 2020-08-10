@@ -7,10 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.ui.sedinte.OnRequestItemClicked
+import com.example.gestiuneacererilor.utils.Constants
+import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
+import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 
-class CereriStudent(private var onRequestItemClicked: OnRequestItemClicked): Fragment(){
+class CereriStudentFragment(private var onRequestItemClicked: OnRequestItemClicked) : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_cereri_student, container, false)
     }
 

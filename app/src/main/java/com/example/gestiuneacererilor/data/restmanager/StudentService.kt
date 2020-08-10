@@ -22,6 +22,9 @@ interface StudentService {
     @GET("student/")
     fun getStudentByEmail(@Query(value = "", encoded = true) email: String): Single<List<NewStudentRequestBody>>
 
+    /*@GET("student/{id}")
+    fun getStudentById(@Path(value = "id") id: String): Single<List<NewStudentRequestBody>>*/
+
     @PUT("student/{id}")
     fun updateStudentById(@Path("id") id: String, @Body student: Student): Single<NewStudentRequestBody>
 

@@ -7,7 +7,7 @@ import com.example.gestiuneacererilor.data.restmanager.data.Student
 import io.reactivex.Single
 import retrofit2.http.Query
 
-class StudentManagerImplementation  private constructor(private val studentService: StudentService) : StudentManager{
+class StudentManagerImplementation private constructor(private val studentService: StudentService) : StudentManager{
     companion object {
         private var instance: StudentManager? = null
 

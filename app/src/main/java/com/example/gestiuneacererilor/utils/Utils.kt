@@ -50,9 +50,9 @@ fun getCurrentStudentCiclu(context: Context): String {
     return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_CICLU).toString()
 }
 
-fun determineCurrentTypeUser(email: String): String {
+fun determineCurrentTypeUser(email: String): Constants.UserType {
     return when {
-        email.contains("@stud.ase.ro") -> Constants.UserType.STUDENT.name
-        else -> Constants.UserType.PROFESSOR.name
+        email.contains("@stud.ase.ro") -> Constants.UserType.STUDENT
+        else -> Constants.UserType.PROFESSOR
     }
 }
