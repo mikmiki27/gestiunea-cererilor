@@ -14,14 +14,17 @@ class CereriPresenter(
 ) : BasePresenter<CereriMvp.View>(view), CereriMvp.Presenter {
 
     override fun getAllCerere() {
+        view?.showProgress()
         subscription.add(
             cerereManager.getAllCerere()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     view?.showCereriDisponibileForProfesor(it)
+                    view?.hideProgress()
                 }, {
                     Log.d("problem", "could not get all cerere")
+                    view?.hideProgress()
                 })
         )
     }
