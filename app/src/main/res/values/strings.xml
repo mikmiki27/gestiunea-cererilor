@@ -22,6 +22,7 @@
     <string name="colleague">Colleague:</string>
     <string name="update_btn">Update</string>
     <string name="template_for_two">%1$s %2$s</string>
+    <string name="fara_mentiuni">No other mentions.</string>
 
     <string name="hello_blank_fragment1">Hello blank fragment profile</string>
     <string name="hello_blank_fragment2">Hello blank fragment echipa</string>

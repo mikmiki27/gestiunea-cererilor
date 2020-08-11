@@ -16,7 +16,7 @@ interface CerereService {
     fun enterNewCerere(@Body request: Cerere): Single<Cerere>
 
     @GET("cerere")
-    fun getAllCerere(): Single<GetAllCerere>
+    fun getAllCerere(): Single<List<Cerere>>
 
     @GET("cerere/")
     fun getCerereByStudentEmail(@Query(value = "", encoded = true) email: String): Single<List<Cerere>>

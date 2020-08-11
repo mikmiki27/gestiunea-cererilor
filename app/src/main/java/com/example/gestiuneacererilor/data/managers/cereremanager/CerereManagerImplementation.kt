@@ -17,7 +17,7 @@ class CerereManagerImplementation private constructor(private val cerereService:
         }
     }
 
-    override fun getAllCerere(): Single<GetAllCerere> {
+    override fun getAllCerere(): Single<List<Cerere>> {
         return cerereService.getAllCerere()
     }
 

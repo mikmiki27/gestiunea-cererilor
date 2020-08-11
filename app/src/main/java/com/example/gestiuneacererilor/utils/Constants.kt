@@ -20,4 +20,8 @@ object Constants {
     enum class UserType {
         STUDENT, PROFESSOR
     }
+
+    enum class StatusCerere {
+        PROGRES, ACCEPTATA, RESPINSA, ANULATA
+    }
 }

@@ -5,7 +5,7 @@ import com.example.gestiuneacererilor.data.restmanager.data.GetAllCerere
 import io.reactivex.Single
 
 interface CerereManager {
-    fun getAllCerere(): Single<GetAllCerere>
+    fun getAllCerere(): Single<List<Cerere>>
     fun getCerereByStudentEmail(email: String): Single<List<Cerere>>
     fun getCerereByProfesorEmail(email: String): Single<List<Cerere>>
     //fun getCerereById(@Path(value = "id") id: String): Single<List<Cerere>>
