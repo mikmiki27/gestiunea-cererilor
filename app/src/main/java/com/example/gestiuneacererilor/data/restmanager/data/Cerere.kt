@@ -9,6 +9,7 @@ data class Cerere(
     val email_profesor_solicitat: String,
     val id_profesor: String,
     val status: String,
+    val tip_cerere: String,
     val raspuns: String,
     val mentiuni: String
 )

@@ -1,5 +1,7 @@
 package com.example.gestiuneacererilor.ui.cereri
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +25,10 @@ import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.fragment_cereri.*
+import java.util.*
+import kotlin.collections.ArrayList
 
-class CereriFragment : BaseFragment<CereriMvp.Presenter>(), View.OnClickListener,
+class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
     CereriMvp.View {
 
     private lateinit var viewPager: ViewPager2
@@ -91,8 +95,25 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(), View.OnClickListener
                     requireContext(),
                     requestsList
                 )
-                { _ ->
-                    Toast.makeText(requireContext(), "test test 2 dialog", Toast.LENGTH_SHORT).show()
+                { tip_cerere ->
+                    AlertDialog.Builder(context)
+                        .setTitle(
+                            String.format(
+                                resources.getString(R.string.add_student_to_the_team),
+                                tip_cerere.toString().toLowerCase(Locale.getDefault())
+                            )
+                        ) //todo test this
+                        .setCancelable(true)
+                        .setPositiveButton(getString(R.string.da)) { p0, p1 ->
+                            Toast.makeText(requireContext(), "test DA", Toast.LENGTH_SHORT).show()
+                            //todo status update to accepted, student fields updates, profesor team number update.
+                        }
+                        .setNegativeButton(getString(R.string.nu)) { p0, p1 ->
+                            //todo status update to respins!!
+                            Toast.makeText(requireContext(), "test NU", Toast.LENGTH_SHORT).show()
+                        }
+                        .show()
+                    //todo test this
                 }
                 setupRecyclerView()
             }
@@ -128,17 +149,6 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(), View.OnClickListener
         viewPager.adapter = eventsViewPagerAdapter
     }
 
-    override fun onClick(view: View?) {
-        if (view?.id == R.id.card_view_student) {
-            /* AlertDialog.Builder(context)
-                 .setTitle("Doresti sa adaugi studentul in echipa?")
-                 .setCancelable(false)
-                 .setPositiveButton("DA", null)
-                 .setNegativeButton("NU", null)
-                 .show()*/
-        }
-    }
-
     private fun setupRecyclerView() {
         recyclerViewForProfesor.apply {
             layoutManager = LinearLayoutManager(activity)
@@ -162,5 +172,13 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(), View.OnClickListener
             requestsList = ArrayList(filterListOfRequests(list))
             notifyDataSetChanged()
         }
+    }
+
+    override fun showPlaceholderForEmptylist() {
+        placeholderEmpty.visibility = View.VISIBLE
+    }
+
+    override fun showPlaceholderForNetwork() {
+        placeholderNetwork.visibility = View.VISIBLE
     }
 }

@@ -20,10 +20,14 @@ class CereriPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    view?.showCereriDisponibileForProfesor(it)
+                    when {
+                        it.isNullOrEmpty() -> view?.showPlaceholderForEmptylist() //todo test this
+                        else -> view?.showCereriDisponibileForProfesor(it)
+                    }
                     view?.hideProgress()
                 }, {
                     Log.d("problem", "could not get all cerere")
+                    view?.showPlaceholderForNetwork() //todo test this
                     view?.hideProgress()
                 })
         )

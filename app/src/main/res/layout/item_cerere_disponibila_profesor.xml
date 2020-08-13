@@ -52,6 +52,38 @@
             tools:text="Email: plestiu@stud.ase.ro" />
 
         <TextView
+            android:id="@+id/tip_cerere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="@dimen/text_size_4sp"
+            android:text="Tip cerere:"
+            android:textSize="@dimen/text_ultra_big"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/student_email" />
+
+        <TextView
+            android:id="@+id/tipcerere"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.01"
+            android:lineSpacingExtra="@dimen/text_size_4sp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="@dimen/text_ultra_big"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tip_cerere"
+            app:layout_constraintTop_toBottomOf="@id/student_email"
+            tools:text="licenta" />
+
+        <TextView
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +96,7 @@
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/student_email" />
+            app:layout_constraintTop_toBottomOf="@id/tip_cerere" />
 
         <TextView
             android:id="@+id/status_cerere"
@@ -80,7 +112,7 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/status"
-            app:layout_constraintTop_toBottomOf="@id/student_email"
+            app:layout_constraintTop_toBottomOf="@id/tipcerere"
             tools:text="in progres" />
 
         <TextView

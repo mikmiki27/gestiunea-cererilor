@@ -23,42 +23,22 @@
     <string name="update_btn">Update</string>
     <string name="template_for_two">%1$s %2$s</string>
     <string name="fara_mentiuni">No other mentions.</string>
+    <string name="numar_studenti_echipa_master">No. students in master-team: %1$s</string>
+    <string name="numar_studenti_echipa_licenta">No. students in bachelor-team %1$s</string>
+    <string name="dash">-</string>
+    <string name="zero">0</string>
+    <string name="click_to_edit">Click to edit</string>
+    <string name="a_aparut_o_eroare_incearca_din_nou">An error occurred, please try again later.</string>
+    <string name="nu_este_nici_o_cerere_disponibila">There is no request available.</string>
+    <string name="add_student_to_the_team">Do you want to add the student to your %1$s-team?</string>
+    <string name="da">YES</string>
+    <string name="nu">NO</string>
 
     <string name="hello_blank_fragment1">Hello blank fragment profile</string>
     <string name="hello_blank_fragment2">Hello blank fragment echipa</string>
     <string name="hello_blank_fragment3">Hello blank fragment cereri</string>
     <string name="hello_blank_fragment4">Hello blank fragment sedinte</string>
 
-    <string name="hi_user">Hi <b> %1$s </b>,</string>
-    <string name="enter_phone_number">Enter phone number</string>
-    <string name="phone_must_have_10">Phone must have at least 10 digits</string>
-    <string name="please_try_again_phone">Error adding your phone, please try again later.</string>
-    <string name="error">Error</string>
-    <string name="please_enter_email">Please enter your email</string>
-    <string name="invalid_email">Invalid email</string>
-    <string name="enter_password">Please enter your password</string>
-    <string name="password_minimum_limit">Password must have at least 8 characters</string>
-    <string name="error_login">Error Login</string>
-    <string name="invalid_email_or_password">Invalid email or password</string>
-    <string name="forgot_pass_failed">Forgot password error</string>
-    <string name="forgot_pass_process_failed">Forgot password process failed</string>
-    <string name="log_in">Log In</string>
-    <string name="create_account">Create Account</string>
-    <string name="we_need_your_phone_number">In order to have access in the app we need your phone number.</string>
-    <string name="please_enter_it_below">Please enter it below</string>
-    <string name="phone_number">Phone number</string>
-    <string name="save_phone_number">Save phone number</string>
-    <string name="continue_with_google">CONTINUE WITH GOOGLE\n<small>coming soon</small></string>
-    <string name="continue_with_facebook">CONTINUE WITH FACEBOOK\n<small>coming soon</small></string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="forgot_your_password">Forgot your password?</string>
-    <string name="loading">Loading..</string>
-
-
-    <string name="dash">-</string>
-    <string name="zero">0</string>
-    <string name="click_to_edit">Click to edit</string>
     <string-array name="ciclu_invatamant">
         <item>Bachelor</item>
         <item>Master</item>

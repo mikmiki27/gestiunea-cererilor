@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
+import java.util.*
 
 class CereriForProfesorListAdapter(
     private var context: Context,
@@ -29,21 +30,24 @@ class CereriForProfesorListAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         if (holder is ItemViewHolder) {
-            requestsList[position]?.let { item ->
-                //ajung aici doar cereri cu statusul in progress
+            if (!requestsList.isNullOrEmpty()) {
+                requestsList[position]?.let { item ->
+                    //ajung aici doar cereri cu statusul progres
 
-                holder.apply {
-                    numeStudent.text = item.student_solicitant
-                    emailStudent.text = item.email_student_solicitat
-                    status.text = item.status
-                    when {
-                        item.mentiuni.isNullOrEmpty() -> mentiuni.text =
-                            context.resources.getString(R.string.fara_mentiuni)
-                        else -> mentiuni.text = item.mentiuni
-                    }
+                    holder.apply {
+                        numeStudent.text = item.student_solicitant
+                        emailStudent.text = item.email_student_solicitat
+                        status.text = item.status
+                        tipCerere.text = item.tip_cerere.toLowerCase(Locale.getDefault()) //todo test this
+                        when {
+                            item.mentiuni.isEmpty() -> mentiuni.text =
+                                context.resources.getString(R.string.fara_mentiuni)
+                            else -> mentiuni.text = item.mentiuni
+                        }
 
-                    cardViewCerere.setOnClickListener {
-                        onRequestItemClicked.invoke("")
+                        cardViewCerere.setOnClickListener {
+                            onRequestItemClicked.invoke(item.tip_cerere)
+                        }
                     }
                 }
             }
@@ -59,6 +63,7 @@ class CereriForProfesorListAdapter(
         var emailStudent: TextView = view.findViewById(R.id.student_email)
         var status: TextView = view.findViewById(R.id.status_cerere)
         var mentiuni: TextView = view.findViewById(R.id.mentiuni_student)
+        var tipCerere: TextView = view.findViewById(R.id.tipcerere)
         var cardViewCerere: CardView = view.findViewById(R.id.card_view_cerere)
     }
 }

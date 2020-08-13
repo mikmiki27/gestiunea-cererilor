@@ -34,6 +34,13 @@
     <string name="dash">-</string>
     <string name="template_for_two">%1$s %2$s</string>
     <string name="fara_mentiuni">Fara alte mentiuni.</string>
+    <string name="numar_studenti_echipa_master">Numar studenti echipa master: %1$s</string>
+    <string name="numar_studenti_echipa_licenta">Numar studenti echipa licenta: %1$s</string>
+    <string name="a_aparut_o_eroare_incearca_din_nou">A aparut o eroare, incearca din nou.</string>
+    <string name="nu_este_nici_o_cerere_disponibila">Nu este nici o cerere disponibila.</string>
+    <string name="add_student_to_the_team">Doresti sa adaugi studentul in echipa de %1$s?</string>
+    <string name="da">DA</string>
+    <string name="nu">NU</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>
