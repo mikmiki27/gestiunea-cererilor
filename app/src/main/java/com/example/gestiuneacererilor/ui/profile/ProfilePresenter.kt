@@ -33,6 +33,7 @@ class ProfilePresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     when {
+                        it.isEmpty() -> Toast.makeText(context, "No student available in the database.", Toast.LENGTH_SHORT).show()
                         else -> view?.setViewsForStudent(it[0])
                     }
                 }, {

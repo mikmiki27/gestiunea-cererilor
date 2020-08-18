@@ -10,6 +10,9 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.ui.base.BaseActivity
+import com.example.gestiuneacererilor.utils.Constants
+import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
+import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
@@ -48,11 +51,18 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     }
 
     private fun setUpNavigation() {
+        val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         (supportFragmentManager.findFragmentById(R.id.navigation_host) as? NavHostFragment)?.let { navHostFragment ->
             NavigationUI.setupWithNavController(
-                findViewById<BottomNavigationView>(R.id.bottom_navigation),
+                bottomNav,
                 navHostFragment.navController
             )
+            when (determineCurrentTypeUser(getCurrentUserEmail(this))) {
+                Constants.UserType.STUDENT -> {
+                    bottomNav.menu.findItem(R.id.menu_echipa).setVisible(false)
+                }
+                Constants.UserType.PROFESSOR -> bottomNav.menu.findItem(R.id.menu_echipa).setVisible(true)
+            }
         }
     }
 

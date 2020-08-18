@@ -20,13 +20,13 @@
             android:name=".ui.main.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteStatusBarActivityTheme"
+            android:theme="@style/GrayStatusBarActivityTheme"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteStatusBarActivityTheme">
+            android:theme="@style/GrayStatusBarActivityTheme">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,23 +38,23 @@
         <activity
             android:name=".ui.onboarding.OnBoardingActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteStatusBarActivityTheme" />
+            android:theme="@style/GrayStatusBarActivityTheme" />
 
 
         <activity
             android:name=".ui.onboarding.phone.PhoneActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteStatusBarActivityTheme" />
+            android:theme="@style/GrayStatusBarActivityTheme" />
 
         <activity
             android:name=".ui.onboarding.signin.SignInActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteStatusBarActivityTheme" />
+            android:theme="@style/GrayStatusBarActivityTheme" />
 
         <activity
             android:name=".ui.onboarding.registration.RegistrationActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/WhiteStatusBarActivityTheme" />
+            android:theme="@style/GrayStatusBarActivityTheme" />
 
     </application>
 

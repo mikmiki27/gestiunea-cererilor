@@ -38,6 +38,16 @@ fun getCurrentUserPrenume(context: Context): String {
         .toString()
 }
 
+fun getProfesorLicentaEchipa(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_ECHIPA_LICENTA)
+        .toString()
+}
+
+fun getProfesorMasterEchipa(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_ECHIPA_MASTER)
+        .toString()
+}
+
 fun getCurrentUserFacultate(context: Context): String {
     return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_FACULTATE).toString()
 }

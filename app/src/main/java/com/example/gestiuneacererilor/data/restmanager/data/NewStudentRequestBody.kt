@@ -35,16 +35,17 @@ class NewStudentRequestBody {
     )
 }
 
-data class Student(
-    val email: String,
-    val nume: String,
-    val prenume: String,
-    val profesor_coordonator: String?,
-    val facultate: String,
-    val an: String,
-    val ciclu: String,
-    val titlu_lucrare: String?
-) {
+class Student {
+    val id: String = ""
+    val email: String = ""
+    val nume: String = ""
+    val prenume: String = ""
+    val profesor_coordonator: String? = ""
+    val facultate: String = ""
+    val an: String = ""
+    val ciclu: String = ""
+    val titlu_lucrare: String? = ""
+
     constructor(
         id: String,
         email: String,
@@ -55,5 +56,9 @@ data class Student(
         an: String,
         ciclu: String,
         titlu_lucrare: String
-    ) : this(email, nume, prenume, profesor_coordonator, facultate, an, ciclu, titlu_lucrare)
+    ) : this(email, nume, prenume, profesor_coordonator!!, facultate, an, ciclu, titlu_lucrare)
+
+    constructor(id: String, email: String, nume: String, prenume: String, profesor_coordonator: String, facultate: String, an: String, ciclu: String)
+
+    constructor(profesor_coordonator: String)
 }

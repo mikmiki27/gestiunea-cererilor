@@ -60,6 +60,8 @@
         android:layout_marginTop="@dimen/margin_very_big"
         android:text="@string/numar_studenti_echipa_licenta"
         android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:background="#cdf7f7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -71,7 +73,9 @@
         android:layout_height="wrap_content"
         android:text="@string/numar_studenti_echipa_master"
         android:textAlignment="center"
+        android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
+        android:background="#cdf7f7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView_echipa_licenta"
         tools:text="Numar studenti echipa master: 13" />

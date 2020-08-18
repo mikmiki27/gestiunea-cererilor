@@ -4,11 +4,11 @@
         android:id="@+id/menu_cereri"
         android:icon="@drawable/ic_assignment_black_24dp"
         android:title="Cereri"/>
-   <!-- <item
+    <item
         android:id="@+id/menu_echipa"
+        android:visible="true"
         android:icon="@drawable/ic_supervisor_account_black_24dp"
         android:title="Echipa"/>
--->
     <item
         android:id="@+id/menu_sedinte"
         android:icon="@drawable/ic_access_time_black_24dp"

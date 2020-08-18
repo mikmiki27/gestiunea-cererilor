@@ -32,13 +32,11 @@ class CereriForProfesorListAdapter(
         if (holder is ItemViewHolder) {
             if (!requestsList.isNullOrEmpty()) {
                 requestsList[position]?.let { item ->
-                    //ajung aici doar cereri cu statusul progres
-
                     holder.apply {
                         numeStudent.text = item.student_solicitant
                         emailStudent.text = item.email_student_solicitat
-                        status.text = item.status
-                        tipCerere.text = item.tip_cerere.toLowerCase(Locale.getDefault()) //todo test this
+                        status.text = item.status.toLowerCase(Locale.getDefault())
+                        tipCerere.text = item.tip_cerere.toLowerCase(Locale.getDefault())
                         when {
                             item.mentiuni.isEmpty() -> mentiuni.text =
                                 context.resources.getString(R.string.fara_mentiuni)
@@ -46,7 +44,7 @@ class CereriForProfesorListAdapter(
                         }
 
                         cardViewCerere.setOnClickListener {
-                            onRequestItemClicked.invoke(item.tip_cerere)
+                            onRequestItemClicked.invoke(item)
                         }
                     }
                 }

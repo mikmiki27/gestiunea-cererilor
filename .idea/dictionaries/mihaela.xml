@@ -12,6 +12,8 @@
       <w>nume</w>
       <w>prenume</w>
       <w>profesor</w>
+      <w>profil</w>
+      <w>selectata</w>
       <w>titlu</w>
     </words>
   </dictionary>

@@ -10,14 +10,15 @@
     android:layout_marginTop="@dimen/margin_medium"
     android:layout_marginEnd="@dimen/margin_medium"
     android:layout_marginBottom="@dimen/margin_4dp"
-    android:elevation="@dimen/margin_20dp"
     android:visibility="visible"
+    app:cardElevation="20dp"
     card_view:cardCornerRadius="@dimen/corner_radius_5dp"
     card_view:cardPreventCornerOverlap="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gray_gradient">
 
         <TextView
             android:id="@+id/student_name"
@@ -28,6 +29,7 @@
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="@dimen/text_size_4sp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,6 +46,7 @@
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="@dimen/text_size_4sp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,6 +64,7 @@
             android:letterSpacing="0.01"
             android:lineSpacingExtra="@dimen/text_size_4sp"
             android:text="Tip cerere:"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -93,6 +97,7 @@
             android:letterSpacing="0.01"
             android:lineSpacingExtra="@dimen/text_size_4sp"
             android:text="Status:"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -125,6 +130,7 @@
             android:letterSpacing="0.01"
             android:lineSpacingExtra="@dimen/text_size_4sp"
             android:text="Mentiuni:"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
@@ -139,6 +145,7 @@
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.01"
             android:lineSpacingExtra="@dimen/text_size_4sp"
+            android:textColor="@android:color/black"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="parent"

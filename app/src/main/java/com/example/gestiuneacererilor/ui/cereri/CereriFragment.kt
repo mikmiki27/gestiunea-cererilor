@@ -14,8 +14,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.cereremanager.CerereManagerImplementation
+import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManagerImplementation
+import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.CerereService
+import com.example.gestiuneacererilor.data.restmanager.ProfesorService
+import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
+import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.ui.sedinte.OnRequestItemClicked
@@ -55,7 +60,9 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         return CereriPresenter(
             this,
             requireContext(),
-            CerereManagerImplementation.getInstance(CerereService.create())
+            CerereManagerImplementation.getInstance(CerereService.create()),
+            ProfesorManagerImplementation.getInstance(ProfesorService.create()),
+            StudentManagerImplementation.getInstance(StudentService.create())
         )
     }
 
@@ -74,10 +81,9 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         tabLayout = view.findViewById(R.id.tabLayout)
         recyclerViewForProfesor = view.findViewById(R.id.recyclerView_for_profesor)
 
-        presenter.getAllCerere()
-
         when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
             Constants.UserType.STUDENT -> {
+                presenter.getAllCerereForStudent()
                 setViewsVisibilityForStudent()
 
                 setViewPager()
@@ -89,31 +95,62 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                 }.attach()
             }
             Constants.UserType.PROFESSOR -> {
+                presenter.getAllCerereForProfesor(activity!!)
                 setViewsVisibilityForProfesor()
 
                 myCereriForProfesorListAdapter = CereriForProfesorListAdapter(
                     requireContext(),
                     requestsList
                 )
-                { tip_cerere ->
+                { cerereSelectata: Any ->
                     AlertDialog.Builder(context)
                         .setTitle(
                             String.format(
                                 resources.getString(R.string.add_student_to_the_team),
-                                tip_cerere.toString().toLowerCase(Locale.getDefault())
+                                (cerereSelectata as Cerere).tip_cerere.toString()
+                                    .toLowerCase(Locale.getDefault())
                             )
-                        ) //todo test this
+                        )
                         .setCancelable(true)
-                        .setPositiveButton(getString(R.string.da)) { p0, p1 ->
+                        .setPositiveButton(getString(R.string.da)) { _, _ ->
                             Toast.makeText(requireContext(), "test DA", Toast.LENGTH_SHORT).show()
                             //todo status update to accepted, student fields updates, profesor team number update.
+                            presenter.updateCerereToAccepted(
+                                Cerere(
+                                    cerereSelectata.id,
+                                    cerereSelectata.student_solicitant,
+                                    cerereSelectata.id_student,
+                                    cerereSelectata.email_student_solicitat,
+                                    cerereSelectata.profesor_solicitat,
+                                    cerereSelectata.email_profesor_solicitat,
+                                    cerereSelectata.id_profesor,
+                                    "ACCEPTATA",
+                                    cerereSelectata.tip_cerere,
+                                    "vREAU SA COLABORAM", //sa fac un alertdialog custom cu un edittext care sa apara daca apasa pe butonul NO, si sa aiba si un buton send.
+                                    cerereSelectata.mentiuni
+                                )
+                            )
                         }
-                        .setNegativeButton(getString(R.string.nu)) { p0, p1 ->
+                        .setNegativeButton(getString(R.string.nu)) { _, _ ->
                             //todo status update to respins!!
                             Toast.makeText(requireContext(), "test NU", Toast.LENGTH_SHORT).show()
+                            presenter.updateCerereToRespins(
+                                Cerere(
+                                    cerereSelectata.id,
+                                    cerereSelectata.student_solicitant,
+                                    cerereSelectata.id_student,
+                                    cerereSelectata.email_student_solicitat,
+                                    cerereSelectata.profesor_solicitat,
+                                    cerereSelectata.email_profesor_solicitat,
+                                    cerereSelectata.id_profesor,
+                                    "RESPINS",
+                                    cerereSelectata.tip_cerere,
+                                    "imi doresc note mari", //sa fac un alertdialog custom cu un edittext care sa apara daca apasa pe butonul NO, si sa aiba si un buton send.
+                                    cerereSelectata.mentiuni
+                                )
+                            )
                         }
                         .show()
-                    //todo test this
                 }
                 setupRecyclerView()
             }
@@ -180,5 +217,29 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
     override fun showPlaceholderForNetwork() {
         placeholderNetwork.visibility = View.VISIBLE
+    }
+
+    override fun hideViewsForTeams() {
+        textView_echipa_licenta.visibility = View.GONE
+        textView_echipa_master.visibility = View.GONE
+    }
+
+    override fun showViewsForTeams(it: List<NewProfesorRequestBody>) {
+        textView_echipa_licenta.visibility = View.VISIBLE
+        textView_echipa_licenta.text =
+            String.format(
+                context?.resources!!.getString(
+                    R.string.numar_studenti_echipa_licenta,
+                    it[0].nr_studenti_echipa_licenta
+                )
+            )
+        textView_echipa_master.visibility = View.VISIBLE
+        textView_echipa_master.text =
+            String.format(
+                context?.resources!!.getString(
+                    R.string.numar_studenti_echipa_master,
+                    it[0].nr_studenti_echipa_disertatie
+                )
+            )
     }
 }
