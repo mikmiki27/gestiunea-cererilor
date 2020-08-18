@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav_graph"
-    app:startDestination="@id/menu_profile">
+    app:startDestination="@id/menu_cereri">
 
     <fragment
         android:id="@+id/menu_cereri"
         android:name="com.example.gestiuneacererilor.ui.cereri.CereriFragment"
         android:label="CereriFragment"
         tools:layout="@layout/fragment_cereri">
+        <action
+            android:id="@+id/action_menu_cereri_to_menu_echipa"
+            app:destination="@id/menu_echipa" />
+        <action
+            android:id="@+id/action_menu_cereri_self"
+            app:destination="@id/menu_cereri" />
     </fragment>
 
     <fragment

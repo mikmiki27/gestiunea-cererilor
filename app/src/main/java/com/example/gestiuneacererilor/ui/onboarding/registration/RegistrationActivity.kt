@@ -12,6 +12,7 @@ import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorMana
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
+import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.Profesor
 import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.ui.base.BaseActivity
@@ -117,7 +118,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                     )
                 } else { //professor
                     presenter.singUpUser(
-                        Profesor(
+                        NewProfesorRequestBody(
                             email_text.text.toString(),
                             last_name_text.text.toString(),
                             first_name_text.text.toString(),

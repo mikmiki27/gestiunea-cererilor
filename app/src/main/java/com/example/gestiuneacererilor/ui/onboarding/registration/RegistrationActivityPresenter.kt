@@ -13,7 +13,6 @@ import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.logging.Logger
 
 class RegistrationActivityPresenter(
     view: RegistrationMvp.View,
@@ -91,9 +90,10 @@ class RegistrationActivityPresenter(
         )
     }
 
-    override fun singUpUser(professor: Profesor, activity: Activity) {
+    override fun singUpUser(professor: NewProfesorRequestBody, activity: Activity) {
         subscription.add(
             profesorManager.enterNewProfesor(NewProfesorRequestBody(
+                professor.id,
                 professor.email,
                 professor.nume,
                 professor.prenume,

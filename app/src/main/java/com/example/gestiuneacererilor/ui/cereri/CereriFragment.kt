@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,6 +30,7 @@ import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
 import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.custom_alert_dialog_profesor.view.*
 import kotlinx.android.synthetic.main.fragment_cereri.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -95,62 +97,65 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                 }.attach()
             }
             Constants.UserType.PROFESSOR -> {
-                presenter.getAllCerereForProfesor(activity!!)
+                presenter.getAllCerereForProfesor(requireActivity())
                 setViewsVisibilityForProfesor()
 
                 myCereriForProfesorListAdapter = CereriForProfesorListAdapter(
                     requireContext(),
                     requestsList
-                )
+                ) //todo custom layout pt alert dialog
                 { cerereSelectata: Any ->
-                    AlertDialog.Builder(context)
+                    val myDialogView = LayoutInflater.from(context)
+                        .inflate(R.layout.custom_alert_dialog_profesor, null)
+                    val builder = AlertDialog.Builder(context)
+                        .setView(myDialogView)
                         .setTitle(
                             String.format(
                                 resources.getString(R.string.add_student_to_the_team),
-                                (cerereSelectata as Cerere).tip_cerere.toString()
+                                (cerereSelectata as Cerere).tip_cerere
                                     .toLowerCase(Locale.getDefault())
                             )
                         )
                         .setCancelable(true)
-                        .setPositiveButton(getString(R.string.da)) { _, _ ->
-                            Toast.makeText(requireContext(), "test DA", Toast.LENGTH_SHORT).show()
-                            //todo status update to accepted, student fields updates, profesor team number update.
-                            presenter.updateCerereToAccepted(
-                                Cerere(
-                                    cerereSelectata.id,
-                                    cerereSelectata.student_solicitant,
-                                    cerereSelectata.id_student,
-                                    cerereSelectata.email_student_solicitat,
-                                    cerereSelectata.profesor_solicitat,
-                                    cerereSelectata.email_profesor_solicitat,
-                                    cerereSelectata.id_profesor,
-                                    "ACCEPTATA",
-                                    cerereSelectata.tip_cerere,
-                                    "vREAU SA COLABORAM", //sa fac un alertdialog custom cu un edittext care sa apara daca apasa pe butonul NO, si sa aiba si un buton send.
-                                    cerereSelectata.mentiuni
-                                )
+                    val myAlertDialog = builder.show()
+
+                    myDialogView.custom_alert_dialog_buttonNo.setOnClickListener {
+                        myAlertDialog.dismiss()
+                        presenter.updateCerereToRespins(
+                            Cerere(
+                                cerereSelectata.id,
+                                cerereSelectata.student_solicitant,
+                                cerereSelectata.id_student,
+                                cerereSelectata.email_student_solicitat,
+                                cerereSelectata.profesor_solicitat,
+                                cerereSelectata.email_profesor_solicitat,
+                                cerereSelectata.id_profesor,
+                                Constants.StatusCerere.RESPINSA.name,
+                                cerereSelectata.tip_cerere,
+                                myDialogView.custom_alert_dialog_edittext.text.toString(),
+                                cerereSelectata.mentiuni
                             )
-                        }
-                        .setNegativeButton(getString(R.string.nu)) { _, _ ->
-                            //todo status update to respins!!
-                            Toast.makeText(requireContext(), "test NU", Toast.LENGTH_SHORT).show()
-                            presenter.updateCerereToRespins(
-                                Cerere(
-                                    cerereSelectata.id,
-                                    cerereSelectata.student_solicitant,
-                                    cerereSelectata.id_student,
-                                    cerereSelectata.email_student_solicitat,
-                                    cerereSelectata.profesor_solicitat,
-                                    cerereSelectata.email_profesor_solicitat,
-                                    cerereSelectata.id_profesor,
-                                    "RESPINS",
-                                    cerereSelectata.tip_cerere,
-                                    "imi doresc note mari", //sa fac un alertdialog custom cu un edittext care sa apara daca apasa pe butonul NO, si sa aiba si un buton send.
-                                    cerereSelectata.mentiuni
-                                )
+                        )
+                    }
+                    myDialogView.custom_alert_dialog_buttonYes.setOnClickListener {
+                        //todo status update to accepted, student fields updates, profesor team number update. remain to test to test
+                        myAlertDialog.dismiss()
+                        presenter.updateCerereToAccepted(
+                            Cerere(
+                                cerereSelectata.id,
+                                cerereSelectata.student_solicitant,
+                                cerereSelectata.id_student,
+                                cerereSelectata.email_student_solicitat,
+                                cerereSelectata.profesor_solicitat,
+                                cerereSelectata.email_profesor_solicitat,
+                                cerereSelectata.id_profesor,
+                                Constants.StatusCerere.ACCEPTATA.name,
+                                cerereSelectata.tip_cerere,
+                                myDialogView.custom_alert_dialog_edittext.text.toString(),
+                                cerereSelectata.mentiuni
                             )
-                        }
-                        .show()
+                        )
+                    }
                 }
                 setupRecyclerView()
             }
@@ -241,5 +246,13 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                     it[0].nr_studenti_echipa_disertatie
                 )
             )
+    }
+
+    override fun goToEchipe() {
+        view?.findNavController()?.navigate(R.id.action_menu_cereri_to_menu_echipa)
+    }
+
+    override fun goToCereri() {
+        view?.findNavController()?.navigate(R.id.action_menu_cereri_self)
     }
 }

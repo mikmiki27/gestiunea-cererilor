@@ -14,6 +14,8 @@ interface CereriMvp {
         fun showPlaceholderForNetwork()
         fun hideViewsForTeams()
         fun showViewsForTeams(it: List<NewProfesorRequestBody>)
+        fun goToEchipe()
+        fun goToCereri()
     }
 
     interface Presenter : BaseMvp.Presenter {

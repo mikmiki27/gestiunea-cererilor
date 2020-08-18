@@ -6,9 +6,7 @@ import android.util.Log
 import com.example.gestiuneacererilor.data.managers.cereremanager.CerereManager
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
-import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.Profesor
-import com.example.gestiuneacererilor.data.restmanager.data.Student
+import com.example.gestiuneacererilor.data.restmanager.data.*
 import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
 import com.example.gestiuneacererilor.utils.getCurrentUserEmail
@@ -25,6 +23,8 @@ class CereriPresenter(
     private val studentManger: StudentManager
 ) : BasePresenter<CereriMvp.View>(view), CereriMvp.Presenter {
 
+    lateinit var profesor: NewProfesorRequestBody
+
     override fun getAllCerereForProfesor(activity: Activity) {
         view?.showProgress()
         subscription.add(
@@ -37,6 +37,7 @@ class CereriPresenter(
                             view?.hideViewsForTeams()
                         }
                         else -> {
+                            profesor = it[0]
                             view?.showViewsForTeams(it)
                             SharedPrefUtil.addKeyValue(
                                 activity,
@@ -101,13 +102,13 @@ class CereriPresenter(
     }
 
     override fun updateCerereToRespins(cerereSelectata: Cerere) {
-        view?.showProgress()
         subscription.add(
             cerereManager.updateCerereById(cerereSelectata.id, cerereSelectata)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     //nothing
+                    view?.goToCereri()
                     view?.hideProgress()
                 }, {
                     Log.d("problem", "could not update cerere")
@@ -115,27 +116,45 @@ class CereriPresenter(
                     view?.hideProgress()
                 })
         )
-    }
 
+    }
     override fun updateCerereToAccepted(cerereSelectata: Cerere) {
         view?.showProgress()
 
+        //todo sa se astepte callurile intre ele. cv de la procesare paralela? sau un zip dela??
+
+        lateinit var student: NewStudentRequestBody
         subscription.add(
-            cerereManager.updateCerereById(cerereSelectata.id, cerereSelectata)
+            studentManger.getStudentByEmail(
+                cerereSelectata.email_student_solicitat
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    //nothing
+                    student = it[0]
                 }, {
-                    Log.d("problem", "could not update cerere")
+                    Log.d("problem", "could not update student")
                     view?.showPlaceholderForNetwork()
                 })
         )
+
+        val studentUpdate = Student(
+            student.id,
+            student.email,
+            student.nume,
+            student.prenume,
+            student.profesor_coordonator,
+            student.facultate,
+            student.an,
+            student.ciclu,
+            student.titlu_lucrare!!
+        )
+        studentUpdate.profesor_coordonator = profesor.email
 
         subscription.add(
             studentManger.updateStudentById(
                 cerereSelectata.id_student,
-                Student(cerereSelectata.email_profesor_solicitat)
+                studentUpdate
             )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -147,12 +166,24 @@ class CereriPresenter(
                 })
         )
 
+        val profesorUpdate = Profesor(
+            profesor.id,
+            profesor.email,
+            profesor.prenume,
+            profesor.facultate,
+            profesor.cerinte_suplimentare_licenta!!,
+            profesor.cerinte_suplimentare_disertatie!!,
+            profesor.nr_studenti_echipa_licenta!!,
+            profesor.nr_studenti_echipa_disertatie!!
+        )
+        profesorUpdate.nr_studenti_echipa_licenta =
+            (getProfesorLicentaEchipa(context).toInt() + 1).toString()
+        profesorUpdate.nr_studenti_echipa_disertatie =
+            (getProfesorMasterEchipa(context).toInt() + 1).toString()
+
         subscription.add(
             profesorManager.updateProfesorById(
-                cerereSelectata.id_profesor, Profesor(
-                    (getProfesorLicentaEchipa(context).toInt() + 1).toString(),
-                    (getProfesorMasterEchipa(context).toInt() + 1).toString()
-                )
+                cerereSelectata.id_profesor, profesorUpdate
             )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -163,6 +194,18 @@ class CereriPresenter(
                     Log.d("problem", "could not update profesor")
                     view?.showPlaceholderForNetwork()
                     view?.hideProgress()
+                })
+        )
+
+        subscription.add(
+            cerereManager.updateCerereById(cerereSelectata.id, cerereSelectata)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view?.goToEchipe()
+                }, {
+                    Log.d("problem", "could not update cerere")
+                    view?.showPlaceholderForNetwork()
                 })
         )
     }
