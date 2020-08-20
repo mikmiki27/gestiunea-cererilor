@@ -28,6 +28,16 @@ fun getCurrentUserDisplayName(context: Context): String {
         .toString()
 }
 
+fun getCurrentLicentaAcceptati(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_LICENTA_ACCEPTATI)
+        .toString()
+}
+
+fun getCurrentDisertatieAcceptati(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI)
+        .toString()
+}
+
 fun getCurrentUserNume(context: Context): String {
     return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_NUME)
         .toString()

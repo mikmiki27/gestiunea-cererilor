@@ -18,8 +18,8 @@ interface ProfesorService {
     @GET("profesor")
     fun getAllProfessors(): Single<GetAllProfessorsResponse>
 
-    @GET("profesor/")
-    fun getProfesorByEmail(@Query(value = "", encoded = true) email: String): Single<List<NewProfesorRequestBody>>
+    @GET("profesor/{email}")
+    fun getProfesorByEmail(@Path(value = "email") email: String): Single<List<NewProfesorRequestBody>>
 
     /*@GET("profesor/{id}")
     fun getProfesorById(@Path(value = "id") id: String): Single<List<NewProfesorRequestBody>>*/

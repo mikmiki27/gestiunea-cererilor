@@ -3,6 +3,7 @@ package com.example.gestiuneacererilor.ui.cereri
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,11 +26,10 @@ import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBo
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.ui.sedinte.OnRequestItemClicked
-import com.example.gestiuneacererilor.utils.Constants
-import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
-import com.example.gestiuneacererilor.utils.getCurrentUserEmail
+import com.example.gestiuneacererilor.utils.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.custom_alert_dialog_profesor.*
 import kotlinx.android.synthetic.main.custom_alert_dialog_profesor.view.*
 import kotlinx.android.synthetic.main.fragment_cereri.*
 import java.util.*
@@ -97,8 +97,8 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                 }.attach()
             }
             Constants.UserType.PROFESSOR -> {
-                presenter.getAllCerereForProfesor(requireActivity())
                 setViewsVisibilityForProfesor()
+                presenter.getAllCerereForProfesor(requireActivity())
 
                 myCereriForProfesorListAdapter = CereriForProfesorListAdapter(
                     requireContext(),
@@ -107,16 +107,73 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                 { cerereSelectata: Any ->
                     val myDialogView = LayoutInflater.from(context)
                         .inflate(R.layout.custom_alert_dialog_profesor, null)
-                    val builder = AlertDialog.Builder(context)
-                        .setView(myDialogView)
-                        .setTitle(
-                            String.format(
+
+                    lateinit var builder: AlertDialog.Builder
+
+                    if ((cerereSelectata as Cerere).tip_cerere == Constants.TipCerere.LICENTA.name) {
+                        var text = resources.getString(R.string.add_student_to_the_team)
+                        if (getProfesorLicentaEchipa(requireContext()).toInt() == 14) {
+                            text = resources.getString(R.string.add_student_to_the_team_last_spot)
+                            builder = AlertDialog.Builder(context)
+                                .setView(myDialogView)
+                                .setTitle(
+                                    String.format(
+                                        text,
+                                        resources.getString(R.string.licenta)
+                                    )
+                                )
+                                .setCancelable(true)
+                            myDialogView.custom_alert_dialog_title.visibility = View.VISIBLE
+                            myDialogView.custom_alert_dialog_title.text = String.format(
                                 resources.getString(R.string.add_student_to_the_team),
-                                (cerereSelectata as Cerere).tip_cerere
-                                    .toLowerCase(Locale.getDefault())
+                                resources.getString(R.string.licenta)
                             )
-                        )
-                        .setCancelable(true)
+                        } else {
+                            myDialogView.custom_alert_dialog_title.visibility = View.INVISIBLE
+                            builder = AlertDialog.Builder(context)
+                                .setView(myDialogView)
+                                .setTitle(
+                                    String.format(
+                                        text,
+                                        resources.getString(R.string.licenta)
+                                    )
+                                )
+                                .setCancelable(true)
+                        }
+                    }
+
+                    if (cerereSelectata.tip_cerere == Constants.TipCerere.DISERTATIE.name) {
+                        var text = resources.getString(R.string.add_student_to_the_team)
+                        if (getProfesorMasterEchipa(requireContext()).toInt() == 14) {
+                            text = resources.getString(R.string.add_student_to_the_team_last_spot)
+                            builder = AlertDialog.Builder(context)
+                                .setView(myDialogView)
+                                .setTitle(
+                                    String.format(
+                                        text,
+                                        resources.getString(R.string.disertatie)
+                                    )
+                                )
+                                .setCancelable(true)
+                            myDialogView.custom_alert_dialog_title.visibility = View.VISIBLE
+                            myDialogView.custom_alert_dialog_title.text = String.format(
+                                resources.getString(R.string.add_student_to_the_team),
+                                resources.getString(R.string.disertatie)
+                            )
+                        } else {
+                            myDialogView.custom_alert_dialog_title.visibility = View.INVISIBLE
+                            builder = AlertDialog.Builder(context)
+                                .setView(myDialogView)
+                                .setTitle(
+                                    String.format(
+                                        text,
+                                        resources.getString(R.string.disertatie)
+                                    )
+                                )
+                                .setCancelable(true)
+                        }
+                    }
+
                     val myAlertDialog = builder.show()
 
                     myDialogView.custom_alert_dialog_buttonNo.setOnClickListener {
@@ -127,6 +184,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                                 cerereSelectata.student_solicitant,
                                 cerereSelectata.id_student,
                                 cerereSelectata.email_student_solicitat,
+                                cerereSelectata.facultate_student,
                                 cerereSelectata.profesor_solicitat,
                                 cerereSelectata.email_profesor_solicitat,
                                 cerereSelectata.id_profesor,
@@ -146,6 +204,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                                 cerereSelectata.student_solicitant,
                                 cerereSelectata.id_student,
                                 cerereSelectata.email_student_solicitat,
+                                cerereSelectata.facultate_student,
                                 cerereSelectata.profesor_solicitat,
                                 cerereSelectata.email_profesor_solicitat,
                                 cerereSelectata.id_profesor,
@@ -201,11 +260,55 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
     override fun filterListOfRequests(list: List<Cerere>): List<Cerere> {
         val filteredList = arrayListOf<Cerere>()
+        val filteredListFaraLicenta = arrayListOf<Cerere>()
+        val filteredListFaraMaster = arrayListOf<Cerere>()
+        val filteredListFaraAmbele = emptyList<Cerere>()
+
+        val lungime = textView_echipa_licenta.text.length
+        Log.i(
+            "filtruu licenta",
+            textView_echipa_licenta.text.subSequence(lungime - 2, lungime).toString()
+        )
+        Log.i(
+            "filtruu master",
+            textView_echipa_master.text.subSequence(lungime - 2, lungime).toString()
+        )
+        if (textView_echipa_licenta.text.subSequence(lungime - 2, lungime).toString()
+                .toInt() >= 15 && textView_echipa_master.text.subSequence(lungime - 2, lungime).toString().toInt() >= 15
+        ) {
+            return filteredListFaraAmbele
+        }
+
         for (cerere in list) {
-            if (cerere.status == Constants.StatusCerere.PROGRES.name) {
+            if (cerere.status == Constants.StatusCerere.PROGRES.name && cerere.facultate_student == getCurrentUserFacultate(
+                    requireContext()
+                )
+                && cerere.email_profesor_solicitat == getCurrentUserEmail(requireContext()) && cerere.id_profesor == getCurrentUserId(
+                    requireContext()
+                )
+            ) {
                 filteredList.add(cerere)
             }
         }
+
+        if (textView_echipa_licenta.text.subSequence(lungime - 2, lungime).toString().toInt() >= 15) {
+            for (cerere in filteredList) {
+                if (cerere.tip_cerere != Constants.TipCerere.LICENTA.name) {
+                    filteredListFaraLicenta.add(cerere)
+                }
+            }
+            return filteredListFaraLicenta
+        }
+
+        if (textView_echipa_master.text.subSequence(lungime - 2, lungime).toString().toInt() >= 15) {
+            for (cerere in filteredList) {
+                if (cerere.tip_cerere != Constants.TipCerere.DISERTATIE.name) {
+                    filteredListFaraMaster.add(cerere)
+                }
+            }
+            return filteredListFaraMaster
+        }
+
         return filteredList
     }
 

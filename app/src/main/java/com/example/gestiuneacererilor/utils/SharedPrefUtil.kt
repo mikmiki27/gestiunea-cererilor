@@ -21,6 +21,8 @@ class SharedPrefUtil {
         const val CURRENT_USER_ECHIPA_MASTER = "current_user_echipa_master"
         const val CURRENT_USER_CERINTE_LICENTA = "current_user_cerinte_licenta"
         const val CURRENT_USER_CERINTE_MASTER = "current_user_cerinte_master"
+        const val CURRENT_USER_LICENTA_ACCEPTATI = "current_user_licenta_acceptati"
+        const val CURRENT_USER_DISERTATIE_ACCEPTATI = "current_user_disertatie_accpetati"
 
         fun addKeyValue(context: Context, key: String, value: String) {
             val editor = sharedPrefs(context).edit()

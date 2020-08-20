@@ -119,11 +119,16 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                 } else { //professor
                     presenter.singUpUser(
                         NewProfesorRequestBody(
-                            email_text.text.toString(),
-                            last_name_text.text.toString(),
-                            first_name_text.text.toString(),
-                            facultate_text.text.toString(),
-                            "", "", "", ""
+                            email = email_text.text.toString(),
+                            nume = last_name_text.text.toString(),
+                            prenume = first_name_text.text.toString(),
+                            facultate = facultate_text.text.toString(),
+                            cerinte_suplimentare_licenta = "",
+                            cerinte_suplimentare_disertatie = "",
+                            nr_studenti_echipa_licenta = "",
+                            nr_studenti_echipa_disertatie = "",
+                            studenti_licenta_acceptati = "",
+                            studenti_disertatie_acceptati = ""
                         ),
                         this
                     )

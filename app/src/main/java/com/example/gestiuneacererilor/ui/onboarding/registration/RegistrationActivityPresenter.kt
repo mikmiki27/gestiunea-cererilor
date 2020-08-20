@@ -37,15 +37,18 @@ class RegistrationActivityPresenter(
 
     override fun singUpUser(student: Student, activity: Activity) {
         subscription.add(
-            studentManager.enterNewStudent(NewStudentRequestBody(
-                    student.email,
-                    student.nume,
-                    student.prenume,
-                    student.profesor_coordonator ?: "",
-                    student.facultate,
-                    student.an,
-                    student.ciclu,
-                    student.titlu_lucrare ?: ""))
+            studentManager.enterNewStudent(
+                NewStudentRequestBody(
+                    nume = student.nume,
+                    prenume = student.prenume,
+                    email = student.email,
+                    facultate = student.facultate,
+                    an = student.an,
+                    ciclu = student.ciclu,
+                    profesor_coordonator = student.profesor_coordonator ?: "",
+                    titlu_lucrare = student.titlu_lucrare ?: ""
+                )
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -54,7 +57,9 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME, it.prenume + " " + it.nume
+                        activity,
+                        SharedPrefUtil.CURRENT_FIREBASE_USER_NAME,
+                        it.prenume + " " + it.nume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
@@ -78,8 +83,8 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                            activity, SharedPrefUtil.CURRENT_USER_ID, it.id
-                    ?: ""
+                        activity, SharedPrefUtil.CURRENT_USER_ID, it.id
+                            ?: ""
                     )
                     view?.hideProgress()
                     view?.goToMainActivity()
@@ -92,21 +97,29 @@ class RegistrationActivityPresenter(
 
     override fun singUpUser(professor: NewProfesorRequestBody, activity: Activity) {
         subscription.add(
-            profesorManager.enterNewProfesor(NewProfesorRequestBody(
-                professor.id,
-                professor.email,
-                professor.nume,
-                professor.prenume,
-                professor.facultate,
-                professor.cerinte_suplimentare_licenta ?: "",
-                professor.cerinte_suplimentare_disertatie ?: "",
-                professor.nr_studenti_echipa_licenta ?: "",
-                professor.nr_studenti_echipa_disertatie ?: ""))
+            profesorManager.enterNewProfesor(
+                NewProfesorRequestBody(
+                    id = professor.id,
+                    nume = professor.nume,
+                    prenume = professor.prenume,
+                    email = professor.email,
+                    cerinte_suplimentare_licenta = professor.cerinte_suplimentare_licenta ?: "",
+                    cerinte_suplimentare_disertatie = professor.cerinte_suplimentare_disertatie
+                        ?: "",
+                    facultate = professor.facultate,
+                    nr_studenti_echipa_licenta = professor.nr_studenti_echipa_licenta ?: "",
+                    nr_studenti_echipa_disertatie = professor.nr_studenti_echipa_disertatie ?: "",
+                    studenti_licenta_acceptati = professor.studenti_licenta_acceptati ?: "",
+                    studenti_disertatie_acceptati = professor.studenti_disertatie_acceptati ?: ""
+                )
+            )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME, it.prenume + " " + it.nume
+                        activity,
+                        SharedPrefUtil.CURRENT_FIREBASE_USER_NAME,
+                        it.prenume + " " + it.nume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
@@ -129,22 +142,22 @@ class RegistrationActivityPresenter(
                         activity, SharedPrefUtil.CURRENT_USER_ID, it.id
                             ?: ""
                     )
-                   /* SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_CERINTE_LICENTA, it.cerinte_suplimentare_licenta
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_CERINTE_MASTER, it.cerinte_suplimentare_disertatie
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_ECHIPA_LICENTA, it.nr_studenti_echipa_licenta
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_ECHIPA_MASTER, it.nr_studenti_echipa_disertatie
-                            ?: ""
-                    )*/
+                    /* SharedPrefUtil.addKeyValue(
+                         activity, SharedPrefUtil.CURRENT_USER_CERINTE_LICENTA, it.cerinte_suplimentare_licenta
+                             ?: ""
+                     )
+                     SharedPrefUtil.addKeyValue(
+                         activity, SharedPrefUtil.CURRENT_USER_CERINTE_MASTER, it.cerinte_suplimentare_disertatie
+                             ?: ""
+                     )
+                     SharedPrefUtil.addKeyValue(
+                         activity, SharedPrefUtil.CURRENT_USER_ECHIPA_LICENTA, it.nr_studenti_echipa_licenta
+                             ?: ""
+                     )
+                     SharedPrefUtil.addKeyValue(
+                         activity, SharedPrefUtil.CURRENT_USER_ECHIPA_MASTER, it.nr_studenti_echipa_disertatie
+                             ?: ""
+                     )*/
                     view?.hideProgress()
                     view?.goToMainActivity()
                 }, {

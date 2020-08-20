@@ -39,8 +39,11 @@
     <string name="a_aparut_o_eroare_incearca_din_nou">A aparut o eroare, incearca din nou.</string>
     <string name="nu_este_nici_o_cerere_disponibila">Nu este nici o cerere disponibila.</string>
     <string name="add_student_to_the_team">Doresti sa adaugi studentul in echipa de %1$s?</string>
+    <string name="add_student_to_the_team_last_spot">Atentie! Acesta e ultimul loc in echipa de %1$s.</string>
     <string name="da">DA</string>
     <string name="nu">NU</string>
+    <string name="licenta">licenta</string>
+    <string name="disertatie">disertatie</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

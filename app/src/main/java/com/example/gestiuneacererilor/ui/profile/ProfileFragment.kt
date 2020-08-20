@@ -20,7 +20,6 @@ import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.ui.onboarding.OnBoardingActivity
 import com.example.gestiuneacererilor.utils.*
-import kotlinx.android.synthetic.main.activity_registration.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.email_text
 import kotlinx.android.synthetic.main.fragment_profile.facultate_text
@@ -161,13 +160,13 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
     override fun getCurrentStudentDetails(): Student {
         return Student(
             getCurrentUserId(requireContext()),
-            email_text.text.toString(),
             getCurrentUserNume(requireContext()),
             getCurrentUserPrenume(requireContext()),
-            profesor_coordonator_text.text.toString(),
+            email_text.text.toString(),
             facultate_text.text.toString(),
             an_text.text.toString(),
             ciclu_text.text.toString(),
+            profesor_coordonator_text.text.toString(),
             titlu_lucrare_text.text.toString()
         )
     }
@@ -175,14 +174,16 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
     override fun getCurrentProfesorDetails(): Profesor {
         return Profesor(
             getCurrentUserId(requireContext()),
-            email_text.text.toString(),
             getCurrentUserNume(requireContext()),
             getCurrentUserPrenume(requireContext()),
-            facultate_text.text.toString(),
+            email_text.text.toString(),
             cerinte_licenta_text.text.toString(),
             cerinte_master_text.text.toString(),
+            facultate_text.text.toString(),
             echipa_licenta_text.text.toString(),
-            echipa_master_text.text.toString()
+            echipa_master_text.text.toString(),
+            getCurrentLicentaAcceptati(requireContext()),
+            getCurrentDisertatieAcceptati(requireContext())
         )
     }
 
@@ -211,6 +212,14 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
             )
             SharedPrefUtil.addKeyValue(
                 it, SharedPrefUtil.CURRENT_USER_PRENUME, profesor.prenume
+                    ?: ""
+            )
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_LICENTA_ACCEPTATI, profesor.studenti_licenta_acceptati
+                    ?: ""
+            )
+            SharedPrefUtil.addKeyValue(
+                it, SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI, profesor.studenti_disertatie_acceptati
                     ?: ""
             )
         }

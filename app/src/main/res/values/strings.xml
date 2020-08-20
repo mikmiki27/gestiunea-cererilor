@@ -30,9 +30,12 @@
     <string name="click_to_edit">Click to edit</string>
     <string name="a_aparut_o_eroare_incearca_din_nou">An error occurred, please try again later.</string>
     <string name="nu_este_nici_o_cerere_disponibila">There is no request available.</string>
-    <string name="add_student_to_the_team">Do you want to add the student to your %1$s-team?</string>
+    <string name="add_student_to_the_team">Do you want to add the student to your %1$s - team?</string>
+    <string name="add_student_to_the_team_last_spot">Warning! That\'s your last spot in your %1$s - team.</string>
     <string name="da">YES</string>
     <string name="nu">NO</string>
+    <string name="licenta">Bachelor\'s degree</string>
+    <string name="disertatie">Master\'s degree</string>
 
     <string name="hello_blank_fragment1">Hello blank fragment profile</string>
     <string name="hello_blank_fragment2">Hello blank fragment echipa</string>

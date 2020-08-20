@@ -2,68 +2,80 @@ package com.example.gestiuneacererilor.data.restmanager.data
 
 class NewProfesorRequestBody {
     val id: String = ""
-    val email: String = ""
     val nume: String = ""
     val prenume: String = ""
-    val facultate: String = ""
+    val email: String = ""
     var cerinte_suplimentare_licenta: String? = ""
     var cerinte_suplimentare_disertatie: String? = ""
+    val facultate: String = ""
     var nr_studenti_echipa_licenta: String? = ""
     var nr_studenti_echipa_disertatie: String? = ""
+    var studenti_licenta_acceptati: String? = ""
+    var studenti_disertatie_acceptati: String? = ""
 
     constructor(
-        email: String,
         nume: String,
         prenume: String,
-        facultate: String,
+        email: String,
         cerinte_suplimentare_licenta: String?,
         cerinte_suplimentare_disertatie: String?,
+        facultate: String,
         nr_studenti_echipa_licenta: String?,
-        nr_studenti_echipa_disertatie: String?
+        nr_studenti_echipa_disertatie: String?,
+        studenti_licenta_acceptati: String?,
+        studenti_disertatie_acceptati: String?
     )
 
     constructor(
         id: String,
-        email: String,
         nume: String,
         prenume: String,
-        facultate: String,
+        email: String,
         cerinte_suplimentare_licenta: String?,
         cerinte_suplimentare_disertatie: String?,
+        facultate: String,
         nr_studenti_echipa_licenta: String?,
-        nr_studenti_echipa_disertatie: String?
+        nr_studenti_echipa_disertatie: String?,
+        studenti_licenta_acceptati: String?,
+        studenti_disertatie_acceptati: String?
     )
 }
 
 data class Profesor(
-    val email: String,
     val nume: String,
     val prenume: String,
-    val facultate: String,
+    val email: String,
     var cerinte_suplimentare_licenta: String?,
     var cerinte_suplimentare_disertatie: String?,
+    val facultate: String,
     var nr_studenti_echipa_licenta: String?,
-    var nr_studenti_echipa_disertatie: String?
+    var nr_studenti_echipa_disertatie: String?,
+    var studenti_licenta_acceptati: String?,
+    var studenti_disertatie_acceptati: String?
 ) {
     constructor(
         id: String,
-        email: String,
         nume: String,
         prenume: String,
-        facultate: String,
+        email: String,
         cerinte_suplimentare_licenta: String?,
         cerinte_suplimentare_disertatie: String?,
+        facultate: String,
         nr_studenti_echipa_licenta: String?,
-        nr_studenti_echipa_disertatie: String?
+        nr_studenti_echipa_disertatie: String?,
+        studenti_licenta_acceptati: String?,
+        studenti_disertatie_acceptati: String?
     )
             : this(
-        email,
         nume,
         prenume,
-        facultate,
+        email,
         cerinte_suplimentare_licenta,
         cerinte_suplimentare_disertatie,
+        facultate,
         nr_studenti_echipa_licenta,
-        nr_studenti_echipa_disertatie
+        nr_studenti_echipa_disertatie,
+        studenti_licenta_acceptati,
+        studenti_disertatie_acceptati
     )
 }

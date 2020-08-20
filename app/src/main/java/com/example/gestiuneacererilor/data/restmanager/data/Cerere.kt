@@ -5,6 +5,7 @@ data class Cerere(
     val student_solicitant: String,
     val id_student: String,
     val email_student_solicitat: String,
+    val facultate_student: String,
     val profesor_solicitat: String,
     val email_profesor_solicitat: String,
     val id_profesor: String,
