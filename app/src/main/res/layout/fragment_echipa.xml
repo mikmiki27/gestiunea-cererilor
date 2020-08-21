@@ -2,8 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:id="@+id/parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.echipa.EchipaFragment">
 
@@ -37,8 +37,8 @@
         app:layout_constraintStart_toEndOf="@+id/profile_display_name"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/echipa_student_master"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_echipa_student_master"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -47,13 +47,13 @@
         android:textColor="#33465c"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/echipa_student_licenta"
+        app:layout_constraintEnd_toStartOf="@+id/recycler_echipa_student_licenta"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@id/profile_display_name"
         tools:text="1. Plestiu Mihaela" />
 
-    <TextView
-        android:id="@+id/echipa_student_licenta"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_echipa_student_licenta"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -63,9 +63,24 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toEndOf="@+id/echipa_student_master"
+        app:layout_constraintStart_toEndOf="@+id/recycler_echipa_student_master"
         app:layout_constraintTop_toBottomOf="@id/profile_text6"
         tools:text="1. Petrescu Mircea" />
+
+    <TextView
+        android:id="@+id/noStudentPlaceholderLicenta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nu_sunt_studenti_in_echipe"
+        android:textAlignment="center"
+        android:textColor="#e9eef7"
+        android:textSize="40sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -86,7 +101,7 @@
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="#0e4380"
-        app:layout_constraintBottom_toBottomOf="@+id/echipa_student_licenta"
+        app:layout_constraintBottom_toBottomOf="@+id/recycler_echipa_student_licenta"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toTopOf="@+id/profile_display_name" />

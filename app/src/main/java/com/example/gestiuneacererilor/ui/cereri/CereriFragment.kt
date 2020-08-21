@@ -281,7 +281,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                 }
             } else {
                 showPlaceholderForFullTeams()
-            }}, 500)
+            }}, 800)
         } else {
             showPlaceholderForEmptylist()
         }

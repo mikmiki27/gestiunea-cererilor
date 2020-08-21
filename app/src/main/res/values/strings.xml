@@ -36,6 +36,8 @@
     <string name="nu">NO</string>
     <string name="licenta">Bachelor\'s degree</string>
     <string name="disertatie">Master\'s degree</string>
+    <string name="nume_student_echipa">%1$s. %2$s</string>
+    <string name="nu_sunt_studenti_in_echipe">There are no students in any of the teams.</string>
 
     <string name="hello_blank_fragment1">Hello blank fragment profile</string>
     <string name="hello_blank_fragment2">Hello blank fragment echipa</string>

@@ -44,6 +44,8 @@
     <string name="nu">NU</string>
     <string name="licenta">licenta</string>
     <string name="disertatie">disertatie</string>
+    <string name="nume_student_echipa">%1$s. %2$s</string>
+    <string name="nu_sunt_studenti_in_echipe">Nu exista studenti in echipe.</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

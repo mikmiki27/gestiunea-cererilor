@@ -1,22 +1,29 @@
 package com.example.gestiuneacererilor.ui.echipa
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
-
+import kotlinx.android.synthetic.main.fragment_echipa.*
 
 class EchipaFragment : BaseFragment<EchipaMvp.Presenter>(), EchipaMvp.View {
 
-    private var parentLinearLayout: ConstraintLayout? = null
+    private lateinit var recyclerViewLicenta: RecyclerView
+    private lateinit var recyclerViewMaster: RecyclerView
+    private lateinit var myEchipaLicentaAdapter: EchipaLicentaAdapter
+    private lateinit var myEchipaMasterAdapter: EchipaMasterAdapter
+    private var studentiLicenta: ArrayList<String> = arrayListOf()
+    private var studentiMaster: ArrayList<String> = arrayListOf()
+    private var listaCorectaStudentiLicenta = listOf<String>()
+    private var listaCorectaStudentiMaster = listOf<String>()
+
     override fun initializePresenter(): EchipaMvp.Presenter {
         return EchipaPresenter(
             this,
@@ -34,17 +41,50 @@ class EchipaFragment : BaseFragment<EchipaMvp.Presenter>(), EchipaMvp.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (context as? BaseActivity<*>)?.supportActionBar?.title = getString(R.string.menu_echipa)
-        parentLinearLayout = view.findViewById(R.id.parent)
+        presenter.getProfesorByEmail()
+        recyclerViewLicenta = view.findViewById(R.id.recycler_echipa_student_licenta)
+        recyclerViewMaster = view.findViewById(R.id.recycler_echipa_student_master)
+
+        myEchipaLicentaAdapter = EchipaLicentaAdapter(
+            requireContext(),
+            studentiLicenta
+        )
+        myEchipaMasterAdapter = EchipaMasterAdapter(
+            requireContext(),
+            studentiMaster
+        )
+        recyclerViewLicenta.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = myEchipaLicentaAdapter
+            visibility = View.VISIBLE
+        }
+        recyclerViewMaster.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = myEchipaMasterAdapter
+            visibility = View.VISIBLE
+        }
+
     }
 
     override fun afisareStudentiLicenta(studentiLicentaAcceptati: String?) {
-        var listaStudenti: List<String>? = studentiLicentaAcceptati?.split(", ")?.toList()
-        /*for(student in listaStudenti) {
-
-        }*/
+        val listaStudenti: List<String>? = studentiLicentaAcceptati?.split(", ")?.toList()
+        if (listaCorectaStudentiLicenta != null && listaCorectaStudentiLicenta.isNotEmpty()) {
+            listaCorectaStudentiLicenta = listaStudenti?.subList(0, listaStudenti.size - 1)!!
+            myEchipaLicentaAdapter.apply {
+                studentiList = listaCorectaStudentiLicenta
+                notifyDataSetChanged()
+            }
+        }
     }
 
     override fun afisareStudentiMaster(studentiDisertatieAcceptati: String?) {
-        TODO("Not yet implemented")
+        val listaStudenti: List<String>? = studentiDisertatieAcceptati?.split(", ")?.toList()
+        if (listaCorectaStudentiMaster != null && listaCorectaStudentiMaster.isNotEmpty()) {
+            listaCorectaStudentiMaster = listaStudenti?.subList(0, listaStudenti.size - 1)!!
+            myEchipaMasterAdapter.apply {
+                studentiList = listaCorectaStudentiMaster
+                notifyDataSetChanged()
+            }
+        }
     }
 }
