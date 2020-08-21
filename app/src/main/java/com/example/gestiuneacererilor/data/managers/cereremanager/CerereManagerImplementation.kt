@@ -32,4 +32,8 @@ class CerereManagerImplementation private constructor(private val cerereService:
     override fun updateCerereById(id: String, cerere: Cerere): Single<Cerere> {
         return cerereService.updateCerereById(id, cerere)
     }
+
+    override fun enterNewCerere(request: Cerere): Single<Cerere> {
+        return cerereService.enterNewCerere(request)
+    }
 }

@@ -13,7 +13,6 @@ import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManage
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.Profesor
 import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
@@ -107,7 +106,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                         Student(
                             email_text.text.toString(),
                             last_name_text.text.toString(),
-                            first_name_text.text.toString(),
+                            formular_mentiuni_pentru_prof_text.text.toString(),
                             "",
                             facultate_text.text.toString(),
                             an_layout.selectedItem.toString(),
@@ -119,12 +118,12 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                 } else { //professor
                     presenter.singUpUser(
                         NewProfesorRequestBody(
-                            email = email_text.text.toString(),
                             nume = last_name_text.text.toString(),
-                            prenume = first_name_text.text.toString(),
-                            facultate = facultate_text.text.toString(),
+                            prenume = formular_mentiuni_pentru_prof_text.text.toString(),
+                            email = email_text.text.toString(),
                             cerinte_suplimentare_licenta = "",
                             cerinte_suplimentare_disertatie = "",
+                            facultate = facultate_text.text.toString(),
                             nr_studenti_echipa_licenta = "",
                             nr_studenti_echipa_disertatie = "",
                             studenti_licenta_acceptati = "",
@@ -139,7 +138,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
 
     private fun validation(): Boolean {
         var i = 0
-        if (first_name_text.text.isNullOrEmpty()) {
+        if (formular_mentiuni_pentru_prof_text.text.isNullOrEmpty()) {
             first_name_layout.error = "Camp obligatoriu!"
             i++
         } else {

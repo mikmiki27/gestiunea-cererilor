@@ -7,7 +7,6 @@ import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorMana
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
 import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.Profesor
 import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
@@ -103,7 +102,6 @@ class RegistrationActivityPresenter(
         subscription.add(
             profesorManager.enterNewProfesor(
                 NewProfesorRequestBody(
-                    id = professor.id,
                     nume = professor.nume,
                     prenume = professor.prenume,
                     email = professor.email,

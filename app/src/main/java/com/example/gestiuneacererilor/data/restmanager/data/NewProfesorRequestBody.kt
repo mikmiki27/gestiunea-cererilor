@@ -1,13 +1,15 @@
 package com.example.gestiuneacererilor.data.restmanager.data
 
-class NewProfesorRequestBody {
-    val id: String = ""
-    val nume: String = ""
-    val prenume: String = ""
-    val email: String = ""
+import java.io.Serializable
+
+class NewProfesorRequestBody : Serializable {
+    var id: String = ""
+    var nume: String = ""
+    var prenume: String = ""
+    var email: String = ""
     var cerinte_suplimentare_licenta: String? = ""
     var cerinte_suplimentare_disertatie: String? = ""
-    val facultate: String = ""
+    var facultate: String = ""
     var nr_studenti_echipa_licenta: String? = ""
     var nr_studenti_echipa_disertatie: String? = ""
     var studenti_licenta_acceptati: String? = ""
@@ -24,7 +26,18 @@ class NewProfesorRequestBody {
         nr_studenti_echipa_disertatie: String?,
         studenti_licenta_acceptati: String?,
         studenti_disertatie_acceptati: String?
-    )
+    ) {
+        this.nume = nume
+        this.prenume = prenume
+        this.email = email
+        this.cerinte_suplimentare_licenta = cerinte_suplimentare_licenta
+        this.cerinte_suplimentare_disertatie = cerinte_suplimentare_disertatie
+        this.facultate = facultate
+        this.nr_studenti_echipa_licenta = nr_studenti_echipa_licenta
+        this.nr_studenti_echipa_disertatie = nr_studenti_echipa_disertatie
+        this.studenti_licenta_acceptati = studenti_licenta_acceptati
+        this.studenti_disertatie_acceptati = studenti_disertatie_acceptati
+    }
 
     constructor(
         id: String,
@@ -38,8 +51,25 @@ class NewProfesorRequestBody {
         nr_studenti_echipa_disertatie: String?,
         studenti_licenta_acceptati: String?,
         studenti_disertatie_acceptati: String?
-    )
+    ) {
+        this.id = id
+        this.nume = nume
+        this.prenume = prenume
+        this.email = email
+        this.cerinte_suplimentare_licenta = cerinte_suplimentare_licenta
+        this.cerinte_suplimentare_disertatie = cerinte_suplimentare_disertatie
+        this.facultate = facultate
+        this.nr_studenti_echipa_licenta = nr_studenti_echipa_licenta
+        this.nr_studenti_echipa_disertatie = nr_studenti_echipa_disertatie
+        this.studenti_licenta_acceptati = studenti_licenta_acceptati
+        this.studenti_disertatie_acceptati = studenti_disertatie_acceptati
+    }
+
+    constructor()
 }
+
+//todo verifica toate obiectele ca s-au creat ok
+//todo fa un flow cap toata pt student si prof in paralel.
 
 data class Profesor(
     val nume: String,
@@ -65,8 +95,7 @@ data class Profesor(
         nr_studenti_echipa_disertatie: String?,
         studenti_licenta_acceptati: String?,
         studenti_disertatie_acceptati: String?
-    )
-            : this(
+    ) : this(
         nume,
         prenume,
         email,

@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiuneacererilor.R
@@ -16,10 +17,10 @@ import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
 import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.Profesor
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
+import com.example.gestiuneacererilor.utils.getCurrentStudentProfesorCoordonator
 import kotlinx.android.synthetic.main.fragment_lista_profesori.*
 import java.util.*
 
@@ -30,6 +31,7 @@ class ListaProfesoriFragment :
     private lateinit var recyclerViewForProfesoriDisponibili: RecyclerView
     private lateinit var myProfesoriDisponibiliAdapter: ListaProfesoriAdapter
     private var profesoriDispList: List<NewProfesorRequestBody> = arrayListOf()
+    private var cererileStudentuluiCurrent: List<Cerere> = arrayListOf()
 
     companion object {
         private var onRequestItemClicked: ((Any) -> Unit)? = null
@@ -68,6 +70,7 @@ class ListaProfesoriFragment :
         recyclerViewForProfesoriDisponibili = view.findViewById(R.id.lista_profesori_disponibili)
 
         presenter.getStudentByEmail(requireActivity())
+        presenter.getAllCereriForCurrentStudent()
         presenter.getAllProfesoriDisponibili()
 
         myProfesoriDisponibiliAdapter = ListaProfesoriAdapter(
@@ -75,8 +78,25 @@ class ListaProfesoriFragment :
             profesoriDispList
         )
         {
-            //todo go to creare cerere fragment
-            Toast.makeText(context, "TEST PROF", Toast.LENGTH_SHORT).show()
+            //todo to test this
+            var vizitat = false
+            for (cerere in cererileStudentuluiCurrent) {
+                if (cerere.status == Constants.StatusCerere.PROGRES.name) {
+                    AlertDialog.Builder(requireContext())
+                        .setTitle("Warning!")
+                        .setMessage("You cannot make another request, until your current one is closed.")
+                        .setPositiveButton(android.R.string.ok, null)
+                        .setCancelable(true)
+                        .show()
+                    vizitat = true
+                    break
+                }
+            }
+            if (!vizitat) {
+                val bundle = Bundle()
+                bundle.putSerializable("profesor_solicitat", (it as NewProfesorRequestBody))
+                view.findNavController().navigate(R.id.action_menu_cereri_to_menu_details, bundle)
+            }
         }
         setupRecyclerView()
     }
@@ -99,21 +119,43 @@ class ListaProfesoriFragment :
 
     override fun showListaProfesoriDisponibili(list: List<NewProfesorRequestBody>) {
         val listaFiltrata = filterListOfProfDisp(list)
-        myProfesoriDisponibiliAdapter.apply {
-            profesoriDispList = listaFiltrata
-            notifyDataSetChanged()
+        if (isThereAnyAcceptedRequest()) { //todo test this
+            myProfesoriDisponibiliAdapter.apply {
+                profesoriDispList = emptyList()
+                notifyDataSetChanged()
+            }
+        } else {
+            myProfesoriDisponibiliAdapter.apply {
+                profesoriDispList = listaFiltrata
+                notifyDataSetChanged()
+            }
         }
+    }
+
+    private fun isThereAnyAcceptedRequest(): Boolean {
+        for (cerere in cererileStudentuluiCurrent) {
+            if (cerere.status == Constants.StatusCerere.ACCEPTATA.name) {
+                return true
+            }
+        }
+        return false
     }
 
     private fun filterListOfProfDisp(list: List<NewProfesorRequestBody>): List<NewProfesorRequestBody> {
         val listaFiltrata = arrayListOf<NewProfesorRequestBody>()
-        if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.LICENTA.name.toLowerCase(Locale.getDefault())) {
+        if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
+                Locale.getDefault()
+            )
+        ) {
             for (profesor in list) {
                 if (profesor.nr_studenti_echipa_licenta?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)
                 }
             }
-        } else if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.MASTER.name.toLowerCase(Locale.getDefault())) {
+        } else if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.MASTER.name.toLowerCase(
+                Locale.getDefault()
+            )
+        ) {
             for (profesor in list) {
                 if (profesor.nr_studenti_echipa_disertatie?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)
@@ -138,5 +180,10 @@ class ListaProfesoriFragment :
             requireContext().resources.getString(R.string.already_got_prof),
             currentStudentProfesorCoordonator
         )
+    }
+
+    override fun setListCereriStudentCurent(list: List<Cerere>): List<Cerere> {
+        cererileStudentuluiCurrent = list
+        return cererileStudentuluiCurrent
     }
 }

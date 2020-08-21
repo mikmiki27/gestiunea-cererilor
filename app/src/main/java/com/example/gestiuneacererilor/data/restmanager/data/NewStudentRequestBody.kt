@@ -1,13 +1,13 @@
 package com.example.gestiuneacererilor.data.restmanager.data
 
 class NewStudentRequestBody {
-    val id: String = ""
-    val nume: String = ""
-    val prenume: String = ""
-    val email: String = ""
-    val facultate: String = ""
-    val an: String = ""
-    val ciclu: String = ""
+    var id: String = ""
+    var nume: String = ""
+    var prenume: String = ""
+    var email: String = ""
+    var facultate: String = ""
+    var an: String = ""
+    var ciclu: String = ""
     var profesor_coordonator: String? = ""
     var titlu_lucrare: String? = ""
 
@@ -20,7 +20,15 @@ class NewStudentRequestBody {
         ciclu: String,
         profesor_coordonator: String?,
         titlu_lucrare: String?
-    )
+    ) {
+        this.nume = nume
+        this.prenume = prenume
+        this.facultate = facultate
+        this.an = an
+        this.ciclu = ciclu
+        this.profesor_coordonator = profesor_coordonator
+        this.titlu_lucrare = titlu_lucrare
+    }
 
     constructor(
         id: String,
@@ -32,7 +40,16 @@ class NewStudentRequestBody {
         ciclu: String,
         profesor_coordonator: String?,
         titlu_lucrare: String?
-    )
+    ) {
+        this.id = id
+        this.nume = nume
+        this.prenume = prenume
+        this.facultate = facultate
+        this.an = an
+        this.ciclu = ciclu
+        this.profesor_coordonator = profesor_coordonator
+        this.titlu_lucrare = titlu_lucrare
+    }
 }
 
 data class Student(

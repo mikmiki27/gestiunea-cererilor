@@ -20,7 +20,7 @@ class CereriStudentFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // (context as? BaseActivity<*>)?.supportActionBar?.title = getString(R.string.menu_cereri)
+        //todo placeholder cand nu a efectuat nici o cerere
 
     }
 }

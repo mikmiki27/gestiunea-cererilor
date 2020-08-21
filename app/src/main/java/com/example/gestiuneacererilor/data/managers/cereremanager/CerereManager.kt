@@ -10,5 +10,5 @@ interface CerereManager {
     fun getCerereByProfesorEmail(email: String): Single<List<Cerere>>
     //fun getCerereById(@Path(value = "id") id: String): Single<List<Cerere>>
     fun updateCerereById(id: String, cerere: Cerere): Single<Cerere>
-
+    fun enterNewCerere(request: Cerere): Single<Cerere>
 }

@@ -43,10 +43,6 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
         val menuInflater = menuInflater
         menuInflater.inflate(R.menu.menu_toolbar, menu)
 
-        menu?.findItem(R.id.toolbar_notifications)?.setOnMenuItemClickListener {
-            true
-        }
-
         return super.onCreateOptionsMenu(menu)
     }
 

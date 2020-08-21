@@ -7,6 +7,7 @@
       <w>aparut</w>
       <w>cerere</w>
       <w>cereri</w>
+      <w>cererile</w>
       <w>cerinte</w>
       <w>ciclu</w>
       <w>coordonator</w>
@@ -23,6 +24,7 @@
       <w>este</w>
       <w>facultate</w>
       <w>filtrata</w>
+      <w>formular</w>
       <w>incearca</w>
       <w>lista</w>
       <w>locuri</w>
@@ -30,7 +32,9 @@
       <w>lungime</w>
       <w>mentiuni</w>
       <w>nici</w>
+      <w>noua</w>
       <w>nume</w>
+      <w>pentru</w>
       <w>prenume</w>
       <w>profesor</w>
       <w>profesori</w>
@@ -38,8 +42,11 @@
       <w>profil</w>
       <w>respins</w>
       <w>selectata</w>
+      <w>solicitat</w>
       <w>studenti</w>
       <w>titlu</w>
+      <w>trimite</w>
+      <w>vizitat</w>
     </words>
   </dictionary>
 </component>

@@ -1,6 +1,7 @@
 package com.example.gestiuneacererilor.ui.cereri.listaprofesori
 
 import android.app.Activity
+import com.example.gestiuneacererilor.data.restmanager.data.Cerere
 import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.ui.base.BaseMvp
 
@@ -10,9 +11,11 @@ interface ListaProfesoriMvp {
         fun showPlaceholderForProfessors()
         fun showPlaceholderForProfessorNetwork()
         fun showPlaceHolderForAlreadyGotProf(currentStudentProfesorCoordonator: String)
+        fun setListCereriStudentCurent(list: List<Cerere>): List<Cerere>
     }
 
     interface Presenter : BaseMvp.Presenter {
+        fun getAllCereriForCurrentStudent()
         fun getAllProfesoriDisponibili()
         fun getStudentByEmail(activity: Activity)
     }

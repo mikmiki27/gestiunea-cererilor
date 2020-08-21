@@ -16,36 +16,38 @@
         <action
             android:id="@+id/action_menu_cereri_self"
             app:destination="@id/menu_cereri" />
+        <action
+            android:id="@+id/action_menu_cereri_to_menu_details"
+            app:destination="@id/menu_details">
+        </action>
     </fragment>
 
     <fragment
         android:id="@+id/menu_echipa"
         android:name="com.example.gestiuneacererilor.ui.echipa.EchipaFragment"
         android:label="EchipaFragment"
-        tools:layout="@layout/fragment_echipa">
-        <!-- <argument
-             android:name="id"
-             app:argType="string" />-->
-    </fragment>
+        tools:layout="@layout/fragment_echipa" />
+
+    <fragment
+        android:id="@+id/menu_cereri_stud"
+        android:name="com.example.gestiuneacererilor.ui.cereri.cereriStudent.CereriStudentFragment"
+        android:label="CereriStudentFragment"
+        tools:layout="@layout/fragment_cereri_student" />
 
     <fragment
         android:id="@+id/menu_sedinte"
         android:name="com.example.gestiuneacererilor.ui.sedinte.SedinteFragment"
         android:label="SedinteFragment"
-        tools:layout="@layout/fragment_sedinte">
-        <action
-            android:id="@+id/action_menu_my_events_to_menu_details"
-            app:destination="@id/menu_details" />
-    </fragment>
+        tools:layout="@layout/fragment_sedinte" />
 
     <fragment
         android:id="@+id/menu_details"
-        android:name="com.example.gestiuneacererilor.ui.cereri.detaliiProfesor.DetaliiProfesorFragment"
+        android:name="com.example.gestiuneacererilor.ui.cereri.formularCerere.FormularCerereFragment"
         android:label="DetaliiProfesorFragment"
-        tools:layout="@layout/fragment_detalii_profesor">
-        <argument
-            android:name="id"
-            app:argType="string" />
+        tools:layout="@layout/fragment_detalii_profesor" >
+        <action
+            android:id="@+id/action_menu_details_to_menu_cereri_stud"
+            app:destination="@id/menu_cereri_stud" />
     </fragment>
 
     <fragment

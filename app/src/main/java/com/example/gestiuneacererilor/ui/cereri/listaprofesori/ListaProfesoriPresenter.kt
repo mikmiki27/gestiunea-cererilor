@@ -64,13 +64,26 @@ class ListaProfesoriPresenter(
                             } else {
                                 view?.showPlaceHolderForAlreadyGotProf(
                                     getCurrentStudentProfesorCoordonator(context)
-                                )  //todo test this
+                                )
                             }
                         }
                     }
                 }, {
                     Log.d("problem", "could not get all professors")
                     view?.showPlaceholderForProfessorNetwork() //todo test this
+                })
+        )
+    }
+
+    override fun getAllCereriForCurrentStudent() {
+        subscription.add(
+            cerereManager.getCerereByStudentEmail(FirebaseAuth.getInstance().currentUser?.email.toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                   view?.setListCereriStudentCurent(it)
+                }, {
+                    Log.d("problem", "could not get all professors")
                 })
         )
     }

@@ -54,6 +54,11 @@
     <string name="already_got_prof">Ai deja un profesoor coordonator: %1$s. Mult succes!</string>
     <string name="fara_profesori">Nu exista profesori disponibili.</string>
     <string name="email_disp">Email: %1$s</string>
+    <string name="depunere_cerere">Depunere cerere</string>
+    <string name="enter_your_message">Introdu un mesaj</string>
+    <string name="trimite">Trimite</string>
+    <string name="other_requests">Cerințe suplimentare: %1$s</string>
+    <string name="mentiunile_studentului_formular">Mențiuni: </string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>
