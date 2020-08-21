@@ -66,6 +66,10 @@ fun getCurrentStudentAn(context: Context): String {
     return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_AN).toString()
 }
 
+fun getCurrentStudentProfesorCoordonator(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR).toString()
+}
+
 fun getCurrentStudentCiclu(context: Context): String {
     return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_CICLU).toString()
 }

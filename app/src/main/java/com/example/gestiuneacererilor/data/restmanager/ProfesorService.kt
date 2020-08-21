@@ -16,7 +16,7 @@ interface ProfesorService {
     fun enterNewProfesor(@Body request: NewProfesorRequestBody): Single<NewProfesorRequestBody>
 
     @GET("profesor")
-    fun getAllProfessors(): Single<GetAllProfessorsResponse>
+    fun getAllProfessors(): Single<List<NewProfesorRequestBody>>
 
     @GET("profesor/{email}")
     fun getProfesorByEmail(@Path(value = "email") email: String): Single<List<NewProfesorRequestBody>>

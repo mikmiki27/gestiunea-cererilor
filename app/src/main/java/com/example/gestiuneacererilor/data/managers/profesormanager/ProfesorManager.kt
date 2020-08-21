@@ -4,7 +4,7 @@ import com.example.gestiuneacererilor.data.restmanager.data.*
 import io.reactivex.Single
 
 interface ProfesorManager {
-    fun getAllProfessors(): Single<GetAllProfessorsResponse>
+    fun getAllProfessors(): Single<List<NewProfesorRequestBody>>
     fun enterNewProfesor(request: NewProfesorRequestBody): Single<NewProfesorRequestBody>
     fun getProfesorByEmail(email: String): Single<List<NewProfesorRequestBody>>
     //fun getProfesorById(id: String): Single<List<NewProfesorRequestBody>>

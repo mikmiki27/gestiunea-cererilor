@@ -113,13 +113,13 @@ class CereriPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     when {
-                        it.isNullOrEmpty() -> view?.showPlaceholderForEmptylist() //todo test this
+                        it.isNullOrEmpty() -> view?.showPlaceholderForEmptylist()
                         //  else -> view?.showCereriDisponibileForProfesor(it)
                     }
                     view?.hideProgress()
                 }, {
                     Log.d("problem", "could not get all cerere")
-                    view?.showPlaceholderForNetwork() //todo test this
+                    view?.showPlaceholderForNetwork()
                     view?.hideProgress()
                 })
         )
@@ -145,9 +145,6 @@ class CereriPresenter(
 
     override fun updateCerereToAccepted(cerereSelectata: Cerere) {
         view?.showProgress()
-
-        //todo sa se astepte callurile intre ele. cv de la procesare paralela? sau un zip dela??
-
         lateinit var student: NewStudentRequestBody
         var studentUpdate: Student? = null
         subscription.add(

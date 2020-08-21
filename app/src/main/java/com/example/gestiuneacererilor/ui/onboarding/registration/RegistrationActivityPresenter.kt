@@ -79,6 +79,10 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR, it.an
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
                         activity, SharedPrefUtil.CURRENT_USER_CICLU, it.ciclu
                             ?: ""
                     )

@@ -28,4 +28,8 @@ object Constants {
     enum class TipCerere {
         LICENTA, DISERTATIE
     }
+
+    enum class TipCiclu {
+        LICENTA, MASTER
+    }
 }

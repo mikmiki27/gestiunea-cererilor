@@ -85,8 +85,8 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                 setViewPager()
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->
                     tab.text = when (position) {
-                        0 -> "Profesori disponibili"
-                        else -> "Cererile mele"
+                        0 -> requireContext().resources.getString(R.string.profesori_disponibili)
+                        else -> requireContext().resources.getString(R.string.cererile_mele)
                     }
                 }.attach()
             }
@@ -97,7 +97,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                 myCereriForProfesorListAdapter = CereriForProfesorListAdapter(
                     requireContext(),
                     requestsList
-                ) //todo custom layout pt alert dialog
+                )
                 { cerereSelectata: Any ->
                     val myDialogView = LayoutInflater.from(context)
                         .inflate(R.layout.custom_alert_dialog_profesor, null)
@@ -190,7 +190,6 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                         )
                     }
                     myDialogView.custom_alert_dialog_buttonYes.setOnClickListener {
-                        //todo status update to accepted, student fields updates, profesor team number update. remain to test to test
                         myAlertDialog.dismiss()
                         presenter.updateCerereToAccepted(
                             Cerere(
@@ -234,13 +233,15 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
     private fun setViewPager() {
         val eventsViewPagerAdapter =
-            CereriPagerAdapter(requireActivity(), object : OnRequestItemClicked {
+            CereriPagerAdapter(requireActivity())
+        //todo verifica daca mai nmerge proful
+         /*object : OnRequestItemClicked {
                 override fun onRequestItemClicked(id: String) {
                     val bundle = bundleOf(Pair("id", id))
                     view?.findNavController()
                         ?.navigate(R.id.action_menu_my_events_to_menu_details, bundle)
                 }
-            })
+            })*/
         viewPager.adapter = eventsViewPagerAdapter
     }
 

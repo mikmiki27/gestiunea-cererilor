@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view_student"
+    android:id="@+id/card_view_profesori_disp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center_horizontal"
@@ -17,10 +17,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/gray_gradient">
 
         <TextView
-            android:id="@+id/request_title"
+            android:id="@+id/profesor_disp_full_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
@@ -29,16 +30,15 @@
             android:lineSpacingExtra="@dimen/text_size_4sp"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"
-            android:text="Profesor: Popescu Ion"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Professor: Ion Ion" />
 
         <TextView
-            android:id="@+id/request_street"
+            android:id="@+id/profesor_disp_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_2dp"
             android:layout_marginTop="@dimen/margin_medium"
             android:drawablePadding="@dimen/margin_medium"
             android:fontFamily="sans-serif-medium"
@@ -46,14 +46,13 @@
             android:lineSpacingExtra="@dimen/text_size_6sp"
             android:textSize="14sp"
             android:textStyle="normal"
-            android:text="email: popescuion@csie.ase.ro"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/request_title"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/profesor_disp_full_name"
+            tools:text="Email: popescuion@csie.ase.ro" />
 
         <TextView
-            android:id="@+id/request_submit_date"
+            android:id="@+id/profesor_disp_mentiuni"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
@@ -61,23 +60,27 @@
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.15"
             android:lineSpacingExtra="@dimen/text_size_6sp"
-            android:text="Mentiuni: Doresc ca studentul ca aiba minim nota 8 la materia Cercetari Operationale."
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/request_street" />
+            app:layout_constraintTop_toBottomOf="@id/profesor_disp_email"
+            tools:text="Other requests: Doresc ca studentul sa aiba minim nota 8 la materia Cercetari Operationale." />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/requests_chipList"
+        <TextView
+            android:id="@+id/profesor_disp_echipa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_2dp"
             android:layout_marginTop="@dimen/margin_medium"
-            android:paddingBottom="@dimen/margin_small"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
+            android:drawablePadding="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.15"
+            android:lineSpacingExtra="@dimen/text_size_6sp"
+            android:textStyle="normal"
+            android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/request_submit_date"
-            app:singleSelection="false" />
+            app:layout_constraintTop_toBottomOf="@id/profesor_disp_mentiuni"
+            tools:text="Available seats: 3" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"

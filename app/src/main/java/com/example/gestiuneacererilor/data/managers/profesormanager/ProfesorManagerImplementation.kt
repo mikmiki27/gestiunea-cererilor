@@ -18,7 +18,7 @@ class ProfesorManagerImplementation private constructor(private val profesorServ
         }
     }
 
-    override fun getAllProfessors(): Single<GetAllProfessorsResponse> {
+    override fun getAllProfessors(): Single<List<NewProfesorRequestBody>> {
         return profesorService.getAllProfessors()
     }
 

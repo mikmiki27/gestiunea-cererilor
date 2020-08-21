@@ -46,6 +46,14 @@
     <string name="disertatie">disertatie</string>
     <string name="nume_student_echipa">%1$s. %2$s</string>
     <string name="nu_sunt_studenti_in_echipe">Nu exista studenti in echipe.</string>
+    <string name="profesori_disponibili">Profesori disponibili</string>
+    <string name="cererile_mele">Cererile mele</string>
+    <string name="profesor_nume_disp">Profesor: %1$s</string>
+    <string name="locuri_disponibile">Locuri disponibile: %1$s</string>
+    <string name="mentiuni_prof_disp">Mențiuni: %1$s</string>
+    <string name="already_got_prof">Ai deja un profesoor coordonator: %1$s. Mult succes!</string>
+    <string name="fara_profesori">Nu exista profesori disponibili.</string>
+    <string name="email_disp">Email: %1$s</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

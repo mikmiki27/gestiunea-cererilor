@@ -140,6 +140,7 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         email_text.setText(student.email)
         an_text.setText(student.an)
         ciclu_text.setText(student.ciclu)
+        profesor_coordonator_text.setText(student.profesor_coordonator)
         titlu_lucrare_text.setText(student.titlu_lucrare ?: "")
         activity?.let {
             SharedPrefUtil.addKeyValue(
@@ -215,11 +216,15 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_LICENTA_ACCEPTATI, profesor.studenti_licenta_acceptati
+                it,
+                SharedPrefUtil.CURRENT_USER_LICENTA_ACCEPTATI,
+                profesor.studenti_licenta_acceptati
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI, profesor.studenti_disertatie_acceptati
+                it,
+                SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI,
+                profesor.studenti_disertatie_acceptati
                     ?: ""
             )
         }
@@ -327,6 +332,14 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         SharedPrefUtil.removeStringValue(
             requireContext(),
             SharedPrefUtil.CURRENT_USER_CERINTE_MASTER
+        )
+        SharedPrefUtil.removeStringValue(
+            requireContext(),
+            SharedPrefUtil.CURRENT_USER_LICENTA_ACCEPTATI
+        )
+        SharedPrefUtil.removeStringValue(
+            requireContext(),
+            SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI
         )
     }
 
