@@ -262,7 +262,7 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         profile_ciclu.visibility = View.GONE
         ciclu_profil.visibility = View.GONE
         ciclu_text.visibility = View.GONE
-        profile_an.visibility = View.GONE
+        echipa_student_master.visibility = View.GONE
         an_profil.visibility = View.GONE
         an_text.visibility = View.GONE
     }

@@ -47,7 +47,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/profile_an"
+            android:id="@+id/echipa_student_master"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -66,7 +66,7 @@
             app:errorTextColor="@color/error_color"
             app:layout_constraintEnd_toEndOf="@id/guideline4"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/profile_an">
+            app:layout_constraintTop_toBottomOf="@+id/echipa_student_master">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/an_text"

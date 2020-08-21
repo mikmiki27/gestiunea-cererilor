@@ -84,6 +84,7 @@ class CereriPresenter(
                     view?.showPlaceholderForNetwork()
                 })
         )
+
         subscription.add(
             cerereManager.getAllCerere()
                 .subscribeOn(Schedulers.io())
@@ -208,11 +209,11 @@ class CereriPresenter(
         if (cerereSelectata.tip_cerere == Constants.TipCerere.LICENTA.name) {
             profesorUpdate.nr_studenti_echipa_licenta =
                 (getProfesorLicentaEchipa(context).toInt() + 1).toString()
-            profesorUpdate.studenti_licenta_acceptati = profesorUpdate.studenti_licenta_acceptati + student.prenume + " " + student.nume + ", "
+            profesorUpdate.studenti_licenta_acceptati = profesorUpdate.studenti_licenta_acceptati + cerereSelectata.student_solicitant + ", "
         } else if (cerereSelectata.tip_cerere == Constants.TipCerere.DISERTATIE.name) {
             profesorUpdate.nr_studenti_echipa_disertatie =
                 (getProfesorMasterEchipa(context).toInt() + 1).toString()
-            profesorUpdate.studenti_disertatie_acceptati = profesorUpdate.studenti_disertatie_acceptati + student.prenume + " " + student.nume + ", "
+            profesorUpdate.studenti_disertatie_acceptati = profesorUpdate.studenti_disertatie_acceptati + cerereSelectata.student_solicitant + ", "
         }
         subscription.add(
             profesorManager.updateProfesorById(

@@ -1,15 +1,12 @@
 package com.example.gestiuneacererilor.ui.cereri
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,11 +26,8 @@ import com.example.gestiuneacererilor.ui.sedinte.OnRequestItemClicked
 import com.example.gestiuneacererilor.utils.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.custom_alert_dialog_profesor.*
 import kotlinx.android.synthetic.main.custom_alert_dialog_profesor.view.*
 import kotlinx.android.synthetic.main.fragment_cereri.*
-import java.util.*
-import kotlin.collections.ArrayList
 
 class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
     CereriMvp.View {
@@ -260,24 +254,6 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
     override fun filterListOfRequests(list: List<Cerere>): List<Cerere> {
         val filteredList = arrayListOf<Cerere>()
-        val filteredListFaraLicenta = arrayListOf<Cerere>()
-        val filteredListFaraMaster = arrayListOf<Cerere>()
-        val filteredListFaraAmbele = emptyList<Cerere>()
-
-        val lungime = textView_echipa_licenta.text.length
-        Log.i(
-            "filtruu licenta",
-            textView_echipa_licenta.text.subSequence(lungime - 2, lungime).toString()
-        )
-        Log.i(
-            "filtruu master",
-            textView_echipa_master.text.subSequence(lungime - 2, lungime).toString()
-        )
-        if (textView_echipa_licenta.text.subSequence(lungime - 2, lungime).toString()
-                .toInt() >= 15 && textView_echipa_master.text.subSequence(lungime - 2, lungime).toString().toInt() >= 15
-        ) {
-            return filteredListFaraAmbele
-        }
 
         for (cerere in list) {
             if (cerere.status == Constants.StatusCerere.PROGRES.name && cerere.facultate_student == getCurrentUserFacultate(
@@ -291,7 +267,45 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
             }
         }
 
-        if (textView_echipa_licenta.text.subSequence(lungime - 2, lungime).toString().toInt() >= 15) {
+        return filteredList
+    }
+
+    override fun showCereriDisponibileForProfesor(list: List<Cerere>) {
+        val listaFiltrata = filterListOfRequests(list)
+        if (listaFiltrata.isNotEmpty()) {
+            Handler().postDelayed({
+            if (doubleFilter(listaFiltrata).isNotEmpty()) {
+                myCereriForProfesorListAdapter.apply {
+                    requestsList = ArrayList(doubleFilter(listaFiltrata))
+                    notifyDataSetChanged()
+                }
+            } else {
+                showPlaceholderForFullTeams()
+            }}, 500)
+        } else {
+            showPlaceholderForEmptylist()
+        }
+    }
+
+    private fun doubleFilter(filteredList: List<Cerere>): List<Cerere> {
+        val filteredListFaraLicenta = arrayListOf<Cerere>()
+        val filteredListFaraMaster = arrayListOf<Cerere>()
+        val filteredListFaraAmbele = emptyList<Cerere>()
+
+        val lungimeL = textView_echipa_licenta.text.length
+        val lungimeD = textView_echipa_master.text.length
+
+        if (textView_echipa_licenta.text.subSequence(lungimeL - 2, lungimeL).toString()
+                .toInt() >= 15 && textView_echipa_master.text.subSequence(lungimeD - 2, lungimeD)
+                .toString().toInt() >= 15
+        ) {
+            return filteredListFaraAmbele
+        }
+
+
+        if (textView_echipa_licenta.text.subSequence(lungimeL - 2, lungimeL).toString()
+                .toInt() >= 15
+        ) {
             for (cerere in filteredList) {
                 if (cerere.tip_cerere != Constants.TipCerere.LICENTA.name) {
                     filteredListFaraLicenta.add(cerere)
@@ -300,7 +314,9 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
             return filteredListFaraLicenta
         }
 
-        if (textView_echipa_master.text.subSequence(lungime - 2, lungime).toString().toInt() >= 15) {
+        if (textView_echipa_master.text.subSequence(lungimeD - 2, lungimeD).toString()
+                .toInt() >= 15
+        ) {
             for (cerere in filteredList) {
                 if (cerere.tip_cerere != Constants.TipCerere.DISERTATIE.name) {
                     filteredListFaraMaster.add(cerere)
@@ -308,15 +324,11 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
             }
             return filteredListFaraMaster
         }
-
         return filteredList
     }
 
-    override fun showCereriDisponibileForProfesor(list: List<Cerere>) {
-        myCereriForProfesorListAdapter.apply {
-            requestsList = ArrayList(filterListOfRequests(list))
-            notifyDataSetChanged()
-        }
+    private fun showPlaceholderForFullTeams() {
+        placeholderEchipeComplete.visibility = View.VISIBLE
     }
 
     override fun showPlaceholderForEmptylist() {
