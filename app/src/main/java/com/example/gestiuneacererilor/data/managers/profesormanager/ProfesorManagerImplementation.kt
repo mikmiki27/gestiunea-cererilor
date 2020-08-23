@@ -1,10 +1,8 @@
 package com.example.gestiuneacererilor.data.managers.profesormanager
 
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
-import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.*
 import io.reactivex.Single
-import retrofit2.http.Query
 
 class ProfesorManagerImplementation private constructor(private val profesorService: ProfesorService) : ProfesorManager{
     companion object {
@@ -18,19 +16,19 @@ class ProfesorManagerImplementation private constructor(private val profesorServ
         }
     }
 
-    override fun getAllProfessors(): Single<List<NewProfesorRequestBody>> {
+    override fun getAllProfessors(): Single<List<Professor>> {
         return profesorService.getAllProfessors()
     }
 
-    override fun enterNewProfesor(request: NewProfesorRequestBody): Single<NewProfesorRequestBody> {
+    override fun enterNewProfesor(request: Professor): Single<Professor> {
         return profesorService.enterNewProfesor(request)
     }
 
-    override fun getProfesorByEmail(email: String): Single<List<NewProfesorRequestBody>> {
+    override fun getProfesorByEmail(email: String): Single<List<Professor>> {
         return profesorService.getProfesorByEmail(email)
     }
 
-    override fun updateProfesorById(id: String, profesor: Profesor): Single<NewProfesorRequestBody> {
+    override fun updateProfesorById(id: String, profesor: Professor): Single<Professor> {
         return profesorService.updateProfesorById(id, profesor)
     }
 }

@@ -6,7 +6,6 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,10 +18,9 @@ import com.example.gestiuneacererilor.data.restmanager.CerereService
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
-import com.example.gestiuneacererilor.ui.sedinte.OnRequestItemClicked
 import com.example.gestiuneacererilor.utils.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -235,13 +233,13 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         val eventsViewPagerAdapter =
             CereriPagerAdapter(requireActivity())
         //todo verifica daca mai nmerge proful
-         /*object : OnRequestItemClicked {
-                override fun onRequestItemClicked(id: String) {
-                    val bundle = bundleOf(Pair("id", id))
-                    view?.findNavController()
-                        ?.navigate(R.id.action_menu_my_events_to_menu_details, bundle)
-                }
-            })*/
+        /*object : OnRequestItemClicked {
+               override fun onRequestItemClicked(id: String) {
+                   val bundle = bundleOf(Pair("id", id))
+                   view?.findNavController()
+                       ?.navigate(R.id.action_menu_my_events_to_menu_details, bundle)
+               }
+           })*/
         viewPager.adapter = eventsViewPagerAdapter
     }
 
@@ -275,14 +273,15 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         val listaFiltrata = filterListOfRequests(list)
         if (listaFiltrata.isNotEmpty()) {
             Handler().postDelayed({
-            if (doubleFilter(listaFiltrata).isNotEmpty()) {
-                myCereriForProfesorListAdapter.apply {
-                    requestsList = ArrayList(doubleFilter(listaFiltrata))
-                    notifyDataSetChanged()
+                if (doubleFilter(listaFiltrata).isNotEmpty()) {
+                    myCereriForProfesorListAdapter.apply {
+                        requestsList = ArrayList(doubleFilter(listaFiltrata))
+                        notifyDataSetChanged()
+                    }
+                } else {
+                    showPlaceholderForFullTeams()
                 }
-            } else {
-                showPlaceholderForFullTeams()
-            }}, 800)
+            }, 800)
         } else {
             showPlaceholderForEmptylist()
         }
@@ -345,23 +344,23 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         textView_echipa_master.visibility = View.GONE
     }
 
-    override fun showViewsForTeams(it: List<NewProfesorRequestBody>) {
+    override fun showViewsForTeams(it: List<Professor>) {
         textView_echipa_licenta.visibility = View.VISIBLE
-        textView_echipa_licenta.text =
-            String.format(
-                context?.resources!!.getString(
-                    R.string.numar_studenti_echipa_licenta,
-                    it[0].nr_studenti_echipa_licenta
+            textView_echipa_licenta.text =
+                String.format(
+                    context?.resources!!.getString(
+                        R.string.numar_studenti_echipa_licenta,
+                        it[0].nr_studenti_echipa_licenta
+                    )
                 )
-            )
         textView_echipa_master.visibility = View.VISIBLE
-        textView_echipa_master.text =
-            String.format(
-                context?.resources!!.getString(
-                    R.string.numar_studenti_echipa_master,
-                    it[0].nr_studenti_echipa_disertatie
+            textView_echipa_master.text =
+                String.format(
+                    context?.resources!!.getString(
+                        R.string.numar_studenti_echipa_master,
+                        it[0].nr_studenti_echipa_disertatie
+                    )
                 )
-            )
     }
 
     override fun goToEchipe() {

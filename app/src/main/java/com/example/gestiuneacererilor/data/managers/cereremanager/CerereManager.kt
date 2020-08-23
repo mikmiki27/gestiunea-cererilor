@@ -1,7 +1,6 @@
 package com.example.gestiuneacererilor.data.managers.cereremanager
 
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.GetAllCerere
 import io.reactivex.Single
 
 interface CerereManager {

@@ -12,17 +12,13 @@ import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorMana
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.Profesor
 import com.example.gestiuneacererilor.data.restmanager.data.Student
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.ui.onboarding.OnBoardingActivity
 import com.example.gestiuneacererilor.utils.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.email_text
-import kotlinx.android.synthetic.main.fragment_profile.facultate_text
 
 class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListener,
     ProfileMvp.View {
@@ -128,7 +124,7 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         })
     }
 
-    override fun setViewsForStudent(student: NewStudentRequestBody) {
+    override fun setViewsForStudent(student: Student) {
         display_name_text.setText(
             String.format(
                 resources.getString(R.string.template_for_two),
@@ -160,35 +156,35 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
 
     override fun getCurrentStudentDetails(): Student {
         return Student(
-            getCurrentUserId(requireContext()),
-            getCurrentUserNume(requireContext()),
-            getCurrentUserPrenume(requireContext()),
-            email_text.text.toString(),
-            facultate_text.text.toString(),
-            an_text.text.toString(),
-            ciclu_text.text.toString(),
-            profesor_coordonator_text.text.toString(),
-            titlu_lucrare_text.text.toString()
+            id = getCurrentUserId(requireContext()),
+            nume = getCurrentUserNume(requireContext()),
+            prenume = getCurrentUserPrenume(requireContext()),
+            email = email_text.text.toString(),
+            facultate = facultate_text.text.toString(),
+            an = an_text.text.toString(),
+            ciclu = ciclu_text.text.toString(),
+            profesor_coordonator = profesor_coordonator_text.text.toString(),
+            titlu_lucrare = titlu_lucrare_text.text.toString()
         )
     }
 
-    override fun getCurrentProfesorDetails(): Profesor {
-        return Profesor(
-            getCurrentUserId(requireContext()),
-            getCurrentUserNume(requireContext()),
-            getCurrentUserPrenume(requireContext()),
-            email_text.text.toString(),
-            cerinte_licenta_text.text.toString(),
-            cerinte_master_text.text.toString(),
-            facultate_text.text.toString(),
-            echipa_licenta_text.text.toString(),
-            echipa_master_text.text.toString(),
-            getCurrentLicentaAcceptati(requireContext()),
-            getCurrentDisertatieAcceptati(requireContext())
+    override fun getCurrentProfesorDetails(): Professor {
+        return Professor(
+            id = getCurrentUserId(requireContext()),
+            nume = getCurrentUserNume(requireContext()),
+            prenume = getCurrentUserPrenume(requireContext()),
+            email = email_text.text.toString(),
+            cerinte_suplimentare_licenta = cerinte_licenta_text.text.toString(),
+            cerinte_suplimentare_disertatie = cerinte_master_text.text.toString(),
+            facultate = facultate_text.text.toString(),
+            nr_studenti_echipa_licenta = echipa_licenta_text.text.toString(),
+            nr_studenti_echipa_disertatie = echipa_master_text.text.toString(),
+            studenti_licenta_acceptati = getCurrentLicentaAcceptati(requireContext()),
+            studenti_disertatie_acceptati = getCurrentDisertatieAcceptati(requireContext())
         )
     }
 
-    override fun setViewsForProfesor(profesor: NewProfesorRequestBody) {
+    override fun setViewsForProfesor(profesor: Professor) {
         display_name_text.setText(
             String.format(
                 resources.getString(R.string.template_for_two),

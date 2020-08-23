@@ -1,13 +1,11 @@
 package com.example.gestiuneacererilor.data.managers.studentmanager
 
 import com.example.gestiuneacererilor.data.restmanager.StudentService
-import com.example.gestiuneacererilor.data.restmanager.data.GetAllStudentsResponse
-import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.Student
 import io.reactivex.Single
-import retrofit2.http.Query
 
-class StudentManagerImplementation private constructor(private val studentService: StudentService) : StudentManager{
+class StudentManagerImplementation private constructor(private val studentService: StudentService) :
+    StudentManager {
     companion object {
         private var instance: StudentManager? = null
 
@@ -19,19 +17,18 @@ class StudentManagerImplementation private constructor(private val studentServic
         }
     }
 
-    override fun getAllStudents(): Single<GetAllStudentsResponse> {
-        return studentService.getAllStudents()
-    }
-
-    override fun enterNewStudent(request: NewStudentRequestBody): Single<NewStudentRequestBody> {
+    override fun enterNewStudent(request: Student): Single<Student> {
         return studentService.enterNewStudent(request)
     }
 
-    override fun getStudentByEmail(email: String): Single<List<NewStudentRequestBody>> {
+    override fun getStudentByEmail(email: String): Single<List<Student>> {
         return studentService.getStudentByEmail(email)
     }
 
-    override fun updateStudentById(id: String, student: Student): Single<NewStudentRequestBody> {
+    override fun updateStudentById(
+        id: String,
+        student: Student
+    ): Single<Student> {
         return studentService.updateStudentById(id, student)
     }
 }

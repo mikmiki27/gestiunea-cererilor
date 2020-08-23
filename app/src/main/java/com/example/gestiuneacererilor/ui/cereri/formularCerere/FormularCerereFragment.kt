@@ -7,20 +7,14 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.cereremanager.CerereManagerImplementation
-import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManagerImplementation
-import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.CerereService
-import com.example.gestiuneacererilor.data.restmanager.ProfesorService
-import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
-import com.example.gestiuneacererilor.ui.cereri.listaprofesori.ListaProfesoriMvp
-import com.example.gestiuneacererilor.ui.cereri.listaprofesori.ListaProfesoriPresenter
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
-import com.example.gestiuneacererilor.utils.getCurrentUserDisplayName
+import com.example.gestiuneacererilor.utils.getCurrentUserFacultate
 import com.example.gestiuneacererilor.utils.getCurrentUserId
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_detalii_profesor.*
@@ -28,7 +22,7 @@ import kotlinx.android.synthetic.main.fragment_detalii_profesor.*
 class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
     FormularCerereMvp.View, View.OnClickListener {
 
-    var profesorSolicitat = NewProfesorRequestBody()
+    var profesorSolicitat = Professor()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,7 +44,7 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
         (context as? BaseActivity<*>)?.supportActionBar?.title =
             requireContext().resources.getString(R.string.depunere_cerere)
         formular_trimite_cerere.setOnClickListener(this)
-        profesorSolicitat = arguments?.get("profesor_solicitat") as NewProfesorRequestBody
+        profesorSolicitat = arguments?.get("profesor_solicitat") as Professor
 
         setViews(profesorSolicitat)
     }
@@ -61,6 +55,7 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
                 student_solicitant = FirebaseAuth.getInstance().currentUser?.displayName.toString(),
                 id_student = getCurrentUserId(requireContext()),
                 email_student_solicitat = FirebaseAuth.getInstance().currentUser?.email.toString(),
+                facultate_student = getCurrentUserFacultate(requireContext()),
                 profesor_solicitat = String.format(
                     requireContext().resources.getString(R.string.template_for_two),
                     profesorSolicitat.nume,
@@ -74,14 +69,13 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
                 } else {
                     Constants.TipCerere.DISERTATIE.name
                 },
-                raspuns = "",
                 mentiuni = formular_mentiuni_pentru_prof_text.text.toString()
             )
             presenter.postNewCerere(cerereNoua)
         }
     }
 
-    private fun setViews(profesorSolicitat: NewProfesorRequestBody) {
+    private fun setViews(profesorSolicitat: Professor) {
         formular_profesor_nume.visibility = View.VISIBLE
         formular_email_prof.visibility = View.VISIBLE
         formular_cerinte_extra_prof.visibility = View.VISIBLE

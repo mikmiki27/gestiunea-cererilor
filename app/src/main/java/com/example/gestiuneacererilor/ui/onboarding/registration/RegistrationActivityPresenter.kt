@@ -5,9 +5,8 @@ import android.util.Log
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManager
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.Student
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -37,7 +36,7 @@ class RegistrationActivityPresenter(
     override fun singUpUser(student: Student, activity: Activity) {
         subscription.add(
             studentManager.enterNewStudent(
-                NewStudentRequestBody(
+                Student(
                     nume = student.nume,
                     prenume = student.prenume,
                     email = student.email,
@@ -98,10 +97,10 @@ class RegistrationActivityPresenter(
         )
     }
 
-    override fun singUpUser(professor: NewProfesorRequestBody, activity: Activity) {
+    override fun singUpUser(professor: Professor, activity: Activity) {
         subscription.add(
             profesorManager.enterNewProfesor(
-                NewProfesorRequestBody(
+                Professor(
                     nume = professor.nume,
                     prenume = professor.prenume,
                     email = professor.email,

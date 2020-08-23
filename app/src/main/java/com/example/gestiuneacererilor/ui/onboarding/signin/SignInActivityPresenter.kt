@@ -1,9 +1,14 @@
 package com.example.gestiuneacererilor.ui.onboarding.signin
 
 import android.app.Activity
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManager
 import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
+import com.google.firebase.FirebaseTooManyRequestsException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -31,6 +36,14 @@ class SignInActivityPresenter(
                     view?.hideProgress()
                     view?.goToMainActivity()
                 }, {
+                    if (it is FirebaseAuthInvalidCredentialsException) {
+                        // Toast.makeText(context, "Invalid password", Toast.LENGTH_SHORT).show()
+                        Log.i("invalid password", "invalid")
+                        view?.setInvalidErrorInline()
+                    }
+                    if(it is FirebaseTooManyRequestsException) {
+                        view?.setInvalidErrorUnsualActivity()
+                    }
                     view?.hideProgress()
                 })
         )

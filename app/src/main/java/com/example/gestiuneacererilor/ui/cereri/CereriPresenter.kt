@@ -2,19 +2,17 @@ package com.example.gestiuneacererilor.ui.cereri
 
 import android.app.Activity
 import android.content.Context
-import android.os.SystemClock.sleep
 import android.util.Log
-import androidx.annotation.MainThread
 import com.example.gestiuneacererilor.data.managers.cereremanager.CerereManager
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
-import com.example.gestiuneacererilor.data.restmanager.data.*
+import com.example.gestiuneacererilor.data.restmanager.data.Cerere
+import com.example.gestiuneacererilor.data.restmanager.data.Student
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.delay
-import java.lang.Thread.sleep
 
 class CereriPresenter(
     view: CereriMvp.View,
@@ -24,7 +22,7 @@ class CereriPresenter(
     private val studentManger: StudentManager
 ) : BasePresenter<CereriMvp.View>(view), CereriMvp.Presenter {
 
-    lateinit var profesor: NewProfesorRequestBody
+    lateinit var profesor: Professor
 
     override fun getAllCerereForProfesor(activity: Activity) {
         view?.showProgress()
@@ -145,7 +143,7 @@ class CereriPresenter(
 
     override fun updateCerereToAccepted(cerereSelectata: Cerere) {
         view?.showProgress()
-        lateinit var student: NewStudentRequestBody
+        lateinit var student: Student
         var studentUpdate: Student? = null
         subscription.add(
             studentManger.getStudentByEmail(
@@ -189,18 +187,18 @@ class CereriPresenter(
                 })
         )
 
-        val profesorUpdate = Profesor(
-            profesor.id,
-            profesor.nume,
-            profesor.prenume,
-            profesor.email,
-            profesor.cerinte_suplimentare_licenta,
-            profesor.cerinte_suplimentare_disertatie,
-            profesor.facultate,
-            profesor.nr_studenti_echipa_licenta,
-            profesor.nr_studenti_echipa_disertatie,
-            profesor.studenti_licenta_acceptati,
-            profesor.studenti_disertatie_acceptati
+        val profesorUpdate = Professor(
+            id = profesor.id,
+            nume = profesor.nume,
+            prenume = profesor.prenume,
+            email = profesor.email,
+            cerinte_suplimentare_licenta = profesor.cerinte_suplimentare_licenta,
+            cerinte_suplimentare_disertatie = profesor.cerinte_suplimentare_disertatie,
+            facultate = profesor.facultate,
+            nr_studenti_echipa_licenta = profesor.nr_studenti_echipa_licenta,
+            nr_studenti_echipa_disertatie = profesor.nr_studenti_echipa_disertatie,
+            studenti_licenta_acceptati = profesor.studenti_licenta_acceptati,
+            studenti_disertatie_acceptati = profesor.studenti_disertatie_acceptati
         )
 
         if (cerereSelectata.tip_cerere == Constants.TipCerere.LICENTA.name) {

@@ -2,7 +2,7 @@ package com.example.gestiuneacererilor.ui.cereri
 
 import android.app.Activity
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseMvp
 
 interface CereriMvp {
@@ -13,7 +13,7 @@ interface CereriMvp {
         fun showPlaceholderForEmptylist()
         fun showPlaceholderForNetwork()
         fun hideViewsForTeams()
-        fun showViewsForTeams(it: List<NewProfesorRequestBody>)
+        fun showViewsForTeams(it: List<Professor>)
         fun goToEchipe()
         fun goToCereri()
     }

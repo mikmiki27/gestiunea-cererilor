@@ -1,19 +1,17 @@
 package com.example.gestiuneacererilor.ui.profile
 
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.NewStudentRequestBody
-import com.example.gestiuneacererilor.data.restmanager.data.Profesor
 import com.example.gestiuneacererilor.data.restmanager.data.Student
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseMvp
 
 interface ProfileMvp {
 
     interface View : BaseMvp.View {
         fun goToMainActivity()
-        fun setViewsForStudent(student: NewStudentRequestBody)
-        fun setViewsForProfesor(profesor: NewProfesorRequestBody)
+        fun setViewsForStudent(student: Student)
+        fun setViewsForProfesor(profesor: Professor)
         fun getCurrentStudentDetails(): Student
-        fun getCurrentProfesorDetails(): Profesor
+        fun getCurrentProfesorDetails(): Professor
         fun disableUpdateButton()
         fun disableUpdateButtonAndSetOldTextForStudent()
         fun disableUpdateButtonAndSetOldTextForProfesor()

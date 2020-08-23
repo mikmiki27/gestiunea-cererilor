@@ -16,11 +16,10 @@ import com.example.gestiuneacererilor.data.restmanager.CerereService
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
-import com.example.gestiuneacererilor.utils.getCurrentStudentProfesorCoordonator
 import kotlinx.android.synthetic.main.fragment_lista_profesori.*
 import java.util.*
 
@@ -30,7 +29,7 @@ class ListaProfesoriFragment :
 
     private lateinit var recyclerViewForProfesoriDisponibili: RecyclerView
     private lateinit var myProfesoriDisponibiliAdapter: ListaProfesoriAdapter
-    private var profesoriDispList: List<NewProfesorRequestBody> = arrayListOf()
+    private var profesoriDispList: List<Professor> = arrayListOf()
     private var cererileStudentuluiCurrent: List<Cerere> = arrayListOf()
 
     companion object {
@@ -94,7 +93,7 @@ class ListaProfesoriFragment :
             }
             if (!vizitat) {
                 val bundle = Bundle()
-                bundle.putSerializable("profesor_solicitat", (it as NewProfesorRequestBody))
+                bundle.putSerializable("profesor_solicitat", (it as Professor))
                 view.findNavController().navigate(R.id.action_menu_cereri_to_menu_details, bundle)
             }
         }
@@ -117,7 +116,7 @@ class ListaProfesoriFragment :
          }
      }*/
 
-    override fun showListaProfesoriDisponibili(list: List<NewProfesorRequestBody>) {
+    override fun showListaProfesoriDisponibili(list: List<Professor>) {
         val listaFiltrata = filterListOfProfDisp(list)
         if (isThereAnyAcceptedRequest()) { //todo test this
             myProfesoriDisponibiliAdapter.apply {
@@ -141,8 +140,8 @@ class ListaProfesoriFragment :
         return false
     }
 
-    private fun filterListOfProfDisp(list: List<NewProfesorRequestBody>): List<NewProfesorRequestBody> {
-        val listaFiltrata = arrayListOf<NewProfesorRequestBody>()
+    private fun filterListOfProfDisp(list: List<Professor>): List<Professor> {
+        val listaFiltrata = arrayListOf<Professor>()
         if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
                 Locale.getDefault()
             )

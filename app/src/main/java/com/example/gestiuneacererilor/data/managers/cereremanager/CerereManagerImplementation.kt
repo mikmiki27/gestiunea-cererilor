@@ -2,7 +2,6 @@ package com.example.gestiuneacererilor.data.managers.cereremanager
 
 import com.example.gestiuneacererilor.data.restmanager.CerereService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.GetAllCerere
 import io.reactivex.Single
 
 class CerereManagerImplementation private constructor(private val cerereService: CerereService) : CerereManager {

@@ -107,4 +107,12 @@ class SignInActivity : BaseActivity<SignInMvp.Presenter>(), SignInMvp.View {
             .setPositiveButton(android.R.string.ok, null)
             .show()
     }
+
+    override fun setInvalidErrorInline() {
+        password_layout.error = resources.getString(R.string.invalid_password)
+    }
+
+    override fun setInvalidErrorUnsualActivity() {
+        password_layout.error = resources.getString(R.string.unsual_activity)
+    }
 }

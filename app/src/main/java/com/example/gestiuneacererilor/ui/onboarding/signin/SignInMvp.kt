@@ -7,6 +7,8 @@ interface SignInMvp {
     interface View : BaseMvp.View {
         fun goToMainActivity()
         fun showErrorDialog(title: String, message: String)
+        fun setInvalidErrorInline()
+        fun setInvalidErrorUnsualActivity()
     }
 
     interface Presenter : BaseMvp.Presenter {

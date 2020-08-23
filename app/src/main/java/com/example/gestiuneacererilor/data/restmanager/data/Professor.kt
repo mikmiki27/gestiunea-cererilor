@@ -2,7 +2,7 @@ package com.example.gestiuneacererilor.data.restmanager.data
 
 import java.io.Serializable
 
-class NewProfesorRequestBody : Serializable {
+class Professor : Serializable {
     var id: String = ""
     var nume: String = ""
     var prenume: String = ""
@@ -10,23 +10,12 @@ class NewProfesorRequestBody : Serializable {
     var cerinte_suplimentare_licenta: String? = ""
     var cerinte_suplimentare_disertatie: String? = ""
     var facultate: String = ""
-    var nr_studenti_echipa_licenta: String? = ""
-    var nr_studenti_echipa_disertatie: String? = ""
+    var nr_studenti_echipa_licenta: String? = "0"
+    var nr_studenti_echipa_disertatie: String? = "0"
     var studenti_licenta_acceptati: String? = ""
     var studenti_disertatie_acceptati: String? = ""
 
-    constructor(
-        nume: String,
-        prenume: String,
-        email: String,
-        cerinte_suplimentare_licenta: String?,
-        cerinte_suplimentare_disertatie: String?,
-        facultate: String,
-        nr_studenti_echipa_licenta: String?,
-        nr_studenti_echipa_disertatie: String?,
-        studenti_licenta_acceptati: String?,
-        studenti_disertatie_acceptati: String?
-    ) {
+    constructor(nume: String, prenume: String, email: String, cerinte_suplimentare_licenta: String?, cerinte_suplimentare_disertatie: String?, facultate: String, nr_studenti_echipa_licenta: String?, nr_studenti_echipa_disertatie: String?, studenti_licenta_acceptati: String?, studenti_disertatie_acceptati: String?) {
         this.nume = nume
         this.prenume = prenume
         this.email = email
@@ -39,19 +28,14 @@ class NewProfesorRequestBody : Serializable {
         this.studenti_disertatie_acceptati = studenti_disertatie_acceptati
     }
 
-    constructor(
-        id: String,
-        nume: String,
-        prenume: String,
-        email: String,
-        cerinte_suplimentare_licenta: String?,
-        cerinte_suplimentare_disertatie: String?,
-        facultate: String,
-        nr_studenti_echipa_licenta: String?,
-        nr_studenti_echipa_disertatie: String?,
-        studenti_licenta_acceptati: String?,
-        studenti_disertatie_acceptati: String?
-    ) {
+    constructor(nume: String, prenume: String, email: String, facultate: String) {
+        this.nume = nume
+        this.prenume = prenume
+        this.email = email
+        this.facultate = facultate
+    }
+
+    constructor(id: String, nume: String, prenume: String, email: String, cerinte_suplimentare_licenta: String?, cerinte_suplimentare_disertatie: String?, facultate: String, nr_studenti_echipa_licenta: String?, nr_studenti_echipa_disertatie: String?, studenti_licenta_acceptati: String?, studenti_disertatie_acceptati: String?) {
         this.id = id
         this.nume = nume
         this.prenume = prenume
@@ -71,6 +55,7 @@ class NewProfesorRequestBody : Serializable {
 //todo verifica toate obiectele ca s-au creat ok
 //todo fa un flow cap toata pt student si prof in paralel.
 
+/*
 data class Profesor(
     val nume: String,
     val prenume: String,
@@ -107,4 +92,4 @@ data class Profesor(
         studenti_licenta_acceptati,
         studenti_disertatie_acceptati
     )
-}
+}*/

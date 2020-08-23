@@ -26,7 +26,7 @@
     <string name="template_for_two">%1$s %2$s</string>
     <string name="fara_mentiuni">No other mentions.</string>
     <string name="numar_studenti_echipa_master">No. of students in master-team: %1$s</string>
-    <string name="numar_studenti_echipa_licenta">No. of students in bachelor-team %1$s</string>
+    <string name="numar_studenti_echipa_licenta">No. of students in bachelor-team: %1$s</string>
     <string name="dash">-</string>
     <string name="zero">0</string>
     <string name="click_to_edit">Click to edit</string>
@@ -49,6 +49,9 @@
     <string name="fara_profesori">There are no professors available.</string>
     <string name="depunere_cerere">Make a request</string>
     <string name="mentiunile_studentului_formular">Mentions: </string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="unsual_activity">Blocked because of many unusual attempts. Try again later.</string>
+    <string name="ai_ambele_echipe_complete">You have both teams fully completed.</string>
 
     <string name="hello_blank_fragment1">Hello blank fragment profile</string>
     <string name="hello_blank_fragment2">Hello blank fragment echipa</string>

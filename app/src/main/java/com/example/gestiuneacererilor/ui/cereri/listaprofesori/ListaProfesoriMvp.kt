@@ -2,12 +2,12 @@ package com.example.gestiuneacererilor.ui.cereri.listaprofesori
 
 import android.app.Activity
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseMvp
 
 interface ListaProfesoriMvp {
     interface View : BaseMvp.View {
-        fun showListaProfesoriDisponibili(list: List<NewProfesorRequestBody>)
+        fun showListaProfesoriDisponibili(list: List<Professor>)
         fun showPlaceholderForProfessors()
         fun showPlaceholderForProfessorNetwork()
         fun showPlaceHolderForAlreadyGotProf(currentStudentProfesorCoordonator: String)

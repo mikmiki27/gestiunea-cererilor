@@ -59,6 +59,9 @@
     <string name="trimite">Trimite</string>
     <string name="other_requests">Cerințe suplimentare: %1$s</string>
     <string name="mentiunile_studentului_formular">Mențiuni: </string>
+    <string name="invalid_password">Parolă invalidă</string>
+    <string name="unsual_activity">Cont blocat din cauza multiplelor incercari. Reveniti mai tarziu.</string>
+    <string name="ai_ambele_echipe_complete">Ai ambele echipe complete! :)</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

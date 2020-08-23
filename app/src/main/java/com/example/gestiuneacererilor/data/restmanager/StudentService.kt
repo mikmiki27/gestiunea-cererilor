@@ -1,7 +1,7 @@
 package com.example.gestiuneacererilor.data.restmanager
 
 import com.example.gestiuneacererilor.BuildConfig
-import com.example.gestiuneacererilor.data.restmanager.data.*
+import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.data.restmanager.util.CustomHttpClient
 import com.google.gson.GsonBuilder
 import io.reactivex.Single
@@ -14,19 +14,16 @@ interface StudentService {
 
     @Headers(value = ["Content-Type: application/json"])
     @POST("student/nou")
-    fun enterNewStudent(@Body request: NewStudentRequestBody): Single<NewStudentRequestBody>
-
-    @GET("student")
-    fun getAllStudents(): Single<GetAllStudentsResponse>
+    fun enterNewStudent(@Body request: Student): Single<Student>
 
     @GET("student/{email}")
-    fun getStudentByEmail(@Path(value = "email") email: String): Single<List<NewStudentRequestBody>>
+    fun getStudentByEmail(@Path(value = "email") email: String): Single<List<Student>>
 
     /*@GET("student/{id}")
     fun getStudentById(@Path(value = "id") id: String): Single<List<NewStudentRequestBody>>*/
 
     @PUT("student/{id}")
-    fun updateStudentById(@Path("id") id: String, @Body student: Student): Single<NewStudentRequestBody>
+    fun updateStudentById(@Path("id") id: String, @Body student: Student): Single<Student>
 
     companion object {
         fun create(): StudentService {

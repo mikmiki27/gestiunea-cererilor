@@ -13,19 +13,19 @@ import retrofit2.http.*
 interface ProfesorService {
     @Headers(value = ["Content-Type: application/json"])
     @POST("profesor/nou")
-    fun enterNewProfesor(@Body request: NewProfesorRequestBody): Single<NewProfesorRequestBody>
+    fun enterNewProfesor(@Body request: Professor): Single<Professor>
 
     @GET("profesor")
-    fun getAllProfessors(): Single<List<NewProfesorRequestBody>>
+    fun getAllProfessors(): Single<List<Professor>>
 
     @GET("profesor/{email}")
-    fun getProfesorByEmail(@Path(value = "email") email: String): Single<List<NewProfesorRequestBody>>
+    fun getProfesorByEmail(@Path(value = "email") email: String): Single<List<Professor>>
 
     /*@GET("profesor/{id}")
     fun getProfesorById(@Path(value = "id") id: String): Single<List<NewProfesorRequestBody>>*/
 
     @PUT("profesor/{id}")
-    fun updateProfesorById(@Path(value = "id") id: String, @Body profesor: Profesor): Single<NewProfesorRequestBody>
+    fun updateProfesorById(@Path(value = "id") id: String, @Body profesor: Professor): Single<Professor>
 
     companion object {
         fun create(): ProfesorService {

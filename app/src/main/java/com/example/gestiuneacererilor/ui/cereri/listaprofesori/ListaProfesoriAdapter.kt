@@ -8,14 +8,14 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiuneacererilor.R
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
 import java.util.*
 
 class ListaProfesoriAdapter(
     private var context: Context,
-    var profesoriDispList: List<NewProfesorRequestBody?>,
+    var profesoriDispList: List<Professor?>,
     private var onRequestItemClicked: (Any) -> Unit
 ) : RecyclerView.Adapter<ListaProfesoriAdapter.Holder>() {
 

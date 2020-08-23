@@ -44,7 +44,7 @@
         android:id="@+id/placeholderEchipeComplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ai ambele echipe complete! :)"
+        android:text="@string/ai_ambele_echipe_complete"
         android:textAlignment="center"
         android:textSize="40sp"
         android:visibility="invisible"

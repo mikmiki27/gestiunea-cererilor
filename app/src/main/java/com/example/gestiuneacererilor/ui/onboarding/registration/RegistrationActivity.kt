@@ -12,8 +12,8 @@ import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorMana
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
-import com.example.gestiuneacererilor.data.restmanager.data.NewProfesorRequestBody
 import com.example.gestiuneacererilor.data.restmanager.data.Student
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
 import kotlinx.android.synthetic.main.activity_registration.*
@@ -104,30 +104,22 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                 if (user_type_layout.selectedItemId == 0L) { //student
                     presenter.singUpUser(
                         Student(
-                            email_text.text.toString(),
-                            last_name_text.text.toString(),
-                            formular_mentiuni_pentru_prof_text.text.toString(),
-                            "",
-                            facultate_text.text.toString(),
-                            an_layout.selectedItem.toString(),
-                            ciclu_layout.selectedItem.toString(),
-                            ""
+                            nume = last_name_text.text.toString(),
+                            prenume =  formular_mentiuni_pentru_prof_text.text.toString(),
+                            email =  email_text.text.toString(),
+                            facultate = facultate_text.text.toString(),
+                            an = an_layout.selectedItem.toString(),
+                            ciclu = ciclu_layout.selectedItem.toString()
                         ),
                         this
                     )
                 } else { //professor
                     presenter.singUpUser(
-                        NewProfesorRequestBody(
+                        Professor(
                             nume = last_name_text.text.toString(),
                             prenume = formular_mentiuni_pentru_prof_text.text.toString(),
                             email = email_text.text.toString(),
-                            cerinte_suplimentare_licenta = "",
-                            cerinte_suplimentare_disertatie = "",
-                            facultate = facultate_text.text.toString(),
-                            nr_studenti_echipa_licenta = "",
-                            nr_studenti_echipa_disertatie = "",
-                            studenti_licenta_acceptati = "",
-                            studenti_disertatie_acceptati = ""
+                            facultate = facultate_text.text.toString()
                         ),
                         this
                     )
