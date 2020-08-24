@@ -1,7 +1,6 @@
 package com.example.gestiuneacererilor.utils
 
 import android.content.Context
-import android.text.Editable
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,7 +23,7 @@ fun getCurrentUserId(context: Context): String {
 
 
 fun getCurrentUserDisplayName(context: Context): String {
-    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME)
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME)
         .toString()
 }
 

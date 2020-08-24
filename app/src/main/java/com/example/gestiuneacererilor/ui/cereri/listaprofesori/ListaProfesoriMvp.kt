@@ -1,6 +1,5 @@
 package com.example.gestiuneacererilor.ui.cereri.listaprofesori
 
-import android.app.Activity
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseMvp
@@ -17,6 +16,5 @@ interface ListaProfesoriMvp {
     interface Presenter : BaseMvp.Presenter {
         fun getAllCereriForCurrentStudent()
         fun getAllProfesoriDisponibili()
-        fun getStudentByEmail(activity: Activity)
     }
 }

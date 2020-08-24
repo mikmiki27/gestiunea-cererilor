@@ -85,6 +85,13 @@
     <string name="loading">Loading..</string>
     <string name="enter_your_message">Enter your message</string>
     <string name="trimite">Send</string>
+    <string name="status">Status: %1$s</string>
+    <string name="tip_cerere">Request type:</string>
+    <string name="nume">Name: %1$s</string>
+    <string name="raspuns">Professor\'s response: \n%1$s</string>
+    <string name="noResponseYet">No response yet.</string>
+    <string name="anuleaza_cererea">Cancel request</string>
+    <string name="nu_ai_efectuat_nici_o_cerere">You haven\'t made a request, yet.</string>
 
     <string-array name="ciclu_invatamant">
         <item>Bachelor</item>

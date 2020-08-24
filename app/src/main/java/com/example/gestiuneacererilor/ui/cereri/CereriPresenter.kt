@@ -13,6 +13,7 @@ import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 class CereriPresenter(
     view: CereriMvp.View,
@@ -55,7 +56,7 @@ class CereriPresenter(
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity, SharedPrefUtil.CURRENT_FIREBASE_USER_NAME, it[0].prenume + " " + it[0].nume
+                                activity, SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME, it[0].prenume + " " + it[0].nume
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
@@ -103,7 +104,7 @@ class CereriPresenter(
         )
     }
 
-    override fun getAllCerereForStudent() {
+/*    override fun getAllCerereForStudent() {
         view?.showProgress()
         subscription.add(
             cerereManager.getAllCerere()
@@ -121,7 +122,7 @@ class CereriPresenter(
                     view?.hideProgress()
                 })
         )
-    }
+    }*/
 
     override fun updateCerereToRespins(cerereSelectata: Cerere) {
         subscription.add(
@@ -201,11 +202,11 @@ class CereriPresenter(
             studenti_disertatie_acceptati = profesor.studenti_disertatie_acceptati
         )
 
-        if (cerereSelectata.tip_cerere == Constants.TipCerere.LICENTA.name) {
+        if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.LICENTA.name.toLowerCase(Locale.getDefault())) {
             profesorUpdate.nr_studenti_echipa_licenta =
                 (getProfesorLicentaEchipa(context).toInt() + 1).toString()
             profesorUpdate.studenti_licenta_acceptati = profesorUpdate.studenti_licenta_acceptati + cerereSelectata.student_solicitant + ", "
-        } else if (cerereSelectata.tip_cerere == Constants.TipCerere.DISERTATIE.name) {
+        } else if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.DISERTATIE.name.toLowerCase(Locale.getDefault())) {
             profesorUpdate.nr_studenti_echipa_disertatie =
                 (getProfesorMasterEchipa(context).toInt() + 1).toString()
             profesorUpdate.studenti_disertatie_acceptati = profesorUpdate.studenti_disertatie_acceptati + cerereSelectata.student_solicitant + ", "

@@ -20,6 +20,9 @@
             android:id="@+id/action_menu_cereri_to_menu_details"
             app:destination="@id/menu_details">
         </action>
+        <action
+            android:id="@+id/action_menu_cereri_to_menu_cereri_stud"
+            app:destination="@id/menu_cereri_stud" />
     </fragment>
 
     <fragment

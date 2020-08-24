@@ -48,7 +48,7 @@ class ListaProfesoriAdapter(
                             context.resources.getString(R.string.email_disp),
                             item.email
                         )
-                        if (getCurrentStudentCiclu(context) == Constants.TipCiclu.LICENTA.name.toLowerCase(
+                        if (getCurrentStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
                                 Locale.getDefault()
                             )
                         ) {
@@ -60,7 +60,7 @@ class ListaProfesoriAdapter(
                                 context.resources.getString(R.string.locuri_disponibile),
                                 (15 - item.nr_studenti_echipa_licenta!!.toInt()).toString()
                             )
-                        } else if (getCurrentStudentCiclu(context) == Constants.TipCiclu.MASTER.name.toLowerCase(
+                        } else if (getCurrentStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
                                 Locale.getDefault()
                             )
                         ) {

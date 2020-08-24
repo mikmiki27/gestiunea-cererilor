@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
             android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0.01"
+            android:letterSpacing="0."
             android:lineSpacingExtra="@dimen/text_size_4sp"
             android:textSize="@dimen/text_ultra_big"
             android:textStyle="normal"

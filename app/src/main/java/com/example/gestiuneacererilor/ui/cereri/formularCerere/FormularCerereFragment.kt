@@ -12,24 +12,15 @@ import com.example.gestiuneacererilor.data.restmanager.data.Cerere
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
-import com.example.gestiuneacererilor.utils.Constants
-import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
-import com.example.gestiuneacererilor.utils.getCurrentUserFacultate
-import com.example.gestiuneacererilor.utils.getCurrentUserId
+import com.example.gestiuneacererilor.utils.*
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_detalii_profesor.*
+import java.util.*
 
 class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
     FormularCerereMvp.View, View.OnClickListener {
 
     var profesorSolicitat = Professor()
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_detalii_profesor, container, false)
-    }
 
     override fun initializePresenter(): FormularCerereMvp.Presenter {
         return FormularCererePresenter(
@@ -37,6 +28,14 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
             requireContext(),
             CerereManagerImplementation.getInstance(CerereService.create())
         )
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_detalii_profesor, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +51,7 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
     override fun onClick(view: View?) {
         if (view?.id == R.id.formular_trimite_cerere) {
             val cerereNoua = Cerere(
-                student_solicitant = FirebaseAuth.getInstance().currentUser?.displayName.toString(),
+                student_solicitant = getCurrentUserDisplayName((requireContext())),
                 id_student = getCurrentUserId(requireContext()),
                 email_student_solicitat = FirebaseAuth.getInstance().currentUser?.email.toString(),
                 facultate_student = getCurrentUserFacultate(requireContext()),
@@ -64,7 +63,7 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
                 email_profesor_solicitat = profesorSolicitat.email,
                 id_profesor = profesorSolicitat.id,
                 status = Constants.StatusCerere.PROGRES.name,
-                tip_cerere = if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
+                tip_cerere = if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
                     Constants.TipCiclu.LICENTA.name
                 } else {
                     Constants.TipCerere.DISERTATIE.name
@@ -94,12 +93,12 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
             requireContext().resources.getString(R.string.email_disp),
             profesorSolicitat.email
         )
-        if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
+        if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
             formular_cerinte_extra_prof.text = String.format(
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_licenta
             )
-        } else if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.MASTER.name.toLowerCase()) {
+        } else if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase()) {
             formular_cerinte_extra_prof.text = String.format(
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_disertatie

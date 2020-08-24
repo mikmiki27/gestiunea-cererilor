@@ -24,7 +24,7 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/request_title"
+                android:id="@+id/cerile_mele_nume_prof"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
@@ -39,7 +39,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/request_street"
+                android:id="@+id/cerile_mele_email_prof"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/margin_2dp"
@@ -53,10 +53,10 @@
                 android:textStyle="normal"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/request_title" />
+                app:layout_constraintTop_toBottomOf="@+id/cerile_mele_nume_prof" />
 
             <TextView
-                android:id="@+id/request_submit_date"
+                android:id="@+id/cerile_mele_raspuns_prof"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_medium"
@@ -69,7 +69,7 @@ Ora: 17:30 - 18:00"
                 android:textStyle="normal"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/request_street" />
+                app:layout_constraintTop_toBottomOf="@id/cerile_mele_email_prof" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/requests_chipList"
@@ -80,7 +80,7 @@ Ora: 17:30 - 18:00"
                 android:paddingBottom="@dimen/margin_small"
                 app:layout_constraintEnd_toEndOf="@id/guideline2"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
-                app:layout_constraintTop_toBottomOf="@id/request_submit_date"
+                app:layout_constraintTop_toBottomOf="@id/cerile_mele_raspuns_prof"
                 app:singleSelection="false" />
 
             <androidx.constraintlayout.widget.Guideline

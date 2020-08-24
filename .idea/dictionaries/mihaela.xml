@@ -4,6 +4,8 @@
       <w>acceptati</w>
       <w>afisare</w>
       <w>ambele</w>
+      <w>anulare</w>
+      <w>anuleaza</w>
       <w>aparut</w>
       <w>cerere</w>
       <w>cereri</w>
@@ -32,6 +34,7 @@
       <w>locuri</w>
       <w>lucrare</w>
       <w>lungime</w>
+      <w>mele</w>
       <w>mentiuni</w>
       <w>nici</w>
       <w>noua</w>
@@ -53,6 +56,7 @@
       <w>suplimentare</w>
       <w>titlu</w>
       <w>trimite</w>
+      <w>veche</w>
       <w>vizitat</w>
     </words>
   </dictionary>

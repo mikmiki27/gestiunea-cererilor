@@ -8,7 +8,7 @@ class SharedPrefUtil {
     companion object {
         private const val PREFS_NAME = "CERERI_PREF"
         const val CURRENT_FIREBASE_USER_EMAIL = "current_firebase_user_email"
-        const val CURRENT_FIREBASE_USER_NAME = "current_firebase_user_name"
+        const val CURRENT_FIREBASE_DISPLAY_NAME = "current_firebase_user_name"
         const val CURRENT_USER_ID = "current_user_id"
         const val CURRENT_USER_NUME = "current_user_nume"
         const val CURRENT_USER_PRENUME = "current_user_prenume"

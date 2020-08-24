@@ -68,7 +68,6 @@ class ListaProfesoriFragment :
         super.onViewCreated(view, savedInstanceState)
         recyclerViewForProfesoriDisponibili = view.findViewById(R.id.lista_profesori_disponibili)
 
-        presenter.getStudentByEmail(requireActivity())
         presenter.getAllCereriForCurrentStudent()
         presenter.getAllProfesoriDisponibili()
 
@@ -80,7 +79,8 @@ class ListaProfesoriFragment :
             //todo to test this
             var vizitat = false
             for (cerere in cererileStudentuluiCurrent) {
-                if (cerere.status == Constants.StatusCerere.PROGRES.name) {
+                if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.PROGRES.name.toLowerCase(Locale.getDefault())) {
+                    val prof = (it as Professor)
                     AlertDialog.Builder(requireContext())
                         .setTitle("Warning!")
                         .setMessage("You cannot make another request, until your current one is closed.")
@@ -133,7 +133,7 @@ class ListaProfesoriFragment :
 
     private fun isThereAnyAcceptedRequest(): Boolean {
         for (cerere in cererileStudentuluiCurrent) {
-            if (cerere.status == Constants.StatusCerere.ACCEPTATA.name) {
+            if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ACCEPTATA.name.toLowerCase(Locale.getDefault())) {
                 return true
             }
         }
@@ -142,19 +142,13 @@ class ListaProfesoriFragment :
 
     private fun filterListOfProfDisp(list: List<Professor>): List<Professor> {
         val listaFiltrata = arrayListOf<Professor>()
-        if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
-                Locale.getDefault()
-            )
-        ) {
+        if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(Locale.getDefault())) {
             for (profesor in list) {
                 if (profesor.nr_studenti_echipa_licenta?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)
                 }
             }
-        } else if (getCurrentStudentCiclu(requireContext()) == Constants.TipCiclu.MASTER.name.toLowerCase(
-                Locale.getDefault()
-            )
-        ) {
+        } else if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(Locale.getDefault())) {
             for (profesor in list) {
                 if (profesor.nr_studenti_echipa_disertatie?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)

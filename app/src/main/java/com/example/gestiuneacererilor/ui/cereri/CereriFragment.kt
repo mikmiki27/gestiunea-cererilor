@@ -26,6 +26,8 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.custom_alert_dialog_profesor.view.*
 import kotlinx.android.synthetic.main.fragment_cereri.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
     CereriMvp.View {
@@ -77,7 +79,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
         when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
             Constants.UserType.STUDENT -> {
-                presenter.getAllCerereForStudent()
+              //  presenter.getAllCerereForStudent()
                 setViewsVisibilityForStudent()
 
                 setViewPager()
@@ -102,7 +104,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
                     lateinit var builder: AlertDialog.Builder
 
-                    if ((cerereSelectata as Cerere).tip_cerere == Constants.TipCerere.LICENTA.name) {
+                    if ((cerereSelectata as Cerere).tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.LICENTA.name.toLowerCase(Locale.getDefault())) {
                         var text = resources.getString(R.string.add_student_to_the_team)
                         if (getProfesorLicentaEchipa(requireContext()).toInt() == 14) {
                             text = resources.getString(R.string.add_student_to_the_team_last_spot)
@@ -134,7 +136,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                         }
                     }
 
-                    if (cerereSelectata.tip_cerere == Constants.TipCerere.DISERTATIE.name) {
+                    if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.DISERTATIE.name.toLowerCase(Locale.getDefault())) {
                         var text = resources.getString(R.string.add_student_to_the_team)
                         if (getProfesorMasterEchipa(requireContext()).toInt() == 14) {
                             text = resources.getString(R.string.add_student_to_the_team_last_spot)
@@ -213,12 +215,12 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
     }
 
     private fun setViewsVisibilityForStudent() {
-        viewPager.isSaveEnabled = false
-        viewPager.visibility = View.VISIBLE
-        tabLayout.visibility = View.VISIBLE
         recyclerViewForProfesor.visibility = View.GONE
         textView_echipa_master.visibility = View.GONE
         textView_echipa_licenta.visibility = View.GONE
+        viewPager.isSaveEnabled = false
+        viewPager.visibility = View.VISIBLE
+        tabLayout.visibility = View.VISIBLE
     }
 
     private fun setViewsVisibilityForProfesor() {
@@ -233,13 +235,6 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         val eventsViewPagerAdapter =
             CereriPagerAdapter(requireActivity())
         //todo verifica daca mai nmerge proful
-        /*object : OnRequestItemClicked {
-               override fun onRequestItemClicked(id: String) {
-                   val bundle = bundleOf(Pair("id", id))
-                   view?.findNavController()
-                       ?.navigate(R.id.action_menu_my_events_to_menu_details, bundle)
-               }
-           })*/
         viewPager.adapter = eventsViewPagerAdapter
     }
 
@@ -255,13 +250,9 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         val filteredList = arrayListOf<Cerere>()
 
         for (cerere in list) {
-            if (cerere.status == Constants.StatusCerere.PROGRES.name && cerere.facultate_student == getCurrentUserFacultate(
-                    requireContext()
-                )
-                && cerere.email_profesor_solicitat == getCurrentUserEmail(requireContext()) && cerere.id_profesor == getCurrentUserId(
-                    requireContext()
-                )
-            ) {
+            if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.PROGRES.name.toLowerCase(Locale.getDefault())
+                && cerere.facultate_student == getCurrentUserFacultate(requireContext())
+                && cerere.email_profesor_solicitat == getCurrentUserEmail(requireContext()) && cerere.id_profesor == getCurrentUserId(requireContext())) {
                 filteredList.add(cerere)
             }
         }
@@ -295,30 +286,23 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         val lungimeL = textView_echipa_licenta.text.length
         val lungimeD = textView_echipa_master.text.length
 
-        if (textView_echipa_licenta.text.subSequence(lungimeL - 2, lungimeL).toString()
-                .toInt() >= 15 && textView_echipa_master.text.subSequence(lungimeD - 2, lungimeD)
-                .toString().toInt() >= 15
-        ) {
+        if (textView_echipa_licenta.text.subSequence(lungimeL - 2, lungimeL).toString().trim().toInt() >= 15 &&
+            textView_echipa_master.text.subSequence(lungimeD - 2, lungimeD).toString().trim().toInt() >= 15) {
             return filteredListFaraAmbele
         }
 
-
-        if (textView_echipa_licenta.text.subSequence(lungimeL - 2, lungimeL).toString()
-                .toInt() >= 15
-        ) {
+        if (textView_echipa_licenta.text.subSequence(lungimeL - 2, lungimeL).toString().trim().toInt() >= 15) {
             for (cerere in filteredList) {
-                if (cerere.tip_cerere != Constants.TipCerere.LICENTA.name) {
+                if (cerere.tip_cerere.toLowerCase(Locale.getDefault()) != Constants.TipCerere.LICENTA.name.toLowerCase(Locale.getDefault())) {
                     filteredListFaraLicenta.add(cerere)
                 }
             }
             return filteredListFaraLicenta
         }
 
-        if (textView_echipa_master.text.subSequence(lungimeD - 2, lungimeD).toString()
-                .toInt() >= 15
-        ) {
+        if (textView_echipa_master.text.subSequence(lungimeD - 2, lungimeD).toString().trim().toInt() >= 15) {
             for (cerere in filteredList) {
-                if (cerere.tip_cerere != Constants.TipCerere.DISERTATIE.name) {
+                if (cerere.tip_cerere.toLowerCase(Locale.getDefault()) != Constants.TipCerere.DISERTATIE.name.toLowerCase(Locale.getDefault())) {
                     filteredListFaraMaster.add(cerere)
                 }
             }
@@ -346,21 +330,9 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
     override fun showViewsForTeams(it: List<Professor>) {
         textView_echipa_licenta.visibility = View.VISIBLE
-            textView_echipa_licenta.text =
-                String.format(
-                    context?.resources!!.getString(
-                        R.string.numar_studenti_echipa_licenta,
-                        it[0].nr_studenti_echipa_licenta
-                    )
-                )
+            textView_echipa_licenta.text = String.format(context?.resources!!.getString(R.string.numar_studenti_echipa_licenta, it[0].nr_studenti_echipa_licenta))
         textView_echipa_master.visibility = View.VISIBLE
-            textView_echipa_master.text =
-                String.format(
-                    context?.resources!!.getString(
-                        R.string.numar_studenti_echipa_master,
-                        it[0].nr_studenti_echipa_disertatie
-                    )
-                )
+            textView_echipa_master.text = String.format(context?.resources!!.getString(R.string.numar_studenti_echipa_master, it[0].nr_studenti_echipa_disertatie))
     }
 
     override fun goToEchipe() {

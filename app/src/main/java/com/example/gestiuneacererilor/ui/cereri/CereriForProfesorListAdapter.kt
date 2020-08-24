@@ -33,7 +33,7 @@ class CereriForProfesorListAdapter(
             if (!requestsList.isNullOrEmpty()) {
                 requestsList[position]?.let { item ->
                     holder.apply {
-                        numeStudent.text = item.student_solicitant
+                        numeStudent.text = String.format(context.resources.getString(R.string.nume), item.student_solicitant)
                         emailStudent.text = item.email_student_solicitat
                         status.text = item.status.toLowerCase(Locale.getDefault())
                         tipCerere.text = item.tip_cerere.toLowerCase(Locale.getDefault())

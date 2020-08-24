@@ -27,6 +27,7 @@ class RegistrationActivityPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     Log.d("success", "firebase signup succeded")
+                    view?.goToMainActivity()
                 }, {
                     Log.d("problem", "firebase signup failed")
                 })
@@ -43,8 +44,8 @@ class RegistrationActivityPresenter(
                     facultate = student.facultate,
                     an = student.an,
                     ciclu = student.ciclu,
-                    profesor_coordonator = student.profesor_coordonator ?: "",
-                    titlu_lucrare = student.titlu_lucrare ?: ""
+                    profesor_coordonator = student.profesor_coordonator,
+                    titlu_lucrare = student.titlu_lucrare
                 )
             )
                 .subscribeOn(Schedulers.io())
@@ -56,7 +57,7 @@ class RegistrationActivityPresenter(
                     )
                     SharedPrefUtil.addKeyValue(
                         activity,
-                        SharedPrefUtil.CURRENT_FIREBASE_USER_NAME,
+                        SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME,
                         it.prenume + " " + it.nume
                             ?: ""
                     )
@@ -77,7 +78,11 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR, it.an
+                        activity, SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR, it.profesor_coordonator
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.CURRENT_USER_TITLU_LUCRARE, it.titlu_lucrare
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
@@ -89,7 +94,6 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     view?.hideProgress()
-                    view?.goToMainActivity()
                 }, {
                     Log.d("problem", "cloud9 insert failed for student")
                     view?.hideProgress()
@@ -104,14 +108,13 @@ class RegistrationActivityPresenter(
                     nume = professor.nume,
                     prenume = professor.prenume,
                     email = professor.email,
-                    cerinte_suplimentare_licenta = professor.cerinte_suplimentare_licenta ?: "",
-                    cerinte_suplimentare_disertatie = professor.cerinte_suplimentare_disertatie
-                        ?: "",
+                    cerinte_suplimentare_licenta = professor.cerinte_suplimentare_licenta,
+                    cerinte_suplimentare_disertatie = professor.cerinte_suplimentare_disertatie,
                     facultate = professor.facultate,
-                    nr_studenti_echipa_licenta = professor.nr_studenti_echipa_licenta ?: "",
-                    nr_studenti_echipa_disertatie = professor.nr_studenti_echipa_disertatie ?: "",
-                    studenti_licenta_acceptati = professor.studenti_licenta_acceptati ?: "",
-                    studenti_disertatie_acceptati = professor.studenti_disertatie_acceptati ?: ""
+                    nr_studenti_echipa_licenta = professor.nr_studenti_echipa_licenta,
+                    nr_studenti_echipa_disertatie = professor.nr_studenti_echipa_disertatie,
+                    studenti_licenta_acceptati = professor.studenti_licenta_acceptati,
+                    studenti_disertatie_acceptati = professor.studenti_disertatie_acceptati
                 )
             )
                 .subscribeOn(Schedulers.io())
@@ -119,7 +122,7 @@ class RegistrationActivityPresenter(
                 .subscribe({
                     SharedPrefUtil.addKeyValue(
                         activity,
-                        SharedPrefUtil.CURRENT_FIREBASE_USER_NAME,
+                        SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME,
                         it.prenume + " " + it.nume
                             ?: ""
                     )
@@ -143,24 +146,7 @@ class RegistrationActivityPresenter(
                         activity, SharedPrefUtil.CURRENT_USER_ID, it.id
                             ?: ""
                     )
-                    /* SharedPrefUtil.addKeyValue(
-                         activity, SharedPrefUtil.CURRENT_USER_CERINTE_LICENTA, it.cerinte_suplimentare_licenta
-                             ?: ""
-                     )
-                     SharedPrefUtil.addKeyValue(
-                         activity, SharedPrefUtil.CURRENT_USER_CERINTE_MASTER, it.cerinte_suplimentare_disertatie
-                             ?: ""
-                     )
-                     SharedPrefUtil.addKeyValue(
-                         activity, SharedPrefUtil.CURRENT_USER_ECHIPA_LICENTA, it.nr_studenti_echipa_licenta
-                             ?: ""
-                     )
-                     SharedPrefUtil.addKeyValue(
-                         activity, SharedPrefUtil.CURRENT_USER_ECHIPA_MASTER, it.nr_studenti_echipa_disertatie
-                             ?: ""
-                     )*/
                     view?.hideProgress()
-                    view?.goToMainActivity()
                 }, {
                     Log.d("problem", "cloud9 insert failed for professor")
                     view?.hideProgress()

@@ -62,6 +62,13 @@
     <string name="invalid_password">Parolă invalidă</string>
     <string name="unsual_activity">Cont blocat din cauza multiplelor incercari. Reveniti mai tarziu.</string>
     <string name="ai_ambele_echipe_complete">Ai ambele echipe complete! :)</string>
+    <string name="status">Status: %1$s</string>
+    <string name="tip_cerere">Tip cerere:</string>
+    <string name="nume">Nume: %1$s</string>
+    <string name="raspuns">Raspunsul profesorului: \n%1$s</string>
+    <string name="noResponseYet">Fara raspuns.</string>
+    <string name="anuleaza_cererea">Anuleaza cererea</string>
+    <string name="nu_ai_efectuat_nici_o_cerere">Nu ai efectuat nici o cerere.</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

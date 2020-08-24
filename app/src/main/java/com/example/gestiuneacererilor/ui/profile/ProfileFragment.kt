@@ -128,8 +128,8 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         display_name_text.setText(
             String.format(
                 resources.getString(R.string.template_for_two),
-                student.nume,
-                student.prenume
+                student.prenume,
+                student.nume
             )
         )
         facultate_text.setText(student.facultate)
@@ -188,8 +188,8 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         display_name_text.setText(
             String.format(
                 resources.getString(R.string.template_for_two),
-                profesor.nume,
-                profesor.prenume
+                profesor.prenume,
+                profesor.nume
             )
         )
         facultate_text.setText(profesor.facultate)
@@ -290,7 +290,7 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
     private fun removeAllSharedPref() {
         SharedPrefUtil.removeStringValue(
             requireContext(),
-            SharedPrefUtil.CURRENT_FIREBASE_USER_NAME
+            SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME
         )
         SharedPrefUtil.removeStringValue(
             requireContext(),
@@ -336,6 +336,9 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         SharedPrefUtil.removeStringValue(
             requireContext(),
             SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI
+        )
+        SharedPrefUtil.removeStringValue(
+            requireContext(), SharedPrefUtil.CURRENT_USER_TITLU_LUCRARE
         )
     }
 
