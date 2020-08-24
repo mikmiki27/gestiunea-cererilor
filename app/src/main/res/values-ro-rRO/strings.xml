@@ -69,6 +69,36 @@
     <string name="noResponseYet">Fara raspuns.</string>
     <string name="anuleaza_cererea">Anuleaza cererea</string>
     <string name="nu_ai_efectuat_nici_o_cerere">Nu ai efectuat nici o cerere.</string>
+    <string name="cancel_successful">Anulare cu succes</string>
+    <string name="atentie">Atentie!</string>
+    <string name="you_cannot_make_another_one">Nu poti depune o noua cerere, pana ce nu se solutioneaza cea curenta.</string>
+    <string name="foloseste_pentru_stud">Foloseste adresa de email institutionala pentru studenti!!</string>
+    <string name="foloseste_email_prof">Foloseste adresa de email institutionala pentru profesori!!</string>
+    <string name="camp_obligatoriu">Camp obligatoriu!</string>
+    <string name="password_minimum_limit">Parola trebuie sa aiba minim 8 caractere.</string>
+    <string name="no_student_in_db">Nu sunt studenti in baza de date.</string>
+    <string name="update_succesful">Update cu succes!</string>
+    <string name="update_failed">Update fara succes!</string>
+    <string name="menu_requests">Cereri</string>
+    <string name="menu_team">Echipe</string>
+    <string name="menu_meetings">Sedinte</string>
+    <string name="please_enter_email">Introdu adresa de email</string>
+    <string name="invalid_email">Email invalid</string>
+    <string name="enter_password">Introdu parola</string>
+    <string name="error_login">Eroare login</string>
+    <string name="invalid_email_or_password">Email sau parola invalida</string>
+    <string name="forgot_pass_failed">Recuperare parola fara succes</string>
+    <string name="forgot_pass_process_failed">Proces de recuperare a parolei fara succes</string>
+    <string name="log_in">Log In</string>
+    <string name="create_account">Create Cont</string>
+    <string name="we_need_your_phone_number">Pentru a putea avea acces in aplicatie, avem nevoie de numarul de telefon.</string>
+    <string name="please_enter_it_below">Introdu mai jos</string>
+    <string name="phone_number">Numar de telefon</string>
+    <string name="save_phone_number">Salveaza numar de telefon</string>
+    <string name="continue_with_google">LOGIN CU GOOGLE\n<small>in curand</small></string>
+    <string name="continue_with_facebook">LOGIN CU FACEBOOK\n<small>in curand</small></string>
+    <string name="forgot_your_password">Ti-ai uitat parola?</string>
+    <string name="loading">Incarcare..</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

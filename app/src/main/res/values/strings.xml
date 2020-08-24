@@ -53,11 +53,6 @@
     <string name="unsual_activity">Blocked because of many unusual attempts. Try again later.</string>
     <string name="ai_ambele_echipe_complete">You have both teams fully completed.</string>
 
-    <string name="hello_blank_fragment1">Hello blank fragment profile</string>
-    <string name="hello_blank_fragment2">Hello blank fragment echipa</string>
-    <string name="hello_blank_fragment3">Hello blank fragment cereri</string>
-    <string name="hello_blank_fragment4">Hello blank fragment sedinte</string>
-
     <string name="hi_user">Hi <b> %1$s </b>,</string>
     <string name="enter_phone_number">Enter phone number</string>
     <string name="phone_must_have_10">Phone must have at least 10 digits</string>
@@ -66,7 +61,7 @@
     <string name="please_enter_email">Please enter your email</string>
     <string name="invalid_email">Invalid email</string>
     <string name="enter_password">Please enter your password</string>
-    <string name="password_minimum_limit">Password must have at least 8 characters</string>
+    <string name="password_minimum_limit">Password must have at least 8 characters.</string>
     <string name="error_login">Error Login</string>
     <string name="invalid_email_or_password">Invalid email or password</string>
     <string name="forgot_pass_failed">Forgot password error</string>
@@ -79,10 +74,10 @@
     <string name="save_phone_number">Save phone number</string>
     <string name="continue_with_google">CONTINUE WITH GOOGLE\n<small>coming soon</small></string>
     <string name="continue_with_facebook">CONTINUE WITH FACEBOOK\n<small>coming soon</small></string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="loading">Loading..</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
     <string name="enter_your_message">Enter your message</string>
     <string name="trimite">Send</string>
     <string name="status">Status: %1$s</string>
@@ -92,6 +87,18 @@
     <string name="noResponseYet">No response yet.</string>
     <string name="anuleaza_cererea">Cancel request</string>
     <string name="nu_ai_efectuat_nici_o_cerere">You haven\'t made a request, yet.</string>
+    <string name="cancel_successful">Cancel successful</string>
+    <string name="atentie">Attention!</string>
+    <string name="you_cannot_make_another_one">You cannot make another request, until your current one is closed.</string>
+    <string name="foloseste_pentru_stud">Use your student\'s address email!!</string>
+    <string name="foloseste_email_prof">Use your professor\'s address email!!</string>
+    <string name="camp_obligatoriu">Mandatory field!</string>
+    <string name="no_student_in_db">No student available in the database.</string>
+    <string name="update_succesful">Update succeeded!</string>
+    <string name="update_failed">Update failed!</string>
+    <string name="menu_requests">Requests</string>
+    <string name="menu_team">Teams</string>
+    <string name="menu_meetings">Meetings</string>
 
     <string-array name="ciclu_invatamant">
         <item>Bachelor</item>

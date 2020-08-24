@@ -56,7 +56,9 @@ class CereriPresenter(
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity, SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME, it[0].prenume + " " + it[0].nume
+                                activity,
+                                SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME,
+                                it[0].prenume + " " + it[0].nume
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
@@ -202,14 +204,22 @@ class CereriPresenter(
             studenti_disertatie_acceptati = profesor.studenti_disertatie_acceptati
         )
 
-        if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.LICENTA.name.toLowerCase(Locale.getDefault())) {
+        if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.LICENTA.name.toLowerCase(
+                Locale.getDefault()
+            )
+        ) {
             profesorUpdate.nr_studenti_echipa_licenta =
                 (getProfesorLicentaEchipa(context).toInt() + 1).toString()
-            profesorUpdate.studenti_licenta_acceptati = profesorUpdate.studenti_licenta_acceptati + cerereSelectata.student_solicitant + ", "
-        } else if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.DISERTATIE.name.toLowerCase(Locale.getDefault())) {
+            profesorUpdate.studenti_licenta_acceptati =
+                profesorUpdate.studenti_licenta_acceptati + cerereSelectata.student_solicitant + ", "
+        } else if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.DISERTATIE.name.toLowerCase(
+                Locale.getDefault()
+            )
+        ) {
             profesorUpdate.nr_studenti_echipa_disertatie =
                 (getProfesorMasterEchipa(context).toInt() + 1).toString()
-            profesorUpdate.studenti_disertatie_acceptati = profesorUpdate.studenti_disertatie_acceptati + cerereSelectata.student_solicitant + ", "
+            profesorUpdate.studenti_disertatie_acceptati =
+                profesorUpdate.studenti_disertatie_acceptati + cerereSelectata.student_solicitant + ", "
         }
         subscription.add(
             profesorManager.updateProfesorById(
@@ -236,6 +246,26 @@ class CereriPresenter(
                     view?.goToEchipe()
                 }, {
                     Log.d("problem", "could not update cerere")
+                    view?.showPlaceholderForNetwork()
+                })
+        )
+    }
+
+    override fun getStudentByEmail(email: String) {
+        view?.showProgress()
+        subscription.add(
+            studentManger.getStudentByEmail(email)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    SharedPrefUtil.addKeyValue(
+                        context,
+                        SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR,
+                        it[0].profesor_coordonator
+                            ?: ""
+                    )
+                }, {
+                    Log.d("problem", "could not update student")
                     view?.showPlaceholderForNetwork()
                 })
         )

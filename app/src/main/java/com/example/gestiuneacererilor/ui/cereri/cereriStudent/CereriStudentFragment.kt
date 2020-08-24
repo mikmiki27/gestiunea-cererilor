@@ -76,7 +76,7 @@ class CereriStudentFragment() : BaseFragment<CereriStudentMvp.Presenter>(),
                 raspuns = cerereVeche.raspuns
             )
             presenter.anulareCerere(cerereNoua)
-            Toast.makeText(context, "Cancel successful", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.cancel_successful), Toast.LENGTH_SHORT).show()
         }
         setupRecyclerView()
     }

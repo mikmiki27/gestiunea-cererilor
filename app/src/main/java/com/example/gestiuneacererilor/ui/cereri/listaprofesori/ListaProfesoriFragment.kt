@@ -23,6 +23,7 @@ import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
 import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
+import com.example.gestiuneacererilor.utils.getCurrentStudentProfesorCoordonator
 import kotlinx.android.synthetic.main.fragment_lista_profesori.*
 import java.util.*
 
@@ -88,8 +89,8 @@ class ListaProfesoriFragment :
                 ) {
                     val prof = (it as Professor)
                     AlertDialog.Builder(requireContext())
-                        .setTitle("Warning!")
-                        .setMessage("You cannot make another request, until your current one is closed.")
+                        .setTitle(getString(R.string.atentie))
+                        .setMessage(getString(R.string.you_cannot_make_another_one))
                         .setPositiveButton(android.R.string.ok, null)
                         .setCancelable(true)
                         .show()
@@ -146,7 +147,7 @@ class ListaProfesoriFragment :
         for (cerere in cererileStudentuluiCurrent) {
             if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ACCEPTATA.name.toLowerCase(
                     Locale.getDefault()
-                )
+                ) && getCurrentStudentProfesorCoordonator(requireContext()).isNotEmpty()
             ) {
                 SharedPrefUtil.addKeyValue(
                     context,

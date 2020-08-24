@@ -3,6 +3,7 @@ package com.example.gestiuneacererilor.ui.profile
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
@@ -33,7 +34,7 @@ class ProfilePresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     when {
-                        it.isEmpty() -> Toast.makeText(context, "No student available in the database.", Toast.LENGTH_SHORT).show()
+                        it.isEmpty() -> Toast.makeText(context, context.getString(R.string.no_student_in_db), Toast.LENGTH_SHORT).show()
                         else -> view?.setViewsForStudent(it[0])
                     }
                 }, {
@@ -69,11 +70,11 @@ class ProfilePresenter(
                 .subscribe({
                     view?.setViewsForStudent(it)
                     view?.hideProgress()
-                    Toast.makeText(context, "Update succeeded!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.resources.getString(R.string.update_succesful), Toast.LENGTH_SHORT).show()
                     view?.disableUpdateButton()
                 }, {
                     Log.d("problem", "could not update student by id")
-                    Toast.makeText(context, "Update failed!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.update_failed), Toast.LENGTH_SHORT).show()
                     view?.hideProgress()
                     view?.disableUpdateButtonAndSetOldTextForStudent()
                 })
@@ -91,11 +92,11 @@ class ProfilePresenter(
                 .subscribe({
                     view?.setViewsForProfesor(it)
                     view?.hideProgress()
-                    Toast.makeText(context, "Update succeded!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.resources.getString(R.string.update_succesful), Toast.LENGTH_SHORT).show()
                     view?.disableUpdateButton()
                 }, {
                     Log.d("problem", "could not update professor by id")
-                    Toast.makeText(context, "Update failed!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, context.getString(R.string.update_failed), Toast.LENGTH_SHORT).show()
                     view?.hideProgress()
                     view?.disableUpdateButtonAndSetOldTextForStudent()
                 })

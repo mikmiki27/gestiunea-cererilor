@@ -3,16 +3,16 @@
     <item
         android:id="@+id/menu_cereri"
         android:icon="@drawable/ic_assignment_black_24dp"
-        android:title="Cereri"/>
+        android:title="@string/menu_requests"/>
     <item
         android:id="@+id/menu_echipa"
         android:visible="true"
         android:icon="@drawable/ic_supervisor_account_black_24dp"
-        android:title="Echipa"/>
+        android:title="@string/menu_team"/>
     <item
         android:id="@+id/menu_sedinte"
         android:icon="@drawable/ic_access_time_black_24dp"
-        android:title="Sedinte"/>
+        android:title="@string/menu_meetings"/>
     <item
         android:id="@+id/menu_profile"
         android:icon="@drawable/ic_account_box_black_24dp"

@@ -55,7 +55,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                         an_layout.visibility = View.VISIBLE
                         if (email_layout.isErrorEnabled) {
                             email_layout.error =
-                                "Foloseste adresa de email institutionala pentru studenti!!"
+                                getString(R.string.foloseste_pentru_stud)
                         }
                     }
                     1L -> {//professor //hide all student's views
@@ -63,7 +63,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                         an_layout.visibility = View.GONE
                         if (email_layout.isErrorEnabled) {
                             email_layout.error =
-                                "Foloseste adresa de email institutionala pentru profesori!!"
+                                getString(R.string.foloseste_email_prof)
                         }
                     }
                 }
@@ -131,25 +131,25 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
     private fun validation(): Boolean {
         var i = 0
         if (formular_mentiuni_pentru_prof_text.text.isNullOrEmpty()) {
-            first_name_layout.error = "Camp obligatoriu!"
+            first_name_layout.error = getString(R.string.camp_obligatoriu)
             i++
         } else {
             first_name_layout.error = null
         }
         if (last_name_text.text.isNullOrEmpty()) {
-            last_name_layout.error = "Camp obligatoriu!"
+            last_name_layout.error = getString(R.string.camp_obligatoriu)
             i++
         } else {
             last_name_layout.error = null
         }
         if (facultate_layout.isVisible && facultate_text.text.isNullOrEmpty()) {
-            facultate_layout.error = "Camp obligatoriu!"
+            facultate_layout.error = getString(R.string.camp_obligatoriu)
             i++
         } else {
             facultate_layout.error = null
         }
         if (password_text.text?.length!! < 8) {
-            password_layout.error = "Parola trebuie sa aiba minim 8 caractere"
+            password_layout.error = getString(R.string.password_minimum_limit)
             i++
         } else {
             password_layout.error = null
@@ -159,7 +159,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                 if (email_text.text?.contains("@stud.ase.ro")!! && email_text.text!!.length > 12) {
                     email_layout.error = null
                 } else {
-                    email_layout.error = "Foloseste adresa de email institutionala pentru studenti"
+                    email_layout.error = getString(com.example.gestiuneacererilor.R.string.foloseste_pentru_stud)
                     i++
                 }
             }
@@ -167,12 +167,12 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                 if (email_text.text?.contains("ase.ro")!! && email_text.text!!.length > 7) {
                     email_layout.error = null
                 } else {
-                    email_layout.error = "Foloseste adresa de email institutionala pentru profesori"
+                    email_layout.error = getString(com.example.gestiuneacererilor.R.string.foloseste_email_prof)
                     i++
                 }
             }
         } else {
-            email_layout.error = "Camp obligatoriu!"
+            email_layout.error = getString(R.string.camp_obligatoriu)
         }
         return i == 0
     }

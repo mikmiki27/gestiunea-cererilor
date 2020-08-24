@@ -79,7 +79,7 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
         when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
             Constants.UserType.STUDENT -> {
-              //  presenter.getAllCerereForStudent()
+                presenter.getStudentByEmail(getCurrentUserEmail(requireContext()))
                 setViewsVisibilityForStudent()
 
                 setViewPager()

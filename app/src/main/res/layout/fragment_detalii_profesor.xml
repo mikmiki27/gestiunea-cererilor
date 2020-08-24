@@ -77,7 +77,7 @@
             android:id="@+id/formular_mentiuni_pentru_prof_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'!?"
+            android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'!?1234567890,"
             android:imeOptions="actionNext"
             android:inputType="text"
             android:letterSpacing="0.1"
