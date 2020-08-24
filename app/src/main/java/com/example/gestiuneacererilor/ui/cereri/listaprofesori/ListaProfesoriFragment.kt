@@ -1,5 +1,7 @@
 package com.example.gestiuneacererilor.ui.cereri.listaprofesori
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +21,7 @@ import com.example.gestiuneacererilor.data.restmanager.data.Cerere
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.utils.Constants
+import com.example.gestiuneacererilor.utils.SharedPrefUtil
 import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
 import kotlinx.android.synthetic.main.fragment_lista_profesori.*
 import java.util.*
@@ -79,7 +82,10 @@ class ListaProfesoriFragment :
             //todo to test this
             var vizitat = false
             for (cerere in cererileStudentuluiCurrent) {
-                if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.PROGRES.name.toLowerCase(Locale.getDefault())) {
+                if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.PROGRES.name.toLowerCase(
+                        Locale.getDefault()
+                    )
+                ) {
                     val prof = (it as Professor)
                     AlertDialog.Builder(requireContext())
                         .setTitle("Warning!")
@@ -117,23 +123,49 @@ class ListaProfesoriFragment :
      }*/
 
     override fun showListaProfesoriDisponibili(list: List<Professor>) {
-        val listaFiltrata = filterListOfProfDisp(list)
-        if (isThereAnyAcceptedRequest()) { //todo test this
-            myProfesoriDisponibiliAdapter.apply {
-                profesoriDispList = emptyList()
-                notifyDataSetChanged()
-            }
+        val coordinator = hasCoordinator(requireContext())
+        if (coordinator.isNotEmpty()) {
+            showPlaceHolderForAlreadyGotProf(coordinator)
         } else {
-            myProfesoriDisponibiliAdapter.apply {
-                profesoriDispList = listaFiltrata
-                notifyDataSetChanged()
+            val listaFiltrata = filterListOfProfDisp(list)
+            if (isThereAnyAcceptedRequest()) { //todo test this
+                myProfesoriDisponibiliAdapter.apply {
+                    profesoriDispList = emptyList()
+                    notifyDataSetChanged()
+                }
+            } else {
+                myProfesoriDisponibiliAdapter.apply {
+                    profesoriDispList = listaFiltrata
+                    notifyDataSetChanged()
+                }
             }
         }
     }
 
+    private fun hasCoordinator(context: Context): String {
+        for (cerere in cererileStudentuluiCurrent) {
+            if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ACCEPTATA.name.toLowerCase(
+                    Locale.getDefault()
+                )
+            ) {
+                SharedPrefUtil.addKeyValue(
+                    context,
+                    SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR,
+                    cerere.email_profesor_solicitat
+                        ?: ""
+                )
+                return cerere.email_profesor_solicitat
+            }
+        }
+        return ""
+    }
+
     private fun isThereAnyAcceptedRequest(): Boolean {
         for (cerere in cererileStudentuluiCurrent) {
-            if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ACCEPTATA.name.toLowerCase(Locale.getDefault())) {
+            if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ACCEPTATA.name.toLowerCase(
+                    Locale.getDefault()
+                )
+            ) {
                 return true
             }
         }
@@ -142,13 +174,19 @@ class ListaProfesoriFragment :
 
     private fun filterListOfProfDisp(list: List<Professor>): List<Professor> {
         val listaFiltrata = arrayListOf<Professor>()
-        if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(Locale.getDefault())) {
+        if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
+                Locale.getDefault()
+            )
+        ) {
             for (profesor in list) {
                 if (profesor.nr_studenti_echipa_licenta?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)
                 }
             }
-        } else if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(Locale.getDefault())) {
+        } else if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
+                Locale.getDefault()
+            )
+        ) {
             for (profesor in list) {
                 if (profesor.nr_studenti_echipa_disertatie?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)

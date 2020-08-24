@@ -41,7 +41,7 @@ class CereriStudentAdapter(
                          else
                             raspunsProf.text = String.format(context.resources.getString(R.string.raspuns), item.raspuns)
 
-                        if (item.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ANULATA.name.toLowerCase(Locale.getDefault())) {
+                        if (item.status.toLowerCase(Locale.getDefault()) != Constants.StatusCerere.PROGRES.name.toLowerCase(Locale.getDefault())) {
                             anuleazaButton.visibility = View.GONE
                         } else {
                             anuleazaButton.setOnClickListener {
