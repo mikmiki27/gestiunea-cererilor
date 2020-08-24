@@ -95,7 +95,7 @@
             android:fontFamily="sans-serif-medium"
             android:letterSpacing="0.15"
             android:lineSpacingExtra="@dimen/text_size_4sp"
-            android:text="@string/status"
+            android:text="@string/statuss"
             android:textSize="14sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"

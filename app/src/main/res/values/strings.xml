@@ -36,6 +36,7 @@
     <string name="add_student_to_the_team_last_spot">Warning! That\'s your last spot in your %1$s - team.</string>
     <string name="da">YES</string>
     <string name="nu">NO</string>
+    <string name="cancel">Cancel</string>
     <string name="licenta">Bachelor\'s degree</string>
     <string name="disertatie">Master\'s degree</string>
     <string name="nume_student_echipa">%1$s. %2$s</string>
@@ -81,6 +82,7 @@
     <string name="enter_your_message">Enter your message</string>
     <string name="trimite">Send</string>
     <string name="status">Status: %1$s</string>
+    <string name="statuss">Status:</string>
     <string name="tip_cerere">Request type:</string>
     <string name="nume">Name: %1$s</string>
     <string name="raspuns">Professor\'s response: \n%1$s</string>
@@ -99,6 +101,8 @@
     <string name="menu_requests">Requests</string>
     <string name="menu_team">Teams</string>
     <string name="menu_meetings">Meetings</string>
+    <string name="do_you_have_any_other_feedback_please_leave_it_below">Do you have any other feedback? Please leave it below:</string>
+    <string name="feedback_goes_here">Feedback goes here</string>
 
     <string-array name="ciclu_invatamant">
         <item>Bachelor</item>

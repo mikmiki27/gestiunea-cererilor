@@ -22,6 +22,7 @@
     <string name="degrees_type">Ciclu învățământ:</string>
     <string name="titlu_lucrare_profil">Titlu lucrării:</string>
     <string name="colleague">Facultate:</string>
+    <string name="statuss">Status:</string>
     <string name="email_profil">Email:</string>
     <string name="profesor_coordonator_profil">Profesor coordonator:</string>
     <string name="nr_echipa_licenta_profil">Licență - număr studenți confirmați:</string>
@@ -90,6 +91,7 @@
     <string name="forgot_pass_failed">Recuperare parola fara succes</string>
     <string name="forgot_pass_process_failed">Proces de recuperare a parolei fara succes</string>
     <string name="log_in">Log In</string>
+    <string name="cancel">Anulare</string>
     <string name="create_account">Create Cont</string>
     <string name="we_need_your_phone_number">Pentru a putea avea acces in aplicatie, avem nevoie de numarul de telefon.</string>
     <string name="please_enter_it_below">Introdu mai jos</string>
@@ -99,6 +101,8 @@
     <string name="continue_with_facebook">LOGIN CU FACEBOOK\n<small>in curand</small></string>
     <string name="forgot_your_password">Ti-ai uitat parola?</string>
     <string name="loading">Incarcare..</string>
+    <string name="do_you_have_any_other_feedback_please_leave_it_below">Dacă dorești să oferi un feedback, te rog compleaza mai jos</string>
+    <string name="feedback_goes_here">Introdu feedback-ul aici</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

@@ -104,7 +104,10 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
                     lateinit var builder: AlertDialog.Builder
 
-                    if ((cerereSelectata as Cerere).tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.LICENTA.name.toLowerCase(Locale.getDefault())) {
+                    if ((cerereSelectata as Cerere).tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.LICENTA.name.toLowerCase(
+                            Locale.getDefault()
+                        )
+                    ) {
                         var text = resources.getString(R.string.add_student_to_the_team)
                         if (getProfesorLicentaEchipa(requireContext()).toInt() == 14) {
                             text = resources.getString(R.string.add_student_to_the_team_last_spot)
@@ -136,7 +139,10 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
                         }
                     }
 
-                    if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.DISERTATIE.name.toLowerCase(Locale.getDefault())) {
+                    if (cerereSelectata.tip_cerere.toLowerCase(Locale.getDefault()) == Constants.TipCerere.DISERTATIE.name.toLowerCase(
+                            Locale.getDefault()
+                        )
+                    ) {
                         var text = resources.getString(R.string.add_student_to_the_team)
                         if (getProfesorMasterEchipa(requireContext()).toInt() == 14) {
                             text = resources.getString(R.string.add_student_to_the_team_last_spot)
@@ -170,6 +176,9 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
                     val myAlertDialog = builder.show()
 
+                    myDialogView.custom_alert_dialog_buttonCancel.setOnClickListener {
+                        myAlertDialog.dismiss()
+                }
                     myDialogView.custom_alert_dialog_buttonNo.setOnClickListener {
                         myAlertDialog.dismiss()
                         presenter.updateCerereToRespins(

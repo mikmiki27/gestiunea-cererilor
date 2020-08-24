@@ -27,7 +27,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:text="Do you have any other feedback? Please leave it below:"
+        android:text="@string/do_you_have_any_other_feedback_please_leave_it_below"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
-        android:hint="Feedback goes here"
+        android:hint="@string/feedback_goes_here"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,9 +49,23 @@
         app:layout_constraintTop_toBottomOf="@+id/custom_alert_dialog_subtitle" />
 
     <Button
+        android:id="@+id/custom_alert_dialog_buttonCancel"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/cancel"
+        tools:text="Anulare"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/custom_alert_dialog_buttonNo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/custom_alert_dialog_edittext" />
+
+    <Button
         android:id="@+id/custom_alert_dialog_buttonYes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="10dp"
         android:text="@string/da"
@@ -61,8 +75,8 @@
 
     <Button
         android:id="@+id/custom_alert_dialog_buttonNo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="16dp"
         android:text="@string/nu"
         app:layout_constraintEnd_toStartOf="@id/custom_alert_dialog_buttonYes"
