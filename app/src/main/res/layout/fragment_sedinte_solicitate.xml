@@ -1,98 +1,323 @@
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_student"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal"
-    android:layout_marginStart="@dimen/margin_medium"
-    android:layout_marginTop="@dimen/margin_medium"
-    android:layout_marginEnd="@dimen/margin_medium"
-    android:layout_marginBottom="@dimen/margin_4dp"
-    android:elevation="@dimen/margin_20dp"
-    android:visibility="visible"
-    card_view:cardCornerRadius="@dimen/corner_radius_5dp"
-    card_view:cardPreventCornerOverlap="true">
+    android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardview1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:elevation="@dimen/margin_20dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        card_view:cardCornerRadius="@dimen/corner_radius_5dp"
+        card_view:cardPreventCornerOverlap="true">
 
-        <TextView
-            android:id="@+id/cerile_mele_nume_prof"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0.01"
-            android:lineSpacingExtra="@dimen/text_size_4sp"
-            android:textSize="@dimen/text_ultra_big"
-            android:textStyle="normal"
-            android:text="Student: Plestiu Mihaela"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/grey_gradient_reverse">
 
-        <TextView
-            android:id="@+id/cerile_mele_email_prof"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_2dp"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:drawablePadding="@dimen/margin_medium"
-            android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0.15"
-            android:lineSpacingExtra="@dimen/text_size_6sp"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:text="An: 2, Masterat: IE"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/cerile_mele_nume_prof"
-            />
+            <TextView
+                android:id="@+id/sedinte_solicitate_student_nume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/text_size_4sp"
+                android:text="Student: Plestiu Mihaela"
+                android:textSize="@dimen/text_ultra_big"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Student: Plestiu Mihaela" />
 
-        <TextView
-            android:id="@+id/cerile_mele_raspuns_prof"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:drawablePadding="12dp"
-            android:fontFamily="sans-serif-medium"
-            android:letterSpacing="0.15"
-            android:lineSpacingExtra="@dimen/text_size_6sp"
-            android:text="Data: 20.05.2020 \n
-Ora: 17:30 - 18:00"
-            android:textStyle="normal"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/cerile_mele_email_prof" />
+            <TextView
+                android:id="@+id/sedinte_solicitate_profesor_nume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/text_size_4sp"
+                android:textSize="@dimen/text_ultra_big"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Profesor: Ion Ion"
+                tools:visibility="visible" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/requests_chipList"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_2dp"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:paddingBottom="@dimen/margin_small"
-            app:layout_constraintEnd_toEndOf="@id/guideline2"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/cerile_mele_raspuns_prof"
-            app:singleSelection="false" />
+            <TextView
+                android:id="@+id/sedinte_solicitate_email_ambii"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="Email: plestiumihaela15@stud.ase.ro"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_profesor_nume"
+                tools:text="Email: ionion@csie.ase.ro" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/margin_medium" />
+            <TextView
+                android:id="@+id/sedinte_solicitate_student_an_facultate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="An: 2M, Facultate: CSIE"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_email_ambii"
+                tools:text="An: 2M, Facultate: CSIE" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/margin_medium" />
+            <TextView
+                android:id="@+id/sedinte_solicitate_profesor_facultate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_email_ambii"
+                tools:text="Facultate: CSIE"
+                tools:visibility="visible" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:id="@+id/sedinte_solicitate_data_ambii"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="Data: 22.11.2020"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/sedinte_solicitate_student_an_facultate"
+                tools:text="Data: 20.05.2020" />
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_ora_ambii"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="Ora: 17:30 - 18:00"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintStart_toStartOf="@id/guideline1"
+                app:layout_constraintTop_toBottomOf="@id/sedinte_solicitate_data_ambii"
+                tools:text="Ora: 17:30 - 18:00" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/margin_medium" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/margin_medium" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardview2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:elevation="@dimen/margin_20dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/cardview1"
+        card_view:cardCornerRadius="@dimen/corner_radius_5dp"
+        card_view:cardPreventCornerOverlap="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/grey_gradient_reverse">
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_student_nume2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/text_size_4sp"
+                android:text="Student: Cristina Badea"
+                android:textSize="@dimen/text_ultra_big"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline22"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Student: Plestiu Mihaela" />
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_profesor_nume2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/text_size_4sp"
+                android:textSize="@dimen/text_ultra_big"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline22"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Profesor: Ion Ion"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_email_ambii2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="Email: cristinabadea18@stud.ase.ro"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline22"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_profesor_nume2"
+                tools:text="Email: ionion@csie.ase.ro" />
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_student_an_facultate2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="An: 3L, Facultate: CSIE"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline22"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_email_ambii2"
+                tools:text="An: 2M, Facultate: CSIE" />
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_profesor_facultate2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="@dimen/margin_medium"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline22"
+                app:layout_constraintStart_toStartOf="@+id/guideline12"
+                app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_email_ambii2"
+                tools:text="Facultate: CSIE"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_data_ambii2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="Data: 21.11.2020"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline22"
+                app:layout_constraintStart_toStartOf="@id/guideline12"
+                app:layout_constraintTop_toBottomOf="@id/sedinte_solicitate_student_an_facultate2"
+                tools:text="Data: 20.05.2020" />
+
+            <TextView
+                android:id="@+id/sedinte_solicitate_ora_ambii2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawablePadding="12dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.15"
+                android:lineSpacingExtra="@dimen/text_size_6sp"
+                android:text="Ora: 16:30 - 17:00"
+                android:textStyle="normal"
+                app:layout_constraintEnd_toStartOf="@+id/guideline22"
+                app:layout_constraintStart_toStartOf="@id/guideline12"
+                app:layout_constraintTop_toBottomOf="@id/sedinte_solicitate_data_ambii2"
+                tools:text="Ora: 17:30 - 18:00" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/margin_medium" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/margin_medium" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

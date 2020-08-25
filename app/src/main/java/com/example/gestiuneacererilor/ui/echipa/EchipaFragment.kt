@@ -68,8 +68,8 @@ class EchipaFragment : BaseFragment<EchipaMvp.Presenter>(), EchipaMvp.View {
 
     override fun afisareStudentiLicenta(studentiLicentaAcceptati: String?) {
         val listaStudenti: List<String>? = studentiLicentaAcceptati?.split(", ")?.toList()
+        listaCorectaStudentiLicenta = listaStudenti?.subList(0, listaStudenti.size - 1)!!
         if (listaCorectaStudentiLicenta != null && listaCorectaStudentiLicenta.isNotEmpty()) {
-            listaCorectaStudentiLicenta = listaStudenti?.subList(0, listaStudenti.size - 1)!!
             myEchipaLicentaAdapter.apply {
                 studentiList = listaCorectaStudentiLicenta
                 notifyDataSetChanged()
@@ -79,8 +79,8 @@ class EchipaFragment : BaseFragment<EchipaMvp.Presenter>(), EchipaMvp.View {
 
     override fun afisareStudentiMaster(studentiDisertatieAcceptati: String?) {
         val listaStudenti: List<String>? = studentiDisertatieAcceptati?.split(", ")?.toList()
+        listaCorectaStudentiMaster = listaStudenti?.subList(0, listaStudenti.size - 1)!!
         if (listaCorectaStudentiMaster != null && listaCorectaStudentiMaster.isNotEmpty()) {
-            listaCorectaStudentiMaster = listaStudenti?.subList(0, listaStudenti.size - 1)!!
             myEchipaMasterAdapter.apply {
                 studentiList = listaCorectaStudentiMaster
                 notifyDataSetChanged()

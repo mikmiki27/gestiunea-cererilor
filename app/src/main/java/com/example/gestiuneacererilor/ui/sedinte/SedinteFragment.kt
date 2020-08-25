@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.ui.base.BaseActivity
+import com.example.gestiuneacererilor.utils.Constants
+import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
+import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -30,17 +33,31 @@ class SedinteFragment : Fragment() {
         viewPager = view.findViewById(R.id.viewPager)
         viewPager.isSaveEnabled = false
         tabLayout = view.findViewById(R.id.tabLayout)
-        setViewPager()
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> "Solicitari"
-                else -> "Sedinte planificate"
+
+        when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
+            Constants.UserType.STUDENT -> {
+                setViewPager()
+                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                    tab.text = when (position) {
+                        0 -> "Sedintele mele"
+                        else -> "Programare sedinta"
+                    }
+                }.attach()
             }
-        }.attach()
+            Constants.UserType.PROFESSOR -> {
+                setViewPager()
+                TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                    tab.text = when (position) {
+                        0 -> "Solicitari"
+                        else -> "Sedinte confirmate"
+                    }
+                }.attach()
+            }
+        }
     }
 
     private fun setViewPager() {
-        val eventsViewPagerAdapter = EventsViewPagerAdapter(requireActivity(), null)
+        val eventsViewPagerAdapter = EventsViewPagerAdapter(requireContext(), requireActivity())
         viewPager.adapter = eventsViewPagerAdapter
     }
 }

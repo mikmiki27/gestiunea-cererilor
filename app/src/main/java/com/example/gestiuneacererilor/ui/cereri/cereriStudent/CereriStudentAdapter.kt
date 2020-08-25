@@ -59,10 +59,10 @@ class CereriStudentAdapter(
     open class Holder(view: View) : RecyclerView.ViewHolder(view)
 
     class ItemViewHolder(view: View) : Holder(view) {
-        var numeProf: TextView = view.findViewById(R.id.cerile_mele_nume_prof)
-        var emailProf: TextView = view.findViewById(R.id.cerile_mele_email_prof)
+        var numeProf: TextView = view.findViewById(R.id.sedinte_solicitate_student_nume)
+        var emailProf: TextView = view.findViewById(R.id.sedinte_solicitate_student_an_facultate)
         var statusCerere: TextView = view.findViewById(R.id.cerile_mele_status_prof)
-        var raspunsProf: TextView = view.findViewById(R.id.cerile_mele_raspuns_prof)
+        var raspunsProf: TextView = view.findViewById(R.id.sedinte_solicitate_data_ambii)
         var anuleazaButton: TextView = view.findViewById(R.id.cerile_mele_anuleza_btn)
     }
 }

@@ -1,13 +1,21 @@
-<TextView android:id="@+id/student_nume"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/grey_gradient_reverse"
-    android:textAlignment="center"
-    android:textColor="#33465c"
-    android:textSize="16sp"
-    android:layout_marginTop="6dp"
-    android:textStyle="bold"
-    tools:text="1. Plestiu Mihaela"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" />
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/student_nume"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/grey_gradient_reverse"
+        android:textAlignment="center"
+        android:textColor="#33465c"
+        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1. Plestiu Mihaela" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,7 +21,7 @@
         android:background="@drawable/gray_gradient">
 
         <TextView
-            android:id="@+id/cerile_mele_nume_prof"
+            android:id="@+id/sedinte_solicitate_student_nume"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
@@ -36,7 +36,7 @@
             tools:text="Profesor: Popescu Ion" />
 
         <TextView
-            android:id="@+id/cerile_mele_email_prof"
+            android:id="@+id/sedinte_solicitate_student_an_facultate"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_2dp"
@@ -49,7 +49,7 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/cerile_mele_nume_prof"
+            app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_student_nume"
             tools:text="Email: popescuion@csie.ase.ro" />
 
         <TextView
@@ -64,11 +64,11 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
             app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/cerile_mele_email_prof"
+            app:layout_constraintTop_toBottomOf="@id/sedinte_solicitate_student_an_facultate"
             tools:text="Status: acceptat" />
 
         <TextView
-            android:id="@+id/cerile_mele_raspuns_prof"
+            android:id="@+id/sedinte_solicitate_data_ambii"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_medium"
@@ -94,7 +94,7 @@
             android:textColor="@android:color/holo_red_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/cerile_mele_raspuns_prof" />
+            app:layout_constraintTop_toBottomOf="@+id/sedinte_solicitate_data_ambii" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"

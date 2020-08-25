@@ -61,6 +61,7 @@
         android:textAlignment="center"
         android:textColor="#33465c"
         android:textSize="16sp"
+        android:paddingLeft="6dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toEndOf="@+id/recycler_echipa_student_master"
