@@ -1,173 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        android:orientation="vertical">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/formular_profesor_nume"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:letterSpacing="0.1"
-            android:text="Profesor coordonator: Ion Ion"
-            android:textColor="#364b70"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Profesor coordonator: Ion Ion" />
+    <TextView
+        android:id="@+id/programare_sedinte_nume_profesor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:letterSpacing="0.1"
+        android:text="Profesor coordonator: Ion Ion"
+        android:textColor="#364b70"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Profesor coordonator: Ion Ion" />
 
-        <TextView
-            android:id="@+id/formular_email_prof"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:letterSpacing="0.1"
-            android:text="Email: ionion@csie.ase.ro"
-            android:textColor="#364b70"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/formular_profesor_nume"
-            tools:text="Email: ionion@csie.ase.ro" />
+    <TextView
+        android:id="@+id/programare_sedinte_email_prof"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:letterSpacing="0.1"
+        android:text="Email: ionion@csie.ase.ro"
+        android:textColor="#364b70"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_nume_profesor"
+        tools:text="Email: ionion@csie.ase.ro" />
 
-        <TextView
-            android:id="@+id/formular_cerinte_extra_prof"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+    <TextView
+        android:id="@+id/programare_sedinte_data"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="8dp"
+        android:text="Data: 22.11.2020"
+        android:textColor="#364b70"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/calendar_data"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@id/programare_sedinte_email_prof" />
+
+    <ImageView
+        android:id="@+id/calendar_data"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_calendar_today_24"
+        app:layout_constraintEnd_toEndOf="@id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/programare_sedinte_data"
+        app:layout_constraintTop_toBottomOf="@id/programare_sedinte_email_prof" />
+
+    <TextView
+        android:id="@+id/programare_sedinte_ora"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="8dp"
+        android:text="Ora: "
+        android:textColor="#364b70"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/programare_sedinte_ora_start"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_data" />
+
+    <TextView
+        android:id="@+id/programare_sedinte_ora_start"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="17:30"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/ceas_ora_start"
+        app:layout_constraintStart_toEndOf="@+id/programare_sedinte_ora"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_data" />
+
+    <ImageView
+        android:id="@+id/ceas_ora_start"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_access_time_black_24dp"
+        app:layout_constraintEnd_toStartOf="@+id/dash"
+        app:layout_constraintStart_toEndOf="@+id/programare_sedinte_ora_start"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_data" />
+
+    <TextView
+        android:id="@+id/dash"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text=" -"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/programare_sedinte_ora_finish"
+        app:layout_constraintStart_toEndOf="@+id/ceas_ora_start"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_data" />
+
+    <TextView
+        android:id="@+id/programare_sedinte_ora_finish"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="18:00"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/ceas_ora_finish"
+        app:layout_constraintStart_toEndOf="@+id/dash"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_data" />
+
+    <ImageView
+        android:id="@+id/ceas_ora_finish"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_access_time_black_24dp"
+        app:layout_constraintEnd_toEndOf="@id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/programare_sedinte_ora_finish"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_data" />
+
+    <TextView
+        android:id="@+id/programare_sedinte_motiv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:letterSpacing="0.1"
+        android:lineSpacingExtra="8dp"
+        android:text="@string/mentiunile_studentului_formular"
+        android:textColor="#364b70"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_ora" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/programare_sedinte_motiv_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:hint="@string/enter_your_message"
+        android:letterSpacing="0.1"
+        app:errorTextColor="@color/error_color"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline1"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_motiv">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/programare_sedinte_motiv_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'!?1234567890,"
+            android:imeOptions="actionNext"
+            android:inputType="text"
             android:letterSpacing="0.1"
             android:lineSpacingExtra="8dp"
-            android:textColor="#364b70"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@id/formular_email_prof"
-            android:text="Data: 22.11.2020" />
+            android:text="Buna ziua! \nAveti timp pentru o sedinta in intervalul mentionat, pentru a stabili tema lucrarii? Multumesc!">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_access_time_black_24dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline4"
-            app:layout_constraintStart_toEndOf="@+id/formular_cerinte_extra_prof"
-            app:layout_constraintTop_toBottomOf="@id/formular_email_prof"
-            tools:layout_editor_absoluteY="2dp" />
-
-        <TextView
-            android:id="@+id/formular_cerinte_extra_proff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:letterSpacing="0.1"
-            android:lineSpacingExtra="8dp"
-            android:textColor="#364b70"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/textView"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_prof"
-            android:text="Ora: " />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="17:30"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
-            app:layout_constraintStart_toEndOf="@+id/formular_cerinte_extra_proff"
-            app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_prof" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_access_time_black_24dp"
-            app:layout_constraintEnd_toStartOf="@+id/textView2"
-            app:layout_constraintStart_toEndOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_prof" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text=" --- "
-            android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/textView3"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_prof" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="18:00"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_prof" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_access_time_black_24dp"
-            app:layout_constraintEnd_toEndOf="@id/guideline4"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_prof" />
-
-        <TextView
-            android:id="@+id/formular_mentiuni_pentru_prof"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:letterSpacing="0.1"
-            android:lineSpacingExtra="8dp"
-            android:text="@string/mentiunile_studentului_formular"
-            android:textColor="#364b70"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_proff" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/formular_mentiuni_pentru_prof_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:hint="@string/enter_your_message"
-            android:letterSpacing="0.1"
-            app:errorTextColor="@color/error_color"
-            app:layout_constraintEnd_toStartOf="@+id/guideline4"
-            app:layout_constraintStart_toStartOf="@+id/guideline1"
-            app:layout_constraintTop_toBottomOf="@+id/formular_mentiuni_pentru_prof">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/formular_mentiuni_pentru_prof_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'!?1234567890,"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:letterSpacing="0.1"
-                android:lineSpacingExtra="8dp"
-                android:text="Buna ziua! \nAveti timp pentru o sedinta in intervalul mentionat, pentru a stabili tema lucrarii? Multumesc!">
-
-            </com.google.android.material.textfield.TextInputEditText>
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!--   <TextView
                android:id="@+id/placeholderNetwork_formular"
@@ -183,9 +181,8 @@
                app:layout_constraintTop_toTopOf="parent"
                tools:visibility="visible" />-->
 
-
     <Button
-        android:id="@+id/formular_trimite_cerere"
+        android:id="@+id/programare_sedinte_buton_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"
@@ -193,20 +190,20 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/formular_mentiuni_pentru_prof_layout"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_motiv_layout"
         app:layout_constraintVertical_bias="0.95" />
 
     <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="16dp" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="16dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

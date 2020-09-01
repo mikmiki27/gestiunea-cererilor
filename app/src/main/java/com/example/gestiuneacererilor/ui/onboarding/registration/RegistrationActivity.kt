@@ -105,7 +105,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                     presenter.singUpUser(
                         Student(
                             nume = last_name_text.text.toString(),
-                            prenume =  formular_mentiuni_pentru_prof_text.text.toString(),
+                            prenume =  programare_sedinte_motiv_text.text.toString(),
                             email =  email_text.text.toString(),
                             facultate = facultate_text.text.toString(),
                             an = an_layout.selectedItem.toString(),
@@ -117,7 +117,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                     presenter.singUpUser(
                         Professor(
                             nume = last_name_text.text.toString(),
-                            prenume = formular_mentiuni_pentru_prof_text.text.toString(),
+                            prenume = programare_sedinte_motiv_text.text.toString(),
                             email = email_text.text.toString(),
                             facultate = facultate_text.text.toString()
                         ),
@@ -130,7 +130,7 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
 
     private fun validation(): Boolean {
         var i = 0
-        if (formular_mentiuni_pentru_prof_text.text.isNullOrEmpty()) {
+        if (programare_sedinte_motiv_text.text.isNullOrEmpty()) {
             first_name_layout.error = getString(R.string.camp_obligatoriu)
             i++
         } else {

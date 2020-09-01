@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/formular_profesor_nume"
+        android:id="@+id/programare_sedinte_nume_profesor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -21,7 +21,7 @@
         tools:text="Profesor: Ion Ion" />
 
     <TextView
-        android:id="@+id/formular_email_prof"
+        android:id="@+id/programare_sedinte_email_prof"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -30,11 +30,11 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/formular_profesor_nume"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_nume_profesor"
         tools:text="Email: ionion@csie.ase.ro" />
 
     <TextView
-        android:id="@+id/formular_cerinte_extra_prof"
+        android:id="@+id/programare_sedinte_data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -44,11 +44,11 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/formular_email_prof"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_email_prof"
         tools:text="Other requests: Studentul sa aiba minim nota 8 la DAD." />
 
     <TextView
-        android:id="@+id/formular_mentiuni_pentru_prof"
+        android:id="@+id/programare_sedinte_motiv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -58,11 +58,11 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/formular_cerinte_extra_prof"
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_data"
         android:text="@string/mentiunile_studentului_formular" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/formular_mentiuni_pentru_prof_layout"
+        android:id="@+id/programare_sedinte_motiv_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
@@ -71,10 +71,10 @@
         app:errorTextColor="@color/error_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/formular_mentiuni_pentru_prof">
+        app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_motiv">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/formular_mentiuni_pentru_prof_text"
+            android:id="@+id/programare_sedinte_motiv_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'!?1234567890,"
@@ -88,7 +88,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/formular_trimite_cerere"
+        android:id="@+id/programare_sedinte_buton_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/darker_gray"

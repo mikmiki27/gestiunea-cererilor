@@ -42,14 +42,14 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
         super.onViewCreated(view, savedInstanceState)
         (context as? BaseActivity<*>)?.supportActionBar?.title =
             requireContext().resources.getString(R.string.depunere_cerere)
-        formular_trimite_cerere.setOnClickListener(this)
+        programare_sedinte_buton_send.setOnClickListener(this)
         profesorSolicitat = arguments?.get("profesor_solicitat") as Professor
 
         setViews(profesorSolicitat)
     }
 
     override fun onClick(view: View?) {
-        if (view?.id == R.id.formular_trimite_cerere) {
+        if (view?.id == R.id.programare_sedinte_buton_send) {
             val cerereNoua = Cerere(
                 student_solicitant = getCurrentUserDisplayName((requireContext())),
                 id_student = getCurrentUserId(requireContext()),
@@ -68,38 +68,38 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
                 } else {
                     Constants.TipCerere.DISERTATIE.name
                 },
-                mentiuni = formular_mentiuni_pentru_prof_text.text.toString()
+                mentiuni = programare_sedinte_motiv_text.text.toString()
             )
             presenter.postNewCerere(cerereNoua)
         }
     }
 
     private fun setViews(profesorSolicitat: Professor) {
-        formular_profesor_nume.visibility = View.VISIBLE
-        formular_email_prof.visibility = View.VISIBLE
-        formular_cerinte_extra_prof.visibility = View.VISIBLE
-        formular_mentiuni_pentru_prof.visibility = View.VISIBLE
-        formular_mentiuni_pentru_prof_layout.visibility = View.VISIBLE
-        formular_trimite_cerere.visibility = View.VISIBLE
+        programare_sedinte_nume_profesor.visibility = View.VISIBLE
+        programare_sedinte_email_prof.visibility = View.VISIBLE
+        programare_sedinte_data.visibility = View.VISIBLE
+        programare_sedinte_motiv.visibility = View.VISIBLE
+        programare_sedinte_motiv_layout.visibility = View.VISIBLE
+        programare_sedinte_buton_send.visibility = View.VISIBLE
 
-        formular_profesor_nume.text = String.format(
+        programare_sedinte_nume_profesor.text = String.format(
             requireContext().resources.getString(R.string.profesor_nume_disp), String.format(
                 requireContext().resources.getString(R.string.template_for_two),
                 profesorSolicitat.nume,
                 profesorSolicitat.prenume
             )
         )
-        formular_email_prof.text = String.format(
+        programare_sedinte_email_prof.text = String.format(
             requireContext().resources.getString(R.string.email_disp),
             profesorSolicitat.email
         )
         if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
-            formular_cerinte_extra_prof.text = String.format(
+            programare_sedinte_data.text = String.format(
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_licenta
             )
         } else if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase()) {
-            formular_cerinte_extra_prof.text = String.format(
+            programare_sedinte_data.text = String.format(
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_disertatie
             )
@@ -111,12 +111,12 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
     }
 
     override fun showPlaceholderForProfessorNetwork() {
-        formular_profesor_nume.visibility = View.INVISIBLE
-        formular_email_prof.visibility = View.INVISIBLE
-        formular_cerinte_extra_prof.visibility = View.INVISIBLE
-        formular_mentiuni_pentru_prof.visibility = View.INVISIBLE
-        formular_mentiuni_pentru_prof_layout.visibility = View.INVISIBLE
-        formular_trimite_cerere.visibility = View.INVISIBLE
+        programare_sedinte_nume_profesor.visibility = View.INVISIBLE
+        programare_sedinte_email_prof.visibility = View.INVISIBLE
+        programare_sedinte_data.visibility = View.INVISIBLE
+        programare_sedinte_motiv.visibility = View.INVISIBLE
+        programare_sedinte_motiv_layout.visibility = View.INVISIBLE
+        programare_sedinte_buton_send.visibility = View.INVISIBLE
         placeholderNetwork_formular.visibility = View.VISIBLE
     }
 

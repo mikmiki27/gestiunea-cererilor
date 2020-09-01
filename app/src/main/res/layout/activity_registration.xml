@@ -54,7 +54,7 @@
             app:layout_constraintTop_toBottomOf="@+id/user_type_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/formular_mentiuni_pentru_prof_text"
+                android:id="@+id/programare_sedinte_motiv_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="abcdefghijklmnopqrstuvwxyzăîâșțABCDEFGHIJKLMNOPQRSTUVWXYZ.&#032;-'"
