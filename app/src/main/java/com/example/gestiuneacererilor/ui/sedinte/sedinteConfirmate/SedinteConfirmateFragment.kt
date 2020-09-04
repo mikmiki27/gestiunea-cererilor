@@ -4,23 +4,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiuneacererilor.R
+import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManagerImplementation
+import com.example.gestiuneacererilor.data.managers.sedintamanager.SedintaManagerImplementation
+import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
+import com.example.gestiuneacererilor.data.restmanager.ProfesorService
+import com.example.gestiuneacererilor.data.restmanager.SedintaService
+import com.example.gestiuneacererilor.data.restmanager.StudentService
+import com.example.gestiuneacererilor.data.restmanager.data.Sedinta
+import com.example.gestiuneacererilor.ui.base.BaseFragment
+import com.example.gestiuneacererilor.ui.sedinte.sedintesolicitate.SedinteSolicitateAdapter
+import com.example.gestiuneacererilor.ui.sedinte.sedintesolicitate.SedinteSolicitateFragment
+import com.example.gestiuneacererilor.ui.sedinte.sedintesolicitate.SedinteSolicitateMvp
+import com.example.gestiuneacererilor.ui.sedinte.sedintesolicitate.SedinteSolicitatePresenter
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
 import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 import kotlinx.android.synthetic.main.fragment_sedinte_confirmate.*
 import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.*
-import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.sedinte_solicitate_data_ambii
-import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.sedinte_solicitate_email_ambii
-import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.sedinte_solicitate_ora_ambii
-import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.sedinte_solicitate_profesor_facultate
-import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.sedinte_solicitate_profesor_nume
-import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.sedinte_solicitate_student_an_facultate
-import kotlinx.android.synthetic.main.fragment_sedinte_solicitate.sedinte_solicitate_student_nume
 
-class SedinteConfirmateFragment(/*private var onRequestItemClicked: OnRequestItemClicked*/) :
-    Fragment() {
+class SedinteConfirmateFragment:
+    BaseFragment<SedinteConfirmateMvp.Presenter>(),
+    SedinteConfirmateMvp.View {
+
+    private lateinit var recyclerViewForSedinteConfirmate: RecyclerView
+    private lateinit var mySedinteConfirmateAdapter: SedinteConfirmateAdapter
+    private var sedinteConfirmateList: List<Sedinta> = arrayListOf()
+
+    override fun initializePresenter(): SedinteConfirmateMvp.Presenter {
+        return SedinteConfirmatePresenter(
+            this,
+            requireContext(),
+            SedintaManagerImplementation.getInstance(SedintaService.create()),
+            ProfesorManagerImplementation.getInstance(ProfesorService.create()),
+            StudentManagerImplementation.getInstance(StudentService.create())
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,58 +54,38 @@ class SedinteConfirmateFragment(/*private var onRequestItemClicked: OnRequestIte
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
-            Constants.UserType.PROFESSOR -> {
-                setViewsForProfessor()
-            }
-            Constants.UserType.STUDENT -> {
-                setViewsForStudent()
-            }
+        recyclerViewForSedinteConfirmate = view.findViewById(R.id.lista_sedinte_confirmate_ecran_profesori)
+
+        presenter.getAllSedinteConfirmate()
+
+        mySedinteConfirmateAdapter = SedinteConfirmateAdapter(
+            requireContext(),
+            sedinteConfirmateList
+        )
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        recyclerViewForSedinteConfirmate.apply {
+            layoutManager = LinearLayoutManager(activity)
+            adapter = mySedinteConfirmateAdapter
+            visibility = View.VISIBLE
         }
     }
 
-    private fun setViewsForProfessor() {
-        sedinte_solicitate_student_nume.visibility = View.VISIBLE
-        sedinte_solicitate_student_an_facultate.visibility = View.VISIBLE
-
-        sedinte_solicitate_ora_ambii.visibility = View.VISIBLE
-        sedinte_solicitate_data_ambii.visibility = View.VISIBLE
-        sedinte_solicitate_email_ambii.visibility = View.VISIBLE
-
-        sedinte_solicitate_profesor_facultate.visibility = View.INVISIBLE
-        sedinte_solicitate_profesor_nume.visibility = View.INVISIBLE
-
-        sedinte_solicitate_student_nume1.visibility = View.VISIBLE
-        sedinte_solicitate_student_an_facultate1.visibility = View.VISIBLE
-
-        sedinte_solicitate_ora_ambii1.visibility = View.VISIBLE
-        sedinte_solicitate_data_ambii1.visibility = View.VISIBLE
-        sedinte_solicitate_email_ambii1.visibility = View.VISIBLE
-
-        sedinte_solicitate_profesor_facultate1.visibility = View.INVISIBLE
-        sedinte_solicitate_profesor_nume1.visibility = View.INVISIBLE
+    override fun showListaSedinteConfirmate(list: List<Sedinta>) {
+        mySedinteConfirmateAdapter.apply {
+            sedinteConfirmateList = list
+            notifyDataSetChanged()
+        }
     }
 
-    private fun setViewsForStudent() {
-        sedinte_solicitate_student_nume.visibility = View.INVISIBLE
-        sedinte_solicitate_student_an_facultate.visibility = View.INVISIBLE
+    override fun showPlaceholderForSedinteConfirmate() {
+        placeholderEmpty_sedinte_confirmate.visibility = View.VISIBLE
+    }
 
-        sedinte_solicitate_ora_ambii.visibility = View.VISIBLE
-        sedinte_solicitate_data_ambii.visibility = View.VISIBLE
-        sedinte_solicitate_email_ambii.visibility = View.VISIBLE
-
-        sedinte_solicitate_profesor_facultate.visibility = View.VISIBLE
-        sedinte_solicitate_profesor_nume.visibility = View.VISIBLE
-
-        sedinte_solicitate_student_nume1.visibility = View.INVISIBLE
-        sedinte_solicitate_student_an_facultate1.visibility = View.INVISIBLE
-
-        sedinte_solicitate_ora_ambii1.visibility = View.VISIBLE
-        sedinte_solicitate_data_ambii1.visibility = View.VISIBLE
-        sedinte_solicitate_email_ambii1.visibility = View.VISIBLE
-
-        sedinte_solicitate_profesor_facultate1.visibility = View.VISIBLE
-        sedinte_solicitate_profesor_nume1.visibility = View.VISIBLE
+    override fun showPlaceholderForSedinteConfirmateNetwork() {
+        placeholderNetwork_sedinte_confirmate.visibility = View.VISIBLE
     }
 
 }

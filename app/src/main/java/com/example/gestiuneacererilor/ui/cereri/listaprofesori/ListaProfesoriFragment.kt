@@ -1,6 +1,5 @@
 package com.example.gestiuneacererilor.ui.cereri.listaprofesori
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -66,11 +66,21 @@ fun getCurrentStudentAn(context: Context): String {
 }
 
 fun getCurrentStudentProfesorCoordonator(context: Context): String {
-    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR).toString()
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR)
+        .toString()
 }
 
 fun getCurrentStudentCiclu(context: Context): String {
     return SharedPrefUtil.getStringValue(context, SharedPrefUtil.CURRENT_USER_CICLU).toString()
+}
+
+fun getCurrentStudentProfesorCoordonatorId(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.PROFESOR_COORDONATOR_ID).toString()
+}
+
+fun getCurrentStudentProfesorCoordonatorDisplayName(context: Context): String {
+    return SharedPrefUtil.getStringValue(context, SharedPrefUtil.PROFESOR_COORDONATOR_DISPLAY_NAME)
+        .toString()
 }
 
 fun determineCurrentTypeUser(email: String): Constants.UserType {
@@ -78,4 +88,26 @@ fun determineCurrentTypeUser(email: String): Constants.UserType {
         email.contains("@stud.ase.ro") -> Constants.UserType.STUDENT
         else -> Constants.UserType.PROFESSOR
     }
+}
+
+fun createDate(date: String, oraI: String): Date {
+    val data = "$date $oraI"
+
+    return SimpleDateFormat(
+        "dd-MM-yyyy HH:mm",
+        Locale.getDefault()
+    ).parse(data)
+}
+
+fun isCurrentDateBiggerThatDateToCompare(dateToCompare: Date): Boolean {
+    val cal = Calendar.getInstance()
+
+    val stringData =
+        """${cal.time.day}-${cal.time.month}-${cal.time.year} ${cal.time.hours}:${cal.time.minutes}"""
+    val currentDate = SimpleDateFormat(
+        "dd-MM-yyyy HH:mm",
+        Locale.getDefault()
+    ).parse(stringData)
+
+    return currentDate > dateToCompare
 }

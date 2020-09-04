@@ -55,6 +55,38 @@
     </fragment>
 
     <fragment
+        android:id="@+id/menu_sedinte_confirmate_student"
+        android:name="com.example.gestiuneacererilor.ui.sedinte.sedinteconfirmatestudent.SedinteConfirmateStudentFragment"
+        android:label="SedinteConfirmateStudentFragment"
+        tools:layout="@layout/fragment_sedinte_confirmate_student" />
+
+    <fragment
+        android:id="@+id/menu_programare_sedinte"
+        android:name="com.example.gestiuneacererilor.ui.sedinte.programareSedinte.ProgramareSedinteFragment"
+        android:label="ProgramareSedinteFragment"
+        tools:layout="@layout/fragment_programare_sedinte" >
+        <action
+            android:id="@+id/action_menu_programare_sedinta_to_confirmate_student"
+            app:destination="@id/menu_sedinte_confirmate_student" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/menu_sedinte_confirmate"
+        android:name="com.example.gestiuneacererilor.ui.sedinte.sedinteConfirmate.SedinteConfirmateFragment"
+        android:label="CereriStudentFragment"
+        tools:layout="@layout/fragment_sedinte_confirmate" />
+
+    <fragment
+        android:id="@+id/menu_sedinte_solicitate"
+        android:name="com.example.gestiuneacererilor.ui.sedinte.sedintesolicitate.SedinteSolicitateFragment"
+        android:label="SedinteSolicitateFragment"
+        tools:layout="@layout/fragment_sedinte_solicitate" >
+        <action
+            android:id="@+id/action_menu_sedinte_solicitate_to_confirmate"
+            app:destination="@id/menu_sedinte_confirmate" />
+    </fragment>
+
+    <fragment
         android:id="@+id/menu_profile"
         android:name="com.example.gestiuneacererilor.ui.profile.ProfileFragment"
         android:label="ProfileFragment"

@@ -16,6 +16,7 @@
     <string name="cerinte_suplimentare_master_profil">Additional requests for master\'s degree:</string>
     <string name="email_profil">Email:</string>
     <string name="email_disp">Email: %1$s</string>
+    <string name="an_facultate_disp">Year: %1$s, University: %2$s</string>
     <string name="other_requests">Other requests: %1$s</string>
     <string name="sing_out">Sing out</string>
     <string name="full_name">Full name:</string>
@@ -24,6 +25,7 @@
     <string name="colleague">Colleague:</string>
     <string name="update_btn">Update</string>
     <string name="template_for_two">%1$s %2$s</string>
+    <string name="template_for_one">%1$s</string>
     <string name="fara_mentiuni">No other mentions.</string>
     <string name="numar_studenti_echipa_master">No. of students in master-team: %1$s</string>
     <string name="numar_studenti_echipa_licenta">No. of students in bachelor-team: %1$s</string>
@@ -44,10 +46,12 @@
     <string name="profesori_disponibili">Available professors</string>
     <string name="cererile_mele">My Requests</string>
     <string name="profesor_nume_disp">Professor: %1$s</string>
+    <string name="student_nume_disp">Student: %1$s</string>
     <string name="locuri_disponibile">Available seats: %1$s</string>
     <string name="mentiuni_prof_disp">Other requests: %1$s</string>
     <string name="already_got_prof">You already got a professor: %1$s. Good luck!</string>
     <string name="fara_profesori">There are no professors available.</string>
+    <string name="fara_sedinte_solicitate">There are no meetings available.</string>
     <string name="depunere_cerere">Make a request</string>
     <string name="mentiunile_studentului_formular">Mentions: </string>
     <string name="invalid_password">Invalid password</string>
@@ -82,6 +86,9 @@
     <string name="enter_your_message">Enter your message</string>
     <string name="trimite">Send</string>
     <string name="status">Status: %1$s</string>
+    <string name="data_sedinta">Date: %1$s</string>
+    <string name="ora_sedinta">Hour: %1$s - %2$s</string>
+    <string name="ora">Hour:</string>
     <string name="statuss">Status:</string>
     <string name="tip_cerere">Request type:</string>
     <string name="nume">Name: %1$s</string>
@@ -102,7 +109,11 @@
     <string name="menu_team">Teams</string>
     <string name="menu_meetings">Meetings</string>
     <string name="do_you_have_any_other_feedback_please_leave_it_below">Do you have any other feedback? Please leave it below:</string>
+    <string name="do_you_have_any_other_response_please_leave_it_below">Do you have any other response? Please leave it below:</string>
     <string name="feedback_goes_here">Feedback goes here</string>
+    <string name="response_goes_here">The response goes here</string>
+    <string name="doresti_sa_adaugi_sedinta">Do you want to add this meeting in your calendar?</string>
+    <string name="set_date">Set date</string>
 
     <string-array name="ciclu_invatamant">
         <item>Bachelor</item>

@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lista_sedinte_ecran_profesori"
+        android:id="@+id/lista_sedinte_confirmate_student"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <TextView
-        android:id="@+id/placeholderEmpty_sedinte_solicitate"
+        android:id="@+id/placeholderEmpty_sedinte_confirmate_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/fara_sedinte_solicitate"
@@ -24,7 +24,7 @@
         tools:visibility="visible" />
 
     <TextView
-        android:id="@+id/placeholderNetwork_sedinte_solicitate"
+        android:id="@+id/placeholderNetwork_sedinte_confirmate_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/a_aparut_o_eroare_incearca_din_nou"

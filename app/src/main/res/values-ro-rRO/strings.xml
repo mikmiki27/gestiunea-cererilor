@@ -19,11 +19,16 @@
     <string name="sing_out">Deconectare</string>
     <string name="full_name">Nume complet:</string>
     <string name="year">An:</string>
+    <string name="data_sedinta">Data: %1$s</string>
+    <string name="ora_sedinta">Ora: %1$s - %2$s</string>
+    <string name="fara_sedinte_solicitate">Nu exista sedinte solicitate.</string>
     <string name="degrees_type">Ciclu învățământ:</string>
     <string name="titlu_lucrare_profil">Titlu lucrării:</string>
     <string name="colleague">Facultate:</string>
     <string name="statuss">Status:</string>
     <string name="email_profil">Email:</string>
+    <string name="student_nume_disp">Student: %1$s</string>
+    <string name="an_facultate_disp">An: %1$s, Facultate: %2$s</string>
     <string name="profesor_coordonator_profil">Profesor coordonator:</string>
     <string name="nr_echipa_licenta_profil">Licență - număr studenți confirmați:</string>
     <string name="nr_echipa_master_profil">Masterat - număr studenți confirmați:</string>
@@ -102,7 +107,13 @@
     <string name="forgot_your_password">Ti-ai uitat parola?</string>
     <string name="loading">Incarcare..</string>
     <string name="do_you_have_any_other_feedback_please_leave_it_below">Dacă dorești să oferi un feedback, te rog compleaza mai jos</string>
+    <string name="do_you_have_any_other_response_please_leave_it_below">Dacă dorești să oferi un raspuns, te rog compleaza mai jos</string>
     <string name="feedback_goes_here">Introdu feedback-ul aici</string>
+    <string name="response_goes_here">Introdu raspunsul aici</string>
+    <string name="doresti_sa_adaugi_sedinta">Doresti sa adaugi sedinta in calendar?</string>
+    <string name="set_date">Seteaza data</string>
+    <string name="template_for_one">%1$s</string>
+    <string name="ora">Ora:</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

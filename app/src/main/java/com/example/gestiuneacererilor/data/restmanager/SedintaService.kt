@@ -32,7 +32,7 @@ interface SedintaService {
     fun updateSedintaById(@Path(value = "id") id: String, @Body sedinta: Sedinta): Single<Sedinta>
 
     companion object {
-        fun create(): CerereService {
+        fun create(): SedintaService {
 
             val httpClient = CustomHttpClient().provideHttpClientDefaultBuilder()
 
@@ -42,7 +42,7 @@ interface SedintaService {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
                 .build()
-                .create(CerereService::class.java)
+                .create(SedintaService::class.java)
         }
     }
 }

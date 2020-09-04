@@ -24,6 +24,9 @@ object Constants {
     enum class StatusCerere {
         PROGRES, ACCEPTATA, RESPINSA, ANULATA
     }
+    enum class StatusSedinta {
+        PROGRES, ACCEPTATA, RESPINSA, ANULATA
+    }
 
     enum class TipCerere {
         LICENTA, DISERTATIE

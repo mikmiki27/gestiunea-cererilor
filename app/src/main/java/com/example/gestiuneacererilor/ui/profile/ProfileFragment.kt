@@ -338,7 +338,10 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
             SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI
         )
         SharedPrefUtil.removeStringValue(
-            requireContext(), SharedPrefUtil.CURRENT_USER_TITLU_LUCRARE
+            requireContext(), SharedPrefUtil.PROFESOR_COORDONATOR_ID
+        )
+        SharedPrefUtil.removeStringValue(
+            requireContext(), SharedPrefUtil.PROFESOR_COORDONATOR_DISPLAY_NAME
         )
     }
 
