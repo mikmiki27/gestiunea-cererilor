@@ -277,6 +277,7 @@ class CereriPresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    if (it.isNotEmpty()) {
                     SharedPrefUtil.addKeyValue(
                         activity, SharedPrefUtil.STUDENT_CURRENT_ID, it[0].id
                             ?: ""
@@ -324,7 +325,7 @@ class CereriPresenter(
                     SharedPrefUtil.addKeyValue(
                         activity, SharedPrefUtil.STUDENT_TITLU_LUCRARE, it[0].titlu_lucrare
                             ?: ""
-                    )
+                    )}
                 }, {
                     Log.d("problem", "could not update student")
                     view?.showPlaceholderForNetwork()

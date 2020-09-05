@@ -8,8 +8,11 @@ import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManage
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.data.restmanager.data.Sedinta
 import com.example.gestiuneacererilor.ui.base.BasePresenter
+import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.getCurrentDisertatieAcceptati
 import com.example.gestiuneacererilor.utils.getCurrentLicentaAcceptati
+import com.example.gestiuneacererilor.utils.getStudentCurrentEmail
+import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -33,26 +36,32 @@ class SedinteSolicitatePresenter(
                             view?.showPlaceholderForSedinte()
                         }
                         else -> {
-                            view?.showListaSedinte(filterLista(it))
+                            if (filterLista(it).isEmpty()) {
+                                view?.showPlaceholderForSedinte()
+                            } else {
+                                view?.showListaSedinte(filterLista(it))
+                            }
                         }
                     }
                     view?.hideProgress()
-                }, {
-                    Log.d("problem", "could not get all sedinte")
-                       view?.showPlaceholderForSedinteNetwork()
-                    view?.hideProgress()
-                })
+                },
+                    {
+                        Log.d("problem", "could not get all sedinte")
+                        view?.showPlaceholderForSedinteNetwork()
+                        view?.hideProgress()
+                    })
         )
     }
 
     private fun filterLista(list: List<Sedinta>): List<Sedinta> {
         val listaNoua = arrayListOf<Sedinta>()
         for (sedinta in list) {
-            if (getCurrentLicentaAcceptati(context).contains(sedinta.student_solicitant) || getCurrentDisertatieAcceptati(
-                    context
-                ).contains(sedinta.student_solicitant)
-            ) {
-                listaNoua.add(sedinta)
+            if (sedinta.email_profesor_solicitat == FirebaseAuth.getInstance().currentUser?.email.toString()) {
+                if (getCurrentLicentaAcceptati(context).contains(sedinta.student_solicitant) || getCurrentDisertatieAcceptati(context).contains(sedinta.student_solicitant)) {
+                    if (sedinta.status == Constants.StatusSedinta.PROGRES.name) {
+                        listaNoua.add(sedinta)
+                    }
+                }
             }
         }
         return listaNoua
@@ -65,7 +74,7 @@ class SedinteSolicitatePresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     //nothing
-                     view?.goToSedinteConfirmate()
+                    view?.goToSedinteConfirmate()
                     view?.hideProgress()
                 }, {
                     Log.d("problem", "could not update cerere")

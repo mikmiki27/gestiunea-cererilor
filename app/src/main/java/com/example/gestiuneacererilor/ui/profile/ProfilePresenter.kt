@@ -36,56 +36,70 @@ class ProfilePresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_CURRENT_ID, it[0].id
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_CURRENT_NUME, it[0].nume
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_CURRENT_PRENUME, it[0].prenume
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_FULL_NAME, it[0].prenume + " " + it[0].nume
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_CURRENT_EMAIL, it[0].email
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_CURRENT_FACULTATE, it[0].facultate
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_CICLU, it[0].ciclu
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_AN, it[0].an
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL, it[0].profesor_coordonator
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_FULL_NAME, it[0].profesor_coordonator_full_name
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_ID, it[0].id_profesor_coordonator
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.STUDENT_TITLU_LUCRARE, it[0].titlu_lucrare
-                            ?: ""
-                    )
+                    if (it.isEmpty()) {
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_CURRENT_ID, it[0].id
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_CURRENT_NUME, it[0].nume
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_CURRENT_PRENUME, it[0].prenume
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.STUDENT_FULL_NAME,
+                            it[0].prenume + " " + it[0].nume
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_CURRENT_EMAIL, it[0].email
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_CURRENT_FACULTATE, it[0].facultate
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_CICLU, it[0].ciclu
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_AN, it[0].an
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL,
+                            it[0].profesor_coordonator
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_FULL_NAME,
+                            it[0].profesor_coordonator_full_name
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_ID,
+                            it[0].id_profesor_coordonator
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.STUDENT_TITLU_LUCRARE, it[0].titlu_lucrare
+                                ?: ""
+                        )
+                    }
                     when {
-                        it.isEmpty() -> Toast.makeText(context, context.getString(R.string.no_student_in_db), Toast.LENGTH_SHORT).show()
+                        it.isEmpty() -> Toast.makeText(
+                            context,
+                            context.getString(R.string.no_student_in_db),
+                            Toast.LENGTH_SHORT
+                        ).show()
                         else -> view?.setViewsForStudent(it[0])
                     }
                 }, {
@@ -100,55 +114,70 @@ class ProfilePresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_CURRENT_ID, it[0].id
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_CURRENT_NUME, it[0].nume
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_CURRENT_PRENUME, it[0].prenume
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_FULL_NAME, it[0].prenume + " " + it[0].nume
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_CURRENT_EMAIL, it[0].email
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_CERINTE_LICENTA, it[0].cerinte_suplimentare_licenta
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_CERINTE_MASTER, it[0].cerinte_suplimentare_disertatie
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_CURRENT_FACULTATE, it[0].facultate
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_ECHIPA_LICENTA, it[0].nr_studenti_echipa_licenta
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_ECHIPA_MASTER, it[0].nr_studenti_echipa_disertatie
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI, it[0].studenti_licenta_acceptati
-                            ?: ""
-                    )
-                    SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI, it[0].studenti_disertatie_acceptati
-                            ?: ""
-                    )
+                    if (it.isNotEmpty()) {
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.PROFESOR_CURRENT_ID, it[0].id
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.PROFESOR_CURRENT_NUME, it[0].nume
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.PROFESOR_CURRENT_PRENUME, it[0].prenume
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.PROFESOR_FULL_NAME,
+                            it[0].prenume + " " + it[0].nume
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.PROFESOR_CURRENT_EMAIL, it[0].email
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.PROFESOR_CERINTE_LICENTA,
+                            it[0].cerinte_suplimentare_licenta
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.PROFESOR_CERINTE_MASTER,
+                            it[0].cerinte_suplimentare_disertatie
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity, SharedPrefUtil.PROFESOR_CURRENT_FACULTATE, it[0].facultate
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.PROFESOR_ECHIPA_LICENTA,
+                            it[0].nr_studenti_echipa_licenta
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.PROFESOR_ECHIPA_MASTER,
+                            it[0].nr_studenti_echipa_disertatie
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI,
+                            it[0].studenti_licenta_acceptati
+                                ?: ""
+                        )
+                        SharedPrefUtil.addKeyValue(
+                            activity,
+                            SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI,
+                            it[0].studenti_disertatie_acceptati
+                                ?: ""
+                        )
+                    }
                     when {
                         it.isEmpty() -> singOut()
                         else -> view?.setViewsForProfesor(it[0])
@@ -170,11 +199,19 @@ class ProfilePresenter(
                 .subscribe({
                     view?.setViewsForStudent(it)
                     view?.hideProgress()
-                    Toast.makeText(context, context.resources.getString(R.string.update_succesful), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        context.resources.getString(R.string.update_succesful),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     view?.disableUpdateButton()
                 }, {
                     Log.d("problem", "could not update student by id")
-                    Toast.makeText(context, context.getString(R.string.update_failed), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.update_failed),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     view?.hideProgress()
                     view?.disableUpdateButtonAndSetOldTextForStudent()
                 })
@@ -192,11 +229,19 @@ class ProfilePresenter(
                 .subscribe({
                     view?.setViewsForProfesor(it)
                     view?.hideProgress()
-                    Toast.makeText(context, context.resources.getString(R.string.update_succesful), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        context.resources.getString(R.string.update_succesful),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     view?.disableUpdateButton()
                 }, {
                     Log.d("problem", "could not update professor by id")
-                    Toast.makeText(context, context.getString(R.string.update_failed), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        context.getString(R.string.update_failed),
+                        Toast.LENGTH_SHORT
+                    ).show()
                     view?.hideProgress()
                     view?.disableUpdateButtonAndSetOldTextForStudent()
                 })

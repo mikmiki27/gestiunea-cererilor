@@ -61,6 +61,11 @@ public class SedinteSolicitateAdapter(
                                 (R.string.ora_sedinta), item.orai, item.orasf)
                         )
 
+                        motivStudent.text = String.format(
+                            context.resources.getString(
+                                (R.string.motiv), item.motiv)
+                        )
+
                         cardViewSedintaStud.setOnClickListener {
                             onRequestItemClicked.invoke(item)
                         }
@@ -80,6 +85,7 @@ public class SedinteSolicitateAdapter(
           var anFacultateStud: TextView = view.findViewById(R.id.sedinte_solicitate_student_an_facultate)
           var dataStudent: TextView = view.findViewById(R.id.sedinte_solicitate_data_student)
           var oraStudent: TextView = view.findViewById(R.id.sedinte_solicitate_ora_student)
+          var motivStudent: TextView = view.findViewById(R.id.sedinte_solicitate_motiv_student)
           var cardViewSedintaStud: CardView = view.findViewById(R.id.cardview_sedinta)
 
     }

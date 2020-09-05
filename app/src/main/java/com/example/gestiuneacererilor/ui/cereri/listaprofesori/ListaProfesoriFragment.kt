@@ -19,10 +19,7 @@ import com.example.gestiuneacererilor.data.restmanager.StudentService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseFragment
-import com.example.gestiuneacererilor.utils.Constants
-import com.example.gestiuneacererilor.utils.SharedPrefUtil
-import com.example.gestiuneacererilor.utils.getStudentCiclu
-import com.example.gestiuneacererilor.utils.getStudentProfesorCoordonatorEmail
+import com.example.gestiuneacererilor.utils.*
 import kotlinx.android.synthetic.main.fragment_lista_profesori.*
 import java.util.*
 
@@ -146,7 +143,7 @@ class ListaProfesoriFragment :
         for (cerere in cererileStudentuluiCurrent) {
             if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ACCEPTATA.name.toLowerCase(
                     Locale.getDefault()
-                ) && getStudentProfesorCoordonatorEmail(requireContext()).isNotEmpty()
+                ) && getStudentProfesorCoordonatorFullName(requireContext()).isNotEmpty()
             ) {
                 SharedPrefUtil.addKeyValue(
                     context,
@@ -154,7 +151,7 @@ class ListaProfesoriFragment :
                     cerere.email_profesor_solicitat
                         ?: ""
                 )
-                return cerere.email_profesor_solicitat
+                return cerere.profesor_solicitat
             }
         }
         return ""

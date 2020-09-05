@@ -82,10 +82,11 @@
         android:name="com.example.gestiuneacererilor.ui.sedinte.sedintesolicitate.SedinteSolicitateFragment"
         android:label="SedinteSolicitateFragment"
         tools:layout="@layout/fragment_sedinte_solicitate" >
-        <action
-            android:id="@+id/action_menu_sedinte_solicitate_to_confirmate"
-            app:destination="@id/menu_sedinte_confirmate" />
     </fragment>
+
+    <action
+        android:id="@+id/action_menu_sedinte_solicitate_to_confirmate"
+        app:destination="@id/menu_sedinte_confirmate" />
 
     <fragment
         android:id="@+id/menu_profile"

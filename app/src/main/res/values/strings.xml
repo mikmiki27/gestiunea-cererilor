@@ -53,6 +53,7 @@
     <string name="already_got_prof">You already got a professor: %1$s. Good luck!</string>
     <string name="fara_profesori">There are no professors available.</string>
     <string name="fara_sedinte_solicitate">There are no meetings available.</string>
+    <string name="fara_sedinte_confirmate">There are no confirmed meetings available.</string>
     <string name="depunere_cerere">Make a request</string>
     <string name="mentiunile_studentului_formular">Mentions: </string>
     <string name="invalid_password">Invalid password</string>
@@ -90,6 +91,7 @@
     <string name="data_sedinta">Date: %1$s</string>
     <string name="ora_sedinta">Hour: %1$s - %2$s</string>
     <string name="ora">Hour:</string>
+    <string name="motiv">Reason of request: %1$s</string>
     <string name="statuss">Status:</string>
     <string name="tip_cerere">Request type:</string>
     <string name="nume">Name: %1$s</string>

@@ -7,6 +7,8 @@ import com.example.gestiuneacererilor.data.managers.sedintamanager.SedintaManage
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
 import com.example.gestiuneacererilor.data.restmanager.data.Sedinta
 import com.example.gestiuneacererilor.ui.base.BasePresenter
+import com.example.gestiuneacererilor.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -26,14 +28,19 @@ class SedinteConfirmatePresenter(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
+                    if(it.isNotEmpty()) {
                     when {
                         it.isNullOrEmpty() -> {
                             view?.showPlaceholderForSedinteConfirmate()
                         }
                         else -> {
-                            view?.showListaSedinteConfirmate(filterLista(it))
+                            if (filterLista(it).isEmpty()) {
+                                view?.showPlaceholderForSedinteConfirmate()
+                            } else {
+                                view?.showListaSedinteConfirmate(filterLista(it))
+                            }
                         }
-                    }
+                    } }
                     view?.hideProgress()
                 }, {
                     Log.d("problem", "could not get all sedinte")
@@ -45,15 +52,12 @@ class SedinteConfirmatePresenter(
 
     private fun filterLista(list: List<Sedinta>): List<Sedinta> {
         val listaNoua = arrayListOf<Sedinta>()
-        //todo to filter this list confirmate profesor
-        /* for (sedinta in list) {
-             if (getCurrentLicentaAcceptati(context).contains(sedinta.nume_student) || getCurrentDisertatieAcceptati(
-                     context
-                 ).contains(sedinta.nume_student)
-             ) {
+         for (sedinta in list) {
+             if (sedinta.email_profesor_solicitat == FirebaseAuth.getInstance().currentUser?.email.toString() &&
+                     sedinta.status == Constants.StatusSedinta.ACCEPTATA.name) {
                  listaNoua.add(sedinta)
              }
-         }*/
+         }
         return listaNoua
     }
 }

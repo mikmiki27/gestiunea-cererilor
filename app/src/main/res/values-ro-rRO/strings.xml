@@ -19,10 +19,12 @@
     <string name="sing_out">Deconectare</string>
     <string name="full_name">Nume complet:</string>
     <string name="year">An:</string>
+    <string name="motiv">Motiv sedinta:  %1$s</string>
     <string name="data_sedinta">Data: %1$s</string>
     <string name="data">Data:</string>
     <string name="ora_sedinta">Ora: %1$s - %2$s</string>
     <string name="fara_sedinte_solicitate">Nu exista sedinte solicitate.</string>
+    <string name="fara_sedinte_confirmate">Nu exista sedinte confirmate.</string>
     <string name="degrees_type">Ciclu învățământ:</string>
     <string name="titlu_lucrare_profil">Titlu lucrării:</string>
     <string name="colleague">Facultate:</string>

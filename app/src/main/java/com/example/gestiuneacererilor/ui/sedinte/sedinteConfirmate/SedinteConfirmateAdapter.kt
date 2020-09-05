@@ -78,7 +78,7 @@ class SedinteConfirmateAdapter(
 
                         raspuns.text = String.format(
                             context.resources.getString(
-                                (R.string.raspuns), item.status
+                                (R.string.raspuns), item.raspuns
                             )
                         )
 
@@ -90,16 +90,16 @@ class SedinteConfirmateAdapter(
                             container.background =
                                 ResourcesCompat.getDrawable(
                                     context.resources,
-                                    R.drawable.grey_gradient_reverse,
+                                    R.drawable.gri,
                                     null
-                                );
+                                )
                         } else {
                             container.background =
                                 ResourcesCompat.getDrawable(
                                     context.resources,
                                     R.drawable.green_reverse,
                                     null
-                                );
+                                )
                         }
                     }
                 }
