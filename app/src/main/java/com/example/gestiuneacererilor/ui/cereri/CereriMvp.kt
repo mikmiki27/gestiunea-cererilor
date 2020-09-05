@@ -20,7 +20,7 @@ interface CereriMvp {
 
     interface Presenter : BaseMvp.Presenter {
         fun getAllCerereForProfesor(activity: Activity)
-        fun getStudentByEmail(email: String)
+        fun getStudentByEmail(email: String, activity: Activity)
         fun updateCerereToAccepted(cerereSelectata: Cerere)
         fun updateCerereToRespins(cerereSelectata: Cerere)
     }

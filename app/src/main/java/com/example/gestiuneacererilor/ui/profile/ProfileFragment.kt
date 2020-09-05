@@ -12,12 +12,13 @@ import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorMana
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.ProfesorService
 import com.example.gestiuneacererilor.data.restmanager.StudentService
-import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
+import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.ui.onboarding.OnBoardingActivity
 import com.example.gestiuneacererilor.utils.*
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListener,
@@ -57,16 +58,16 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
 
         sing_out_btn_profile.setOnClickListener(this)
         update_btn_profile.setOnClickListener(this)
-        typeUser = determineCurrentTypeUser(getCurrentUserEmail(requireContext()))
+        typeUser = determineCurrentTypeUser(FirebaseAuth.getInstance().currentUser?.email.toString())
 
         when (typeUser) {
             Constants.UserType.STUDENT -> {
                 setVisibilityViewsForStudent()
-                presenter.getStudentByEmail()
+                presenter.getStudentByEmail(requireActivity())
             }
             Constants.UserType.PROFESSOR -> {
                 setVisibilityViewsForProfessor()
-                presenter.getProfessorByEmail()
+                presenter.getProfessorByEmail(requireActivity())
             }
         }
 
@@ -140,15 +141,15 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         titlu_lucrare_text.setText(student.titlu_lucrare ?: "")
         activity?.let {
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_ID, student.id
+                it, SharedPrefUtil.STUDENT_CURRENT_ID, student.id
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_NUME, student.nume
+                it, SharedPrefUtil.STUDENT_CURRENT_NUME, student.nume
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_PRENUME, student.prenume
+                it, SharedPrefUtil.STUDENT_CURRENT_PRENUME, student.prenume
                     ?: ""
             )
         }
@@ -156,23 +157,25 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
 
     override fun getCurrentStudentDetails(): Student {
         return Student(
-            id = getCurrentUserId(requireContext()),
-            nume = getCurrentUserNume(requireContext()),
-            prenume = getCurrentUserPrenume(requireContext()),
+            id = getStudentCurrentID(requireContext()),
+            nume = getStudentCurrentNume(requireContext()),
+            prenume = getStudentCurrentPrenume(requireContext()),
             email = email_text.text.toString(),
             facultate = facultate_text.text.toString(),
             an = an_text.text.toString(),
             ciclu = ciclu_text.text.toString(),
             profesor_coordonator = profesor_coordonator_text.text.toString(),
+            profesor_coordonator_full_name = getStudentProfesorCoordonatorFullName(requireContext()),
+            id_profesor_coordonator = getStudentProfesorCoordonatorID(requireContext()),
             titlu_lucrare = titlu_lucrare_text.text.toString()
         )
     }
 
     override fun getCurrentProfesorDetails(): Professor {
         return Professor(
-            id = getCurrentUserId(requireContext()),
-            nume = getCurrentUserNume(requireContext()),
-            prenume = getCurrentUserPrenume(requireContext()),
+            id = getProfesorCurrentID(requireContext()),
+            nume = getProfesorCurrentNume(requireContext()),
+            prenume = getProfesorCurrentPrenume(requireContext()),
             email = email_text.text.toString(),
             cerinte_suplimentare_licenta = cerinte_licenta_text.text.toString(),
             cerinte_suplimentare_disertatie = cerinte_master_text.text.toString(),
@@ -200,27 +203,23 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
         echipa_licenta_text.setText(profesor.nr_studenti_echipa_licenta ?: "")
         activity?.let {
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_ID, profesor.id
+                it, SharedPrefUtil.PROFESOR_CURRENT_ID, profesor.id
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_NUME, profesor.nume
+                it, SharedPrefUtil.PROFESOR_CURRENT_NUME, profesor.nume
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it, SharedPrefUtil.CURRENT_USER_PRENUME, profesor.prenume
+                it, SharedPrefUtil.PROFESOR_CURRENT_PRENUME, profesor.prenume
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it,
-                SharedPrefUtil.CURRENT_USER_LICENTA_ACCEPTATI,
-                profesor.studenti_licenta_acceptati
+                it, SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI, profesor.studenti_licenta_acceptati
                     ?: ""
             )
             SharedPrefUtil.addKeyValue(
-                it,
-                SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI,
-                profesor.studenti_disertatie_acceptati
+                it, SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI, profesor.studenti_disertatie_acceptati
                     ?: ""
             )
         }
@@ -288,61 +287,32 @@ class ProfileFragment : BaseFragment<ProfileMvp.Presenter>(), View.OnClickListen
     }
 
     private fun removeAllSharedPref() {
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL
-        )
-        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_NUME)
-        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_ID)
-        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_PRENUME)
-        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_AN)
-        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.CURRENT_USER_CICLU)
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_FACULTATE
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_TITLU_LUCRARE
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_ECHIPA_LICENTA
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_ECHIPA_MASTER
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_CERINTE_LICENTA
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_CERINTE_MASTER
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_LICENTA_ACCEPTATI
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(),
-            SharedPrefUtil.CURRENT_USER_DISERTATIE_ACCEPTATI
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(), SharedPrefUtil.PROFESOR_COORDONATOR_ID
-        )
-        SharedPrefUtil.removeStringValue(
-            requireContext(), SharedPrefUtil.PROFESOR_COORDONATOR_DISPLAY_NAME
-        )
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_CURRENT_ID)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_CURRENT_NUME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_CURRENT_PRENUME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_FULL_NAME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_CURRENT_EMAIL)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_CURRENT_FACULTATE)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_CICLU)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_AN)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_FULL_NAME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_ID)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.STUDENT_TITLU_LUCRARE)
+
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_CURRENT_ID)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_CURRENT_NUME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_CURRENT_PRENUME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_FULL_NAME)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_CURRENT_EMAIL)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_CERINTE_LICENTA)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_CERINTE_MASTER)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_CURRENT_FACULTATE)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_ECHIPA_LICENTA)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_ECHIPA_MASTER)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI)
+        SharedPrefUtil.removeStringValue(requireContext(), SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI)
     }
 
     override fun goToMainActivity() {

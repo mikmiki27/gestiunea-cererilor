@@ -3,6 +3,7 @@ package com.example.gestiuneacererilor.ui.cereri
 import android.app.Activity
 import android.content.Context
 import android.util.Log
+import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.cereremanager.CerereManager
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
@@ -28,7 +29,7 @@ class CereriPresenter(
     override fun getAllCerereForProfesor(activity: Activity) {
         view?.showProgress()
         subscription.add(
-            profesorManager.getProfesorByEmail(getCurrentUserEmail(context))
+            profesorManager.getProfesorByEmail(getProfesorCurrentEmail(context))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -40,41 +41,51 @@ class CereriPresenter(
                             profesor = it[0]
                             view?.showViewsForTeams(it)
                             SharedPrefUtil.addKeyValue(
-                                activity,
-                                SharedPrefUtil.CURRENT_USER_ECHIPA_LICENTA,
-                                it[0].nr_studenti_echipa_licenta
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_ID, it[0].id
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity,
-                                SharedPrefUtil.CURRENT_USER_ECHIPA_MASTER,
-                                it[0].nr_studenti_echipa_disertatie
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_NUME, it[0].nume
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity, SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL, it[0].email
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_PRENUME, it[0].prenume
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity,
-                                SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME,
-                                it[0].prenume + " " + it[0].nume
+                                activity, SharedPrefUtil.PROFESOR_FULL_NAME, it[0].prenume + " " + it[0].nume
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity, SharedPrefUtil.CURRENT_USER_NUME, it[0].nume
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_EMAIL, it[0].email
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity, SharedPrefUtil.CURRENT_USER_PRENUME, it[0].prenume
+                                activity, SharedPrefUtil.PROFESOR_CERINTE_LICENTA, it[0].cerinte_suplimentare_licenta
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity, SharedPrefUtil.CURRENT_USER_FACULTATE, it[0].facultate
+                                activity, SharedPrefUtil.PROFESOR_CERINTE_MASTER, it[0].cerinte_suplimentare_disertatie
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity, SharedPrefUtil.CURRENT_USER_ID, it[0].id
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_FACULTATE, it[0].facultate
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_ECHIPA_LICENTA, it[0].nr_studenti_echipa_licenta
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_ECHIPA_MASTER, it[0].nr_studenti_echipa_disertatie
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI, it[0].studenti_licenta_acceptati
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI, it[0].studenti_disertatie_acceptati
                                     ?: ""
                             )
                         }
@@ -165,9 +176,17 @@ class CereriPresenter(
                         an = student.an,
                         ciclu = student.ciclu,
                         profesor_coordonator = student.profesor_coordonator,
+                        profesor_coordonator_full_name = student.profesor_coordonator_full_name,
+                        id_profesor_coordonator = student.id_profesor_coordonator,
                         titlu_lucrare = student.titlu_lucrare
                     )
                     studentUpdate?.profesor_coordonator = profesor.email
+                    studentUpdate?.profesor_coordonator_full_name = String.format(
+                        context.resources.getString(R.string.template_for_two),
+                        profesor.nume,
+                        profesor.prenume
+                    )
+                    studentUpdate?.id_profesor_coordonator = profesor.id
 
                     subscription.add(
                         studentManger.updateStudentById(
@@ -251,7 +270,7 @@ class CereriPresenter(
         )
     }
 
-    override fun getStudentByEmail(email: String) {
+    override fun getStudentByEmail(email: String, activity: Activity) {
         view?.showProgress()
         subscription.add(
             studentManger.getStudentByEmail(email)
@@ -259,9 +278,51 @@ class CereriPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     SharedPrefUtil.addKeyValue(
-                        context,
-                        SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR,
-                        it[0].profesor_coordonator
+                        activity, SharedPrefUtil.STUDENT_CURRENT_ID, it[0].id
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_CURRENT_NUME, it[0].nume
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_CURRENT_PRENUME, it[0].prenume
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_FULL_NAME, it[0].prenume + " " + it[0].nume
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_CURRENT_EMAIL, it[0].email
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_CURRENT_FACULTATE, it[0].facultate
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_CICLU, it[0].ciclu
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_AN, it[0].an
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL, it[0].profesor_coordonator
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_FULL_NAME, it[0].profesor_coordonator_full_name
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_ID, it[0].id_profesor_coordonator
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_TITLU_LUCRARE, it[0].titlu_lucrare
                             ?: ""
                     )
                 }, {

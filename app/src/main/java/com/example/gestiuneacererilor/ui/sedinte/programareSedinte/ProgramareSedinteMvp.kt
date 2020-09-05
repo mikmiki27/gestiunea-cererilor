@@ -7,6 +7,7 @@ import com.example.gestiuneacererilor.ui.base.BaseMvp
 interface ProgramareSedinteMvp {
     interface View : BaseMvp.View {
         fun goToCerileConfirmateAleStudentului()
+        fun showPlaceholderForDontHaveProf()
     }
 
     interface Presenter : BaseMvp.Presenter {

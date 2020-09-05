@@ -1,5 +1,6 @@
 package com.example.gestiuneacererilor.ui.profile
 
+import android.app.Activity
 import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseMvp
@@ -21,7 +22,7 @@ interface ProfileMvp {
         fun singOut()
         fun updateStudent()
         fun updateProfesor()
-        fun getStudentByEmail()
-        fun getProfessorByEmail()
+        fun getStudentByEmail(activity: Activity)
+        fun getProfessorByEmail(activity: Activity)
     }
 }

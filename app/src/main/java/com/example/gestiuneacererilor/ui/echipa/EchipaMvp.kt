@@ -1,5 +1,6 @@
 package com.example.gestiuneacererilor.ui.echipa
 
+import android.app.Activity
 import com.example.gestiuneacererilor.ui.base.BaseMvp
 
 interface EchipaMvp {
@@ -10,6 +11,6 @@ interface EchipaMvp {
     }
 
     interface Presenter : BaseMvp.Presenter {
-        fun getProfesorByEmail()
+        fun getProfesorByEmail(activity: Activity)
     }
 }

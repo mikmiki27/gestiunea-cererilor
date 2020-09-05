@@ -10,7 +10,7 @@ import com.example.gestiuneacererilor.ui.sedinte.sedinteconfirmatestudent.Sedint
 import com.example.gestiuneacererilor.ui.sedinte.sedintesolicitate.SedinteSolicitateFragment
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
-import com.example.gestiuneacererilor.utils.getCurrentUserEmail
+import com.google.firebase.auth.FirebaseAuth
 
 class EventsViewPagerAdapter(
     var context: Context,
@@ -18,7 +18,7 @@ class EventsViewPagerAdapter(
 ) : FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
-        return when (determineCurrentTypeUser(getCurrentUserEmail(context))) {
+        return when (determineCurrentTypeUser(FirebaseAuth.getInstance().currentUser?.email.toString())) {
             Constants.UserType.PROFESSOR -> {
                 when (position) {
                     SEDINTE_SOLICITATE -> SedinteSolicitateFragment()

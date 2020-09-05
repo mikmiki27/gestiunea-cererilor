@@ -10,9 +10,9 @@ import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
-import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 
 class SedinteFragment : Fragment() {
 
@@ -34,7 +34,7 @@ class SedinteFragment : Fragment() {
         viewPager.isSaveEnabled = false
         tabLayout = view.findViewById(R.id.tabLayout)
 
-        when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
+        when (determineCurrentTypeUser(FirebaseAuth.getInstance().currentUser?.email.toString())) {
             Constants.UserType.STUDENT -> {
                 setViewPager()
                 TabLayoutMediator(tabLayout, viewPager) { tab, position ->

@@ -25,10 +25,6 @@ class SedintaManagerImplementation private constructor(private val sedintaServic
         return sedintaService.getSedintaByStudentEmail(email)
     }
 
-    override fun getSedintaByProfesorEmail(email: String): Single<List<Sedinta>> {
-        return sedintaService.getSedintaByProfesorEmail(email)
-    }
-
     override fun updateSedintaById(id: String, sedinta: Sedinta): Single<Sedinta> {
         return sedintaService.updateSedintaById(id, sedinta)
     }

@@ -24,6 +24,7 @@ import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.utils.*
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.custom_alert_dialog_profesor.view.*
 import kotlinx.android.synthetic.main.fragment_cereri.*
 import java.util.*
@@ -77,9 +78,9 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
         tabLayout = view.findViewById(R.id.tabLayout)
         recyclerViewForProfesor = view.findViewById(R.id.recyclerView_for_profesor)
 
-        when (determineCurrentTypeUser(getCurrentUserEmail(requireContext()))) {
+        when (determineCurrentTypeUser(FirebaseAuth.getInstance().currentUser?.email.toString())) {
             Constants.UserType.STUDENT -> {
-                presenter.getStudentByEmail(getCurrentUserEmail(requireContext()))
+                presenter.getStudentByEmail(FirebaseAuth.getInstance().currentUser?.email.toString(), requireActivity())
                 setViewsVisibilityForStudent()
 
                 setViewPager()
@@ -260,8 +261,8 @@ class CereriFragment : BaseFragment<CereriMvp.Presenter>(),
 
         for (cerere in list) {
             if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.PROGRES.name.toLowerCase(Locale.getDefault())
-                && cerere.facultate_student == getCurrentUserFacultate(requireContext())
-                && cerere.email_profesor_solicitat == getCurrentUserEmail(requireContext()) && cerere.id_profesor == getCurrentUserId(requireContext())) {
+                && cerere.facultate_student == getProfesorCurrentFacultate(requireContext())
+                && cerere.email_profesor_solicitat == getProfesorCurrentEmail(requireContext()) && cerere.id_profesor == getProfesorCurrentID(requireContext())) {
                 filteredList.add(cerere)
             }
         }

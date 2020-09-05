@@ -33,14 +33,14 @@
         app:layout_constraintTop_toBottomOf="@+id/programare_sedinte_nume_profesor"
         tools:text="Email: ionion@csie.ase.ro" />
 
-    <TextView
+       <TextView
         android:id="@+id/programare_sedinte_data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:letterSpacing="0.1"
         android:lineSpacingExtra="8dp"
-        tools:text="Data: 22.11.2020"
+        android:text="@string/data"
         android:textColor="#364b70"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/calendar_data"
@@ -164,6 +164,21 @@
 
         </com.google.android.material.textfield.TextInputEditText>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/placeholderNuAiProf_formular_sedinta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/you_don_t_have_any_coordinator_set"
+        android:background="@android:color/white"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="invisible" />
 
     <Button
         android:id="@+id/programare_sedinte_buton_send"

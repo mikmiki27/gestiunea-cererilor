@@ -1,5 +1,6 @@
 package com.example.gestiuneacererilor.ui.sedinte.sedinteconfirmatestudent
 
+import android.app.Activity
 import com.example.gestiuneacererilor.data.restmanager.data.Sedinta
 import com.example.gestiuneacererilor.ui.base.BaseMvp
 
@@ -12,5 +13,6 @@ interface SedinteConfirmateStudentMvp {
 
     interface Presenter : BaseMvp.Presenter {
         fun getAllSedinteConfirmateStudent()
+        fun getCurrentStudentByEmail(activity: Activity)
     }
 }

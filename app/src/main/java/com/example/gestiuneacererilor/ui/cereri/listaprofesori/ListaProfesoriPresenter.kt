@@ -6,7 +6,7 @@ import com.example.gestiuneacererilor.data.managers.cereremanager.CerereManager
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
 import com.example.gestiuneacererilor.ui.base.BasePresenter
-import com.example.gestiuneacererilor.utils.getCurrentStudentProfesorCoordonator
+import com.example.gestiuneacererilor.utils.getStudentProfesorCoordonatorEmail
 import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -31,11 +31,11 @@ class ListaProfesoriPresenter(
                             view?.showPlaceholderForProfessors()
                         }
                         else -> {
-                            if (getCurrentStudentProfesorCoordonator(context).isEmpty()) {
+                            if (getStudentProfesorCoordonatorEmail(context).isEmpty()) {
                                 view?.showListaProfesoriDisponibili(it)
                             } else {
                                 view?.showPlaceHolderForAlreadyGotProf(
-                                    getCurrentStudentProfesorCoordonator(context)
+                                    getStudentProfesorCoordonatorEmail(context)
                                 )
                             }
                         }

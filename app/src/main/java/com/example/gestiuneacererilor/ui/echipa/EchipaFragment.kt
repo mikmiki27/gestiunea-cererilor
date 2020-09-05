@@ -41,7 +41,7 @@ class EchipaFragment : BaseFragment<EchipaMvp.Presenter>(), EchipaMvp.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         (context as? BaseActivity<*>)?.supportActionBar?.title = getString(R.string.menu_echipa)
-        presenter.getProfesorByEmail()
+        presenter.getProfesorByEmail(requireActivity())
         recyclerViewLicenta = view.findViewById(R.id.recycler_echipa_student_licenta)
         recyclerViewMaster = view.findViewById(R.id.recycler_echipa_student_master)
 

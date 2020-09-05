@@ -65,10 +65,11 @@
         android:name="com.example.gestiuneacererilor.ui.sedinte.programareSedinte.ProgramareSedinteFragment"
         android:label="ProgramareSedinteFragment"
         tools:layout="@layout/fragment_programare_sedinte" >
-        <action
-            android:id="@+id/action_menu_programare_sedinta_to_confirmate_student"
-            app:destination="@id/menu_sedinte_confirmate_student" />
     </fragment>
+
+    <action
+        android:id="@+id/action_menu_programare_sedinta_to_confirmate_student"
+        app:destination="@id/menu_sedinte_confirmate_student" />
 
     <fragment
         android:id="@+id/menu_sedinte_confirmate"

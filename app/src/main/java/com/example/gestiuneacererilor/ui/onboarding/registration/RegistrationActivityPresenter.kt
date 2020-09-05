@@ -45,6 +45,8 @@ class RegistrationActivityPresenter(
                     an = student.an,
                     ciclu = student.ciclu,
                     profesor_coordonator = student.profesor_coordonator,
+                    profesor_coordonator_full_name = student.profesor_coordonator_full_name,
+                    id_profesor_coordonator = student.id_profesor_coordonator,
                     titlu_lucrare = student.titlu_lucrare
                 )
             )
@@ -52,45 +54,51 @@ class RegistrationActivityPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL, it.email
+                        activity, SharedPrefUtil.STUDENT_CURRENT_ID, it.id
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME,
-                        it.prenume + " " + it.nume
+                        activity, SharedPrefUtil.STUDENT_CURRENT_NUME, it.nume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_NUME, it.nume
+                        activity, SharedPrefUtil.STUDENT_CURRENT_PRENUME, it.prenume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_PRENUME, it.prenume
+                        activity, SharedPrefUtil.STUDENT_FULL_NAME, it.prenume + " " + it.nume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_FACULTATE, it.facultate
+                        activity, SharedPrefUtil.STUDENT_CURRENT_EMAIL, it.email
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_AN, it.an
+                        activity, SharedPrefUtil.STUDENT_CURRENT_FACULTATE, it.facultate
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR, it.profesor_coordonator
+                        activity, SharedPrefUtil.STUDENT_CICLU, it.ciclu
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_TITLU_LUCRARE, it.titlu_lucrare
+                        activity, SharedPrefUtil.STUDENT_AN, it.an
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_CICLU, it.ciclu
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL, it.profesor_coordonator
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_ID, it.id
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_FULL_NAME, it.profesor_coordonator_full_name
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_ID, it.id_profesor_coordonator
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.STUDENT_TITLU_LUCRARE, it.titlu_lucrare
                             ?: ""
                     )
                     view?.hideProgress()
@@ -121,29 +129,51 @@ class RegistrationActivityPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.CURRENT_FIREBASE_DISPLAY_NAME,
-                        it.prenume + " " + it.nume
+                        activity, SharedPrefUtil.PROFESOR_CURRENT_ID, it.id
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_NUME, it.nume
+                        activity, SharedPrefUtil.PROFESOR_CURRENT_NUME, it.nume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_PRENUME, it.prenume
+                        activity, SharedPrefUtil.PROFESOR_CURRENT_PRENUME, it.prenume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_FACULTATE, it.facultate
+                        activity, SharedPrefUtil.PROFESOR_FULL_NAME, it.prenume + " " + it.nume
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_FIREBASE_USER_EMAIL, it.email
+                        activity, SharedPrefUtil.PROFESOR_CURRENT_EMAIL, it.email
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity, SharedPrefUtil.CURRENT_USER_ID, it.id
+                        activity, SharedPrefUtil.PROFESOR_CERINTE_LICENTA, it.cerinte_suplimentare_licenta
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.PROFESOR_CERINTE_MASTER, it.cerinte_suplimentare_disertatie
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.PROFESOR_CURRENT_FACULTATE, it.facultate
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.PROFESOR_ECHIPA_LICENTA, it.nr_studenti_echipa_licenta
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.PROFESOR_ECHIPA_MASTER, it.nr_studenti_echipa_disertatie
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI, it.studenti_licenta_acceptati
+                            ?: ""
+                    )
+                    SharedPrefUtil.addKeyValue(
+                        activity, SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI, it.studenti_disertatie_acceptati
                             ?: ""
                     )
                     view?.hideProgress()

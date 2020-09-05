@@ -12,8 +12,8 @@ import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
-import com.example.gestiuneacererilor.utils.getCurrentUserEmail
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
 
@@ -53,7 +53,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
                 bottomNav,
                 navHostFragment.navController
             )
-            when (determineCurrentTypeUser(getCurrentUserEmail(this))) {
+            when (determineCurrentTypeUser(FirebaseAuth.getInstance().currentUser?.email.toString())) {
                 Constants.UserType.STUDENT -> {
                     bottomNav.menu.findItem(R.id.menu_echipa).setVisible(false)
                 }

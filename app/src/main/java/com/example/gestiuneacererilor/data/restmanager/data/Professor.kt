@@ -52,9 +52,6 @@ class Professor : Serializable {
     constructor()
 }
 
-//todo verifica toate obiectele ca s-au creat ok
-//todo fa un flow cap toata pt student si prof in paralel.
-
 /*
 data class Profesor(
     val nume: String,

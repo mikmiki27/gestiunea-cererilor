@@ -11,7 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
 
 interface SedintaService {
-    //todo verifica cu serverul
     @Headers(value = ["Content-Type: application/json"])
     @POST("sedinta/nou")
     fun enterNewSedinta(@Body request: Sedinta): Single<Sedinta>
@@ -22,9 +21,9 @@ interface SedintaService {
     @GET("sedinta/")
     fun getSedintaByStudentEmail(@Query(value = "", encoded = true) email: String): Single<List<Sedinta>>
 
-    @GET("sedinta/")
+   /* @GET("sedinta/")
     fun getSedintaByProfesorEmail(@Query(value = "", encoded = true) email: String): Single<List<Sedinta>>
-
+*/
     /*@GET("sedinta/{id}")
     fun getSedintaById(@Path(value = "id") id: String): Single<List<Sedinta>>*/
 

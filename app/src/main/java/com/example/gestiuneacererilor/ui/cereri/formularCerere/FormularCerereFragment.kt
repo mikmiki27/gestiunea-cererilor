@@ -51,10 +51,10 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
     override fun onClick(view: View?) {
         if (view?.id == R.id.programare_sedinte_buton_send) {
             val cerereNoua = Cerere(
-                student_solicitant = getCurrentUserDisplayName((requireContext())),
-                id_student = getCurrentUserId(requireContext()),
+                student_solicitant = getStudentCurrentFullName((requireContext())),
+                id_student = getStudentCurrentID(requireContext()),
                 email_student_solicitat = FirebaseAuth.getInstance().currentUser?.email.toString(),
-                facultate_student = getCurrentUserFacultate(requireContext()),
+                facultate_student = getStudentCurrentFacultate(requireContext()),
                 profesor_solicitat = String.format(
                     requireContext().resources.getString(R.string.template_for_two),
                     profesorSolicitat.nume,
@@ -63,7 +63,7 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
                 email_profesor_solicitat = profesorSolicitat.email,
                 id_profesor = profesorSolicitat.id,
                 status = Constants.StatusCerere.PROGRES.name,
-                tip_cerere = if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
+                tip_cerere = if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
                     Constants.TipCiclu.LICENTA.name
                 } else {
                     Constants.TipCerere.DISERTATIE.name
@@ -93,12 +93,12 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
             requireContext().resources.getString(R.string.email_disp),
             profesorSolicitat.email
         )
-        if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
+        if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase()) {
             programare_sedinte_data.text = String.format(
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_licenta
             )
-        } else if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase()) {
+        } else if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase()) {
             programare_sedinte_data.text = String.format(
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_disertatie

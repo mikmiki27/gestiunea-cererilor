@@ -46,7 +46,7 @@ class SedinteConfirmateAdapter(
 
                         emailStud.text = String.format(
                             context.resources.getString(
-                                (R.string.email_disp), item.email_student_solicitat
+                                (R.string.email_disp), item.email_student_solicitant
                             )
                         )
 

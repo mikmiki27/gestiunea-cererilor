@@ -47,6 +47,7 @@ class SedinteConfirmateStudentFragment :
         recyclerViewForSedinteConfirmateStudent =
             view.findViewById(R.id.lista_sedinte_confirmate_student)
 
+        presenter.getCurrentStudentByEmail(requireActivity())
         presenter.getAllSedinteConfirmateStudent()
 
         mySedinteConfirmateStudentAdapter = SedinteConfirmateStudentAdapter(

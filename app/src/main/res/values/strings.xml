@@ -16,6 +16,7 @@
     <string name="cerinte_suplimentare_master_profil">Additional requests for master\'s degree:</string>
     <string name="email_profil">Email:</string>
     <string name="email_disp">Email: %1$s</string>
+    <string name="data">Date:</string>
     <string name="an_facultate_disp">Year: %1$s, University: %2$s</string>
     <string name="other_requests">Other requests: %1$s</string>
     <string name="sing_out">Sing out</string>
@@ -93,6 +94,7 @@
     <string name="tip_cerere">Request type:</string>
     <string name="nume">Name: %1$s</string>
     <string name="raspuns">Professor\'s response: \n%1$s</string>
+    <string name="profesor_coordonator_profil_sedinta">Coordinator: %1$s</string>
     <string name="noResponseYet">No response yet.</string>
     <string name="anuleaza_cererea">Cancel request</string>
     <string name="nu_ai_efectuat_nici_o_cerere">You haven\'t made a request, yet.</string>
@@ -114,6 +116,7 @@
     <string name="response_goes_here">The response goes here</string>
     <string name="doresti_sa_adaugi_sedinta">Do you want to add this meeting in your calendar?</string>
     <string name="set_date">Set date</string>
+    <string name="you_don_t_have_any_coordinator_set">You don\'t have any coordinator set.</string>
 
     <string-array name="ciclu_invatamant">
         <item>Bachelor</item>

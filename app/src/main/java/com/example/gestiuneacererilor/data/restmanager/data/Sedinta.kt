@@ -1,11 +1,10 @@
 package com.example.gestiuneacererilor.data.restmanager.data
 
 class Sedinta {
-    //todo de verificat
     var id: String = ""
     var student_solicitant: String = ""
     var id_student: String = ""
-    var email_student_solicitat: String = ""
+    var email_student_solicitant: String = ""
     var facultate_student: String = ""
     var an_student: String = ""
     var profesor_solicitat: String = ""
@@ -22,7 +21,7 @@ class Sedinta {
         id: String,
         student_solicitant: String,
         id_student: String,
-        email_student_solicitat: String,
+        email_student_solicitant: String,
         facultate_student: String,
         an_student: String,
         profesor_solicitat: String,
@@ -38,7 +37,7 @@ class Sedinta {
         this.id = id
         this.student_solicitant = student_solicitant
         this.id_student = id_student
-        this.email_student_solicitat = email_student_solicitat
+        this.email_student_solicitant = email_student_solicitant
         this.facultate_student = facultate_student
         this.an_student = an_student
         this.profesor_solicitat = profesor_solicitat
@@ -55,7 +54,7 @@ class Sedinta {
     constructor (
         student_solicitant: String,
         id_student: String,
-        email_student_solicitat: String,
+        email_student_solicitant: String,
         facultate_student: String,
         an_student: String,
         profesor_solicitat: String,
@@ -69,7 +68,7 @@ class Sedinta {
     ) {
         this.student_solicitant = student_solicitant
         this.id_student = id_student
-        this.email_student_solicitat = email_student_solicitat
+        this.email_student_solicitant = email_student_solicitant
         this.facultate_student = facultate_student
         this.an_student = an_student
         this.profesor_solicitat = profesor_solicitat

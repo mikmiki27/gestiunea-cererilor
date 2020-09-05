@@ -99,6 +99,23 @@
             app:layout_constraintTop_toBottomOf="@id/sedinte_solicitate_data_prof"
             tools:text="Ora: 17:30 - 18:00" />
 
+
+        <TextView
+            android:id="@+id/sedinte_solicitate_status_prof"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:drawablePadding="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.15"
+            android:lineSpacingExtra="@dimen/text_size_6sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@id/guideline1"
+            app:layout_constraintTop_toBottomOf="@id/sedinte_solicitate_ora_prof"
+            tools:text="Status: PROGRES" />
+
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline1"
             android:layout_width="wrap_content"

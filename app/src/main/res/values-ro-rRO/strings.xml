@@ -20,6 +20,7 @@
     <string name="full_name">Nume complet:</string>
     <string name="year">An:</string>
     <string name="data_sedinta">Data: %1$s</string>
+    <string name="data">Data:</string>
     <string name="ora_sedinta">Ora: %1$s - %2$s</string>
     <string name="fara_sedinte_solicitate">Nu exista sedinte solicitate.</string>
     <string name="degrees_type">Ciclu învățământ:</string>
@@ -30,6 +31,7 @@
     <string name="student_nume_disp">Student: %1$s</string>
     <string name="an_facultate_disp">An: %1$s, Facultate: %2$s</string>
     <string name="profesor_coordonator_profil">Profesor coordonator:</string>
+    <string name="profesor_coordonator_profil_sedinta">Profesor coordonator: %1$s</string>
     <string name="nr_echipa_licenta_profil">Licență - număr studenți confirmați:</string>
     <string name="nr_echipa_master_profil">Masterat - număr studenți confirmați:</string>
     <string name="cerinte_suplimentare_licenta_profil">Cerințe suplimentare licență:</string>
@@ -114,6 +116,7 @@
     <string name="set_date">Seteaza data</string>
     <string name="template_for_one">%1$s</string>
     <string name="ora">Ora:</string>
+    <string name="you_don_t_have_any_coordinator_set">Nu ai profesor coordonator.</string>
 
     <string-array name="ciclu_invatamant">
         <item>Licenta</item>

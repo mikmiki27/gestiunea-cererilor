@@ -10,7 +10,7 @@ import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.data.restmanager.data.Sedinta
 import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
-import com.example.gestiuneacererilor.utils.getCurrentUserEmail
+import com.example.gestiuneacererilor.utils.getStudentProfesorCoordonatorEmail
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -44,7 +44,7 @@ class ProgramareSedintePresenter(
     override fun getProfesorCoordonatorByEmail(emailProfCoord: String, activity: Activity) {
         view?.showProgress()
         subscription.add(
-            profesorManager.getProfesorByEmail(getCurrentUserEmail(context))
+            profesorManager.getProfesorByEmail(getStudentProfesorCoordonatorEmail(context))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -53,24 +53,60 @@ class ProgramareSedintePresenter(
                             //view?.hideViewsForTeams()
                         }
                         else -> {
-                            profesor = it[0]
-
                             SharedPrefUtil.addKeyValue(
-                                activity,
-                                SharedPrefUtil.PROFESOR_COORDONATOR_ID,
-                                it[0].id
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_ID, it[0].id
                                     ?: ""
                             )
                             SharedPrefUtil.addKeyValue(
-                                activity,
-                                SharedPrefUtil.PROFESOR_COORDONATOR_DISPLAY_NAME,
-                                it[0].prenume + " " + it[0].nume
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_NUME, it[0].nume
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_PRENUME, it[0].prenume
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_FULL_NAME, it[0].prenume + " " + it[0].nume
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_EMAIL, it[0].email
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_CERINTE_LICENTA, it[0].cerinte_suplimentare_licenta
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_CERINTE_MASTER, it[0].cerinte_suplimentare_disertatie
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_CURRENT_FACULTATE, it[0].facultate
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_ECHIPA_LICENTA, it[0].nr_studenti_echipa_licenta
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_ECHIPA_MASTER, it[0].nr_studenti_echipa_disertatie
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI, it[0].studenti_licenta_acceptati
+                                    ?: ""
+                            )
+                            SharedPrefUtil.addKeyValue(
+                                activity, SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI, it[0].studenti_disertatie_acceptati
                                     ?: ""
                             )
                         }
                     }
+                    view?.hideProgress()
                 }, {
                     Log.d("problem", "could not get profesor by email")
+                    view?.hideProgress()
                 })
         )
     }

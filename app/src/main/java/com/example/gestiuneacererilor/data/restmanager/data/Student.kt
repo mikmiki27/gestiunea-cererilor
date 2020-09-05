@@ -9,9 +9,11 @@ class Student {
     var an: String = ""
     var ciclu: String = ""
     var profesor_coordonator: String? = ""
+    var profesor_coordonator_full_name: String? = ""
+    var id_profesor_coordonator: String? = ""
     var titlu_lucrare: String? = ""
 
-    constructor(nume: String, prenume: String, email: String, facultate: String, an: String, ciclu: String, profesor_coordonator: String?, titlu_lucrare: String?) {
+    constructor(nume: String, prenume: String, email: String, facultate: String, an: String, ciclu: String, profesor_coordonator: String?, profesor_coordonator_full_name: String?, id_profesor_coordonator: String?, titlu_lucrare: String?) {
         this.nume = nume
         this.prenume = prenume
         this.email = email
@@ -19,10 +21,12 @@ class Student {
         this.an = an
         this.ciclu = ciclu
         this.profesor_coordonator = profesor_coordonator
+        this.profesor_coordonator_full_name = profesor_coordonator_full_name
+        this.id_profesor_coordonator = id_profesor_coordonator
         this.titlu_lucrare = titlu_lucrare
     }
 
-    constructor(id: String, nume: String, prenume: String, email: String, facultate: String, an: String, ciclu: String, profesor_coordonator: String?, titlu_lucrare: String?) {
+    constructor(id: String, nume: String, prenume: String, email: String, facultate: String, an: String, ciclu: String, profesor_coordonator: String?, profesor_coordonator_full_name: String?, id_profesor_coordonator: String?, titlu_lucrare: String?) {
         this.id = id
         this.nume = nume
         this.prenume = prenume
@@ -31,6 +35,8 @@ class Student {
         this.an = an
         this.ciclu = ciclu
         this.profesor_coordonator = profesor_coordonator
+        this.profesor_coordonator_full_name = profesor_coordonator_full_name
+        this.id_profesor_coordonator = id_profesor_coordonator
         this.titlu_lucrare = titlu_lucrare
     }
 

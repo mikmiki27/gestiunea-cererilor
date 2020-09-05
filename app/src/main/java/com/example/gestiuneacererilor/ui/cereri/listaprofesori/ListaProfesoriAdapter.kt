@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.utils.Constants
-import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
+import com.example.gestiuneacererilor.utils.getStudentCiclu
 import java.util.*
 
 class ListaProfesoriAdapter(
@@ -48,7 +48,7 @@ class ListaProfesoriAdapter(
                             context.resources.getString(R.string.email_disp),
                             item.email
                         )
-                        if (getCurrentStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
+                        if (getStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
                                 Locale.getDefault()
                             )
                         ) {
@@ -60,7 +60,7 @@ class ListaProfesoriAdapter(
                                 context.resources.getString(R.string.locuri_disponibile),
                                 (15 - item.nr_studenti_echipa_licenta!!.toInt()).toString()
                             )
-                        } else if (getCurrentStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
+                        } else if (getStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
                                 Locale.getDefault()
                             )
                         ) {

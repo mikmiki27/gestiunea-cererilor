@@ -10,6 +10,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.restmanager.data.Sedinta
+import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.createDate
 import com.example.gestiuneacererilor.utils.isCurrentDateBiggerThatDateToCompare
 
@@ -69,28 +70,60 @@ class SedinteConfirmateStudentAdapter(
                             )
                         )
 
-                        //todo test this
-                        if (isCurrentDateBiggerThatDateToCompare(
-                                createDate(
-                                    item.data,
-                                    item.orai
-                                )
+                        status.text = String.format(
+                            context.resources.getString(
+                                (R.string.status), item.status
                             )
-                        ) {
-                            container.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.grey_gradient_reverse,
-                                    null
-                                );
-                        } else {
-                            container.background =
-                                ResourcesCompat.getDrawable(
-                                    context.resources,
-                                    R.drawable.green_reverse,
-                                    null
-                                );
+                        )
+
+                        if(item.status == Constants.StatusSedinta.PROGRES.name || item.status == Constants.StatusSedinta.RESPINSA.name) {
+                            if (isCurrentDateBiggerThatDateToCompare(
+                                    createDate(
+                                        item.data,
+                                        item.orai
+                                    )
+                                )
+                            ) {
+                                container.background =
+                                    ResourcesCompat.getDrawable(
+                                        context.resources,
+                                        R.drawable.gri,
+                                        null
+                                    )
+                            } else {
+                                container.background =
+                                    ResourcesCompat.getDrawable(
+                                        context.resources,
+                                        R.drawable.grey_gradient_reverse,
+                                        null
+                                    )
+                            }
                         }
+
+                        if (item.status == Constants.StatusSedinta.ACCEPTATA.name) {
+                            if (isCurrentDateBiggerThatDateToCompare(
+                                    createDate(
+                                        item.data,
+                                        item.orai
+                                    )
+                                )
+                            ) {
+                                container.background =
+                                    ResourcesCompat.getDrawable(
+                                        context.resources,
+                                        R.drawable.gri,
+                                        null
+                                    )
+                            } else {
+                                container.background =
+                                    ResourcesCompat.getDrawable(
+                                        context.resources,
+                                        R.drawable.green_reverse,
+                                        null
+                                    )
+                            }
+                        }
+
                     }
                 }
             }
@@ -107,6 +140,7 @@ class SedinteConfirmateStudentAdapter(
         var facultateProf: TextView = view.findViewById(R.id.sedinte_solicitate_prof_facultate)
         var dataProf: TextView = view.findViewById(R.id.sedinte_solicitate_data_prof)
         var oraProf: TextView = view.findViewById(R.id.sedinte_solicitate_ora_prof)
+        var status: TextView = view.findViewById(R.id.sedinte_solicitate_status_prof)
         var container: ConstraintLayout = view.findViewById(R.id.container)
     }
 }

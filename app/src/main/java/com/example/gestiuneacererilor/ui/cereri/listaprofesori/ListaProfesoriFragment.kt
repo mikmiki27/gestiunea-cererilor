@@ -21,8 +21,8 @@ import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
-import com.example.gestiuneacererilor.utils.getCurrentStudentCiclu
-import com.example.gestiuneacererilor.utils.getCurrentStudentProfesorCoordonator
+import com.example.gestiuneacererilor.utils.getStudentCiclu
+import com.example.gestiuneacererilor.utils.getStudentProfesorCoordonatorEmail
 import kotlinx.android.synthetic.main.fragment_lista_profesori.*
 import java.util.*
 
@@ -146,11 +146,11 @@ class ListaProfesoriFragment :
         for (cerere in cererileStudentuluiCurrent) {
             if (cerere.status.toLowerCase(Locale.getDefault()) == Constants.StatusCerere.ACCEPTATA.name.toLowerCase(
                     Locale.getDefault()
-                ) && getCurrentStudentProfesorCoordonator(requireContext()).isNotEmpty()
+                ) && getStudentProfesorCoordonatorEmail(requireContext()).isNotEmpty()
             ) {
                 SharedPrefUtil.addKeyValue(
                     context,
-                    SharedPrefUtil.CURRENT_USER_PROFESOR_COORDONATOR,
+                    SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL,
                     cerere.email_profesor_solicitat
                         ?: ""
                 )
@@ -174,7 +174,7 @@ class ListaProfesoriFragment :
 
     private fun filterListOfProfDisp(list: List<Professor>): List<Professor> {
         val listaFiltrata = arrayListOf<Professor>()
-        if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
+        if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.LICENTA.name.toLowerCase(
                 Locale.getDefault()
             )
         ) {
@@ -183,7 +183,7 @@ class ListaProfesoriFragment :
                     listaFiltrata.add(profesor)
                 }
             }
-        } else if (getCurrentStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
+        } else if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
                 Locale.getDefault()
             )
         ) {

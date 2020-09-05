@@ -48,9 +48,9 @@ class SedinteSolicitatePresenter(
     private fun filterLista(list: List<Sedinta>): List<Sedinta> {
         val listaNoua = arrayListOf<Sedinta>()
         for (sedinta in list) {
-            if (getCurrentLicentaAcceptati(context).contains(sedinta.nume_student) || getCurrentDisertatieAcceptati(
+            if (getCurrentLicentaAcceptati(context).contains(sedinta.student_solicitant) || getCurrentDisertatieAcceptati(
                     context
-                ).contains(sedinta.nume_student)
+                ).contains(sedinta.student_solicitant)
             ) {
                 listaNoua.add(sedinta)
             }

@@ -46,14 +46,37 @@ class ProgramareSedinteFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //ecran doar pt student
+        if (getStudentProfesorCoordonatorEmail(requireContext()).isEmpty()) {
+            showPlaceholderForDontHaveProf()
+        } else {
+            calendar_data.setOnClickListener(this)
+            ceas_ora_start.setOnClickListener(this)
+            ceas_ora_finish.setOnClickListener(this)
+            programare_sedinte_buton_send.setOnClickListener(this)
+            presenter.getProfesorCoordonatorByEmail(
+                getStudentProfesorCoordonatorEmail(requireContext()),
+                requireActivity()
+            )
+            setViews(view)
+        }
+    }
 
-        calendar_data.setOnClickListener(this)
-        ceas_ora_start.setOnClickListener(this)
-        ceas_ora_finish.setOnClickListener(this)
+    override fun showPlaceholderForDontHaveProf() {
+        placeholderNuAiProf_formular_sedinta.visibility = View.VISIBLE
+        programare_sedinte_buton_send.visibility = View.INVISIBLE
+    }
 
-        presenter.getProfesorCoordonatorByEmail(
-            getCurrentStudentProfesorCoordonator(requireContext()),
-            requireActivity()
+    private fun setViews(view: View) {
+        programare_sedinte_nume_profesor.text = String.format(
+            requireContext().resources.getString(
+                (R.string.profesor_coordonator_profil_sedinta),
+                getStudentProfesorCoordonatorFullName(requireContext())
+            )
+        )
+        programare_sedinte_email_prof.text = String.format(
+            requireContext().resources.getString(
+                (R.string.email_disp), getStudentProfesorCoordonatorEmail(requireContext())
+            )
         )
     }
 
@@ -72,9 +95,18 @@ class ProgramareSedinteFragment :
 
                 myDialogView.buton_trimite.setOnClickListener {
                     val day = myDialogView.datepicker.dayOfMonth
-                    val luna = myDialogView.datepicker.month
+                    var stringDay = day.toString()
+                    val luna = myDialogView.datepicker.month + 1
+                    var stringLuna = luna.toString()
                     val year = myDialogView.datepicker.year
-                    val stringDate = "$day-$luna-$year"
+                    if (day in 1..9) {
+                        stringDay = "0$day"
+                    }
+                    if (luna in 1..9) {
+                        stringLuna = "0$luna"
+                    }
+                    val stringDate = "$stringDay-$stringLuna-$year"
+
                     programare_sedinte_data.text = String.format(
                         requireContext().resources.getString(
                             (R.string.data_sedinta), stringDate
@@ -128,25 +160,21 @@ class ProgramareSedinteFragment :
                 }
             }
 
-            R.id.buton_trimite -> {
+            R.id.programare_sedinte_buton_send -> {
                 //todo create new sedinta
                 presenter.enterNewSedinta(
                     Sedinta(
-                        student_solicitant = getCurrentUserDisplayName(requireContext()),
-                        id_student = getCurrentUserId(requireContext()),
-                        email_student_solicitat = getCurrentUserEmail(requireContext()),
-                        facultate_student = getCurrentUserFacultate(requireContext()),
-                        an_student = getCurrentStudentAn(requireContext()),
-                        profesor_solicitat = getCurrentStudentProfesorCoordonatorDisplayName(
-                            requireContext()
-                        ), //todo seteaza-l cumva, testeaza-l
-                        email_profesor_solicitat = getCurrentStudentProfesorCoordonator(
-                            requireContext()
-                        ),
-                        id_profesor = getCurrentStudentProfesorCoordonatorId(requireContext()),
-                        status = Constants.StatusCerere.RESPINSA.name,
+                        student_solicitant = getStudentCurrentFullName(requireContext()),
+                        id_student = getStudentCurrentID(requireContext()),
+                        email_student_solicitant = getStudentCurrentEmail(requireContext()),
+                        facultate_student = getStudentCurrentFacultate(requireContext()),
+                        an_student = getStudentAn(requireContext()),
+                        profesor_solicitat = getStudentProfesorCoordonatorFullName(requireContext()),
+                        email_profesor_solicitat = getStudentProfesorCoordonatorEmail(requireContext()),
+                        id_profesor = getStudentProfesorCoordonatorID(requireContext()),
+                        status = Constants.StatusCerere.PROGRES.name,
                         motiv = programare_sedinte_motiv_text.text.toString(),
-                        data = programare_sedinte_data.text.toString(),
+                        data = programare_sedinte_data.text.toString().subSequence(6, programare_sedinte_data.text.toString().length).toString(),
                         orai = programare_sedinte_ora_start.text.toString(),
                         orasf = programare_sedinte_ora_finish.text.toString()
                     )
