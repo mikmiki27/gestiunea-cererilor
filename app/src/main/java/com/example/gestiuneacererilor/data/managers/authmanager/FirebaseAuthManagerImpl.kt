@@ -65,4 +65,21 @@ class FirebaseAuthManagerImpl private constructor() : FirebaseAuthManager {
             }
         }
     }
+
+    override fun sendEmailVerif(activity: Activity): Observable<FirebaseUser> {
+        return Observable.create<FirebaseUser> { emitter ->
+            try {
+                mAuth?.currentUser?.sendEmailVerification()
+                    ?.addOnCompleteListener(activity) { task ->
+                        if (task.isSuccessful) {
+                            mAuth?.currentUser?.let { emitter.onNext(it) }
+                        } else {
+                            emitter.tryOnError(task.exception!!)
+                        }
+                    }
+            } catch (e: Exception) {
+                emitter.onError(e)
+            }
+        }
+    }
 }

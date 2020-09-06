@@ -11,6 +11,7 @@ import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
 import com.example.gestiuneacererilor.ui.onboarding.registration.RegistrationActivity
 import com.example.gestiuneacererilor.ui.onboarding.signin.SignInActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
 class OnBoardingActivity : BaseActivity<OnBoardingMvp.Presenter>(), OnBoardingMvp.View {
@@ -44,9 +45,5 @@ class OnBoardingActivity : BaseActivity<OnBoardingMvp.Presenter>(), OnBoardingMv
             startActivity(intent)
         }
 
-    }
-
-    override fun goToMainActivity() {
-        startActivity(MainActivity.getIntent(this))
     }
 }

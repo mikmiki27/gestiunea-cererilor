@@ -1,10 +1,13 @@
 package com.example.gestiuneacererilor.ui.onboarding.registration
 
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.core.view.isVisible
 import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
@@ -16,16 +19,27 @@ import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
+import com.example.gestiuneacererilor.ui.onboarding.OnBoardingActivity
+import com.example.gestiuneacererilor.ui.onboarding.signin.SignInActivity
+import com.example.gestiuneacererilor.ui.onboarding.signin.SignInActivityPresenter
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_registration.*
+import kotlinx.android.synthetic.main.activity_registration.email_layout
+import kotlinx.android.synthetic.main.activity_registration.email_text
+import kotlinx.android.synthetic.main.activity_registration.password_layout
+import kotlinx.android.synthetic.main.activity_registration.password_text
+import kotlinx.android.synthetic.main.activity_sign_in.*
 
 
 class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), RegistrationMvp.View {
 
     override var presenter: RegistrationMvp.Presenter =
-        RegistrationActivityPresenter(this,
+        RegistrationActivityPresenter(
+            this,
             FirebaseAuthManagerImpl.getInstance(),
             StudentManagerImplementation.getInstance(StudentService.create()),
-            ProfesorManagerImplementation.getInstance(ProfesorService.create()))
+            ProfesorManagerImplementation.getInstance(ProfesorService.create())
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,20 +113,27 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
 
         sign_up_registration_btn.setOnClickListener {
             if (validation()) {
-                presenter.singUpUserToFirebase(email_text.text.toString(),  password_text.text.toString(), this)
+                presenter.singUpUserToFirebase(
+                    email_text.text.toString(),
+                    password_text.text.toString(),
+                    this
+                )
 
+                presenter.sendEmailVerif(this)
                 if (user_type_layout.selectedItemId == 0L) { //student
-                    presenter.singUpUser(
-                        Student(
-                            nume = last_name_text.text.toString(),
-                            prenume =  programare_sedinte_motiv_text.text.toString(),
-                            email =  email_text.text.toString(),
-                            facultate = facultate_text.text.toString(),
-                            an = an_layout.selectedItem.toString(),
-                            ciclu = ciclu_layout.selectedItem.toString()
-                        ),
-                        this
-                    )
+                    Handler().postDelayed({
+                        presenter.singUpUser(
+                            Student(
+                                nume = last_name_text.text.toString(),
+                                prenume = programare_sedinte_motiv_text.text.toString(),
+                                email = email_text.text.toString(),
+                                facultate = facultate_text.text.toString(),
+                                an = an_layout.selectedItem.toString(),
+                                ciclu = ciclu_layout.selectedItem.toString()
+                            ),
+                            this
+                        )
+                    }, 1000)
                 } else { //professor
                     presenter.singUpUser(
                         Professor(
@@ -159,7 +180,8 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                 if (email_text.text?.contains("@stud.ase.ro")!! && email_text.text!!.length > 12) {
                     email_layout.error = null
                 } else {
-                    email_layout.error = getString(com.example.gestiuneacererilor.R.string.foloseste_pentru_stud)
+                    email_layout.error =
+                        getString(com.example.gestiuneacererilor.R.string.foloseste_pentru_stud)
                     i++
                 }
             }
@@ -167,7 +189,8 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
                 if (email_text.text?.contains("ase.ro")!! && email_text.text!!.length > 7) {
                     email_layout.error = null
                 } else {
-                    email_layout.error = getString(com.example.gestiuneacererilor.R.string.foloseste_email_prof)
+                    email_layout.error =
+                        getString(com.example.gestiuneacererilor.R.string.foloseste_email_prof)
                     i++
                 }
             }
@@ -177,8 +200,17 @@ class RegistrationActivity : BaseActivity<RegistrationMvp.Presenter>(), Registra
         return i == 0
     }
 
-    override fun goToMainActivity() {
-        startActivity(MainActivity.getIntent(this))
+    override fun goToSignInActivity() {
+        val intent = Intent(applicationContext, SignInActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun toastSucces() {
+        Toast.makeText(this, "Email verif sent!", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun toastFailed() {
+        Toast.makeText(this, "Email verif failed!", Toast.LENGTH_SHORT).show()
     }
 
     private fun createSpinnerArray(entries: Int): ArrayAdapter<CharSequence> {

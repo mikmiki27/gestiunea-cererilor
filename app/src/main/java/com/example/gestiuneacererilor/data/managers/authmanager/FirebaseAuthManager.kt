@@ -14,4 +14,5 @@ interface FirebaseAuthManager {
     fun getCurrentUser(): FirebaseUser?
     fun createUserWithEmailAndPassword(email: String, password: String, activity: Activity): Observable<FirebaseUser>
     fun signInWithEmailAndPassword(email: String, password: String, activity: Activity): Observable<FirebaseUser>
+    fun sendEmailVerif(activity: Activity): Observable<FirebaseUser>
 }

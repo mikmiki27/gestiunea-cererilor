@@ -2,18 +2,15 @@ package com.example.gestiuneacererilor.ui.onboarding.signin
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.AttributeSet
 import android.util.Patterns
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import com.example.gestiuneacererilor.R
-import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManager
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManagerImplementation
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManagerImplementation
@@ -23,6 +20,7 @@ import com.example.gestiuneacererilor.ui.base.BaseActivity
 import com.example.gestiuneacererilor.ui.main.MainActivity
 import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : BaseActivity<SignInMvp.Presenter>(), SignInMvp.View, View.OnClickListener {
@@ -94,14 +92,21 @@ class SignInActivity : BaseActivity<SignInMvp.Presenter>(), SignInMvp.View, View
     override fun onClick(p0: View?) {
         when (p0?.id) {
             R.id.login_btn -> {
-                if (email_layout.error == null && password_layout.error == null) {
-                    val email = email_text.text.toString()
-                    val password = password_text.text.toString()
-                    presenter.signInWithEmailAndPassword(this, email, password)
-                    when (determineCurrentTypeUser(email)) {
-                        Constants.UserType.STUDENT -> presenter.getStudentByEmail(this, email)
-                        Constants.UserType.PROFESSOR -> presenter.getProfessorByEmail(this, email)
+                if (FirebaseAuth.getInstance().currentUser?.isEmailVerified!!) {
+                    if (email_layout.error == null && password_layout.error == null) {
+                        val email = email_text.text.toString()
+                        val password = password_text.text.toString()
+                        presenter.signInWithEmailAndPassword(this, email, password)
+                        when (determineCurrentTypeUser(email)) {
+                            Constants.UserType.STUDENT -> presenter.getStudentByEmail(this, email)
+                            Constants.UserType.PROFESSOR -> presenter.getProfessorByEmail(
+                                this,
+                                email
+                            )
+                        }
                     }
+                } else {
+                    Toast.makeText(this, "verify address!!", Toast.LENGTH_SHORT).show()
                 }
             }
         }
