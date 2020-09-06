@@ -14,8 +14,6 @@ import com.example.gestiuneacererilor.utils.Constants
 import com.example.gestiuneacererilor.utils.determineCurrentTypeUser
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
 
@@ -32,14 +30,14 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setSupportActionBar(findViewById(R.id.toolbar))
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
         }
+
         setUpNavigation()
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val menuInflater = menuInflater
@@ -59,8 +57,7 @@ class MainActivity : BaseActivity<MainMvp.Presenter>(), MainMvp.View {
                 Constants.UserType.STUDENT -> {
                     bottomNav.menu.findItem(R.id.menu_echipa).setVisible(false)
                 }
-                Constants.UserType.PROFESSOR -> bottomNav.menu.findItem(R.id.menu_echipa)
-                    .setVisible(true)
+                Constants.UserType.PROFESSOR -> bottomNav.menu.findItem(R.id.menu_echipa).setVisible(true)
             }
         }
     }

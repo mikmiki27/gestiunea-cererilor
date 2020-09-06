@@ -1,25 +1,20 @@
 package com.example.gestiuneacererilor.ui.onboarding.registration
 
 import android.app.Activity
-import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManager
-import com.example.gestiuneacererilor.data.managers.authmanager.FirebaseAuthManagerImpl
 import com.example.gestiuneacererilor.data.managers.profesormanager.ProfesorManager
 import com.example.gestiuneacererilor.data.managers.studentmanager.StudentManager
 import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BasePresenter
 import com.example.gestiuneacererilor.utils.SharedPrefUtil
-import com.google.firebase.auth.FirebaseAuth
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.logging.Handler
 
 class RegistrationActivityPresenter(
     view: RegistrationMvp.View,
-    private val firebaseAuth: FirebaseAuthManagerImpl,
+    private val firebaseAuth: FirebaseAuthManager,
     private val studentManager: StudentManager,
     private val profesorManager: ProfesorManager
 ) : BasePresenter<RegistrationMvp.View>(view), RegistrationMvp.Presenter {
@@ -32,23 +27,9 @@ class RegistrationActivityPresenter(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     Log.d("success", "firebase signup succeded")
-                    firebaseAuth.mAuth?.signOut()
+                    view?.goToMainActivity()
                 }, {
                     Log.d("problem", "firebase signup failed")
-                })
-        )
-    }
-
-    override fun sendEmailVerif(activity: Activity) {
-        subscription.add(
-            firebaseAuth.sendEmailVerif(activity)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    view?.toastSucces()
-                    view?.goToSignInActivity()
-                }, {
-                    view?.toastFailed()
                 })
         )
     }
@@ -105,21 +86,15 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL,
-                        it.profesor_coordonator
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_EMAIL, it.profesor_coordonator
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_FULL_NAME,
-                        it.profesor_coordonator_full_name
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_FULL_NAME, it.profesor_coordonator_full_name
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_ID,
-                        it.id_profesor_coordonator
+                        activity, SharedPrefUtil.STUDENT_PROFESOR_COORDONATOR_ID, it.id_profesor_coordonator
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
@@ -174,15 +149,11 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.PROFESOR_CERINTE_LICENTA,
-                        it.cerinte_suplimentare_licenta
+                        activity, SharedPrefUtil.PROFESOR_CERINTE_LICENTA, it.cerinte_suplimentare_licenta
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.PROFESOR_CERINTE_MASTER,
-                        it.cerinte_suplimentare_disertatie
+                        activity, SharedPrefUtil.PROFESOR_CERINTE_MASTER, it.cerinte_suplimentare_disertatie
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
@@ -190,30 +161,21 @@ class RegistrationActivityPresenter(
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.PROFESOR_ECHIPA_LICENTA,
-                        it.nr_studenti_echipa_licenta
+                        activity, SharedPrefUtil.PROFESOR_ECHIPA_LICENTA, it.nr_studenti_echipa_licenta
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.PROFESOR_ECHIPA_MASTER,
-                        it.nr_studenti_echipa_disertatie
+                        activity, SharedPrefUtil.PROFESOR_ECHIPA_MASTER, it.nr_studenti_echipa_disertatie
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI,
-                        it.studenti_licenta_acceptati
+                        activity, SharedPrefUtil.PROFESOR_LICENTA_ACCEPTATI, it.studenti_licenta_acceptati
                             ?: ""
                     )
                     SharedPrefUtil.addKeyValue(
-                        activity,
-                        SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI,
-                        it.studenti_disertatie_acceptati
+                        activity, SharedPrefUtil.PROFESOR_DISERTATIE_ACCEPTATI, it.studenti_disertatie_acceptati
                             ?: ""
                     )
-                    sendEmailVerif(activity)
                     view?.hideProgress()
                 }, {
                     Log.d("problem", "cloud9 insert failed for professor")
