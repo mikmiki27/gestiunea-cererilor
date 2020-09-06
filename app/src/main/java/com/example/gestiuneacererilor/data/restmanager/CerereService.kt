@@ -18,11 +18,11 @@ interface CerereService {
     @GET("cerere")
     fun getAllCerere(): Single<List<Cerere>>
 
-    @GET("cerere/")
-    fun getCerereByStudentEmail(@Query(value = "", encoded = true) email: String): Single<List<Cerere>>
+    @GET("cerere/{email}")
+    fun getCerereByStudentEmail(@Path(value = "email") email: String): Single<List<Cerere>>
 
-    @GET("cerere/")
-    fun getCerereByProfesorEmail(@Query(value = "", encoded = true) email: String): Single<List<Cerere>>
+    @GET("cerere/{email}")
+    fun getCerereByProfesorEmail(@Path(value = "email") email: String): Single<List<Cerere>>
 
     /*@GET("cerere/{id}")
     fun getCerereById(@Path(value = "id") id: String): Single<List<Cerere>>*/

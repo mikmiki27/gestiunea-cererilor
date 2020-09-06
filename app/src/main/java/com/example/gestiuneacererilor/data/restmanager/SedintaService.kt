@@ -2,6 +2,7 @@ package com.example.gestiuneacererilor.data.restmanager
 
 import com.example.gestiuneacererilor.BuildConfig
 import com.example.gestiuneacererilor.data.restmanager.data.Sedinta
+import com.example.gestiuneacererilor.data.restmanager.data.Student
 import com.example.gestiuneacererilor.data.restmanager.util.CustomHttpClient
 import com.google.gson.GsonBuilder
 import io.reactivex.Single
@@ -18,12 +19,12 @@ interface SedintaService {
     @GET("sedinta")
     fun getAllSedinte(): Single<List<Sedinta>>
 
-    @GET("sedinta/")
-    fun getSedintaByStudentEmail(@Query(value = "", encoded = true) email: String): Single<List<Sedinta>>
+    @GET("sedinta/{email}")
+    fun getSedintaByStudentEmail(@Path(value = "email") email: String): Single<List<Sedinta>>
 
-   /* @GET("sedinta/")
-    fun getSedintaByProfesorEmail(@Query(value = "", encoded = true) email: String): Single<List<Sedinta>>
-*/
+    /* @GET("sedinta/")
+     fun getSedintaByProfesorEmail(@Query(value = "", encoded = true) email: String): Single<List<Sedinta>>
+ */
     /*@GET("sedinta/{id}")
     fun getSedintaById(@Path(value = "id") id: String): Single<List<Sedinta>>*/
 
