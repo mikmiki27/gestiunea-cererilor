@@ -98,7 +98,7 @@ class FormularCerereFragment : BaseFragment<FormularCerereMvp.Presenter>(),
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_licenta
             )
-        } else if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase()) {
+        } else if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTERAT.name.toLowerCase()) {
             programare_sedinte_data.text = String.format(
                 requireContext().resources.getString(R.string.other_requests),
                 profesorSolicitat.cerinte_suplimentare_disertatie

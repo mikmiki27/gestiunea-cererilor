@@ -33,6 +33,6 @@ object Constants {
     }
 
     enum class TipCiclu {
-        LICENTA, MASTER
+        LICENTA, MASTERAT
     }
 }

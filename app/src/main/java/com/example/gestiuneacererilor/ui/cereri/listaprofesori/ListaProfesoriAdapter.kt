@@ -60,7 +60,7 @@ class ListaProfesoriAdapter(
                                 context.resources.getString(R.string.locuri_disponibile),
                                 (15 - item.nr_studenti_echipa_licenta!!.toInt()).toString()
                             )
-                        } else if (getStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
+                        } else if (getStudentCiclu(context).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTERAT.name.toLowerCase(
                                 Locale.getDefault()
                             )
                         ) {

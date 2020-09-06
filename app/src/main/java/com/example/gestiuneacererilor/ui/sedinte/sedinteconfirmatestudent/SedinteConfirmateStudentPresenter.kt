@@ -51,9 +51,7 @@ class SedinteConfirmateStudentPresenter(
         for (sedinta in list) {
             if (sedinta.email_student_solicitant == FirebaseAuth.getInstance().currentUser?.email.toString()) {
                 if (getCurrentLicentaAcceptati(context).contains(sedinta.student_solicitant) || getCurrentDisertatieAcceptati(context).contains(sedinta.student_solicitant)) {
-                    if (sedinta.status != Constants.StatusSedinta.ACCEPTATA.name) {
                         listaNoua.add(sedinta)
-                    }
                 }
             }
         }

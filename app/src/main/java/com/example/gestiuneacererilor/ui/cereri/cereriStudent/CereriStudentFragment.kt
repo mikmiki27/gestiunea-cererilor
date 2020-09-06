@@ -12,8 +12,10 @@ import com.example.gestiuneacererilor.R
 import com.example.gestiuneacererilor.data.managers.cereremanager.CerereManagerImplementation
 import com.example.gestiuneacererilor.data.restmanager.CerereService
 import com.example.gestiuneacererilor.data.restmanager.data.Cerere
+import com.example.gestiuneacererilor.data.restmanager.data.Professor
 import com.example.gestiuneacererilor.ui.base.BaseFragment
 import com.example.gestiuneacererilor.utils.Constants
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_cereri_student.*
 
 class CereriStudentFragment() : BaseFragment<CereriStudentMvp.Presenter>(),
@@ -90,10 +92,17 @@ class CereriStudentFragment() : BaseFragment<CereriStudentMvp.Presenter>(),
     }
 
     override fun showCererileMele(list: List<Cerere>) {
+        val listaFiltrata = arrayListOf<Cerere>()
+        for(cerere in list) {
+            if(cerere.email_student_solicitat == FirebaseAuth.getInstance().currentUser?.email.toString()) {
+                listaFiltrata.add(cerere)
+            }
+        }
         myCereriStudentAdapter.apply {
-            cerereList = list
+            cerereList = listaFiltrata
             notifyDataSetChanged()
         }
+
     }
 
     override fun showPlaceholderForNoRequests() {

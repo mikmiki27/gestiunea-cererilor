@@ -176,16 +176,16 @@ class ListaProfesoriFragment :
             )
         ) {
             for (profesor in list) {
-                if (profesor.nr_studenti_echipa_licenta?.toInt()!! < 15) {
+                if (profesor.facultate == getStudentCurrentFacultate(requireContext()) && profesor.nr_studenti_echipa_licenta?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)
                 }
             }
-        } else if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTER.name.toLowerCase(
+        } else if (getStudentCiclu(requireContext()).toLowerCase(Locale.getDefault()) == Constants.TipCiclu.MASTERAT.name.toLowerCase(
                 Locale.getDefault()
             )
         ) {
             for (profesor in list) {
-                if (profesor.nr_studenti_echipa_disertatie?.toInt()!! < 15) {
+                if (profesor.facultate == getStudentCurrentFacultate(requireContext()) && profesor.nr_studenti_echipa_disertatie?.toInt()!! < 15) {
                     listaFiltrata.add(profesor)
                 }
             }
